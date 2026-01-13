@@ -1,11 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>JR Bone | Versatile Developer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&display=swap"
+        rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const icon = toggleBtn.querySelector('i');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                html.setAttribute('data-theme', savedTheme);
+                updateIcon(savedTheme);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                html.setAttribute('data-theme', 'dark');
+                updateIcon('dark');
+            }
+
+            // Toggle logic
+            toggleBtn.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+
+            function updateIcon(theme) {
+                if (theme === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <p>Hello World!</p>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-brand">
+                    <div class="logo">JR</div>
+                    <div class="brand-details">
+                        <p>JR Bone</p>
+                        <p style="opacity: 0.6;">Developer / Cybersecurity / VA</p>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="#">About</a>
+                    <a href="#services">Services</a>
+                    <!--<a href="#work">Work</a>-->
+                    <a href="#contact" class="btn-cta">Book a Call</a>
+
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-layout">
+                    <!-- Hero Image (Left) -->
+                    <div class="hero-image-wrapper">
+                        <div class="hero-img-bg"></div>
+                        <img src="assets/messiah.png" alt="J.R. Bone Working">
+                    </div>
+
+                    <!-- Hero Content (Right) -->
+                    <div class="hero-content">
+                        <span class="hero-label">Available for work</span>
+                        <h1>Building digital solutions <br> that drive growth.</h1>
+                        <p style="font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
+                            I combine technical expertise in web development with administrative efficiency.
+                            Whether you need a high-performance website, a reliable virtual assistant, or a penetration
+                            testing service, I'm here to help.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn-cta" style="background-color: var(--accent-color);">Let's Work
+                                Together</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container">
+                <h2>How I Can Help You</h2>
+                <div class="services-grid">
+
+                    <!-- Web Development -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3>Web Development</h3>
+                        <p>Custom websites built for speed, performance, and conversion. I create digital presences that
+                            look great and work perfectly.</p>
+                        <ul class="service-list">
+                            <li>Responsive Website Design</li>
+                            <li>SEO Optimization</li>
+                            <li>Website Maintenance</li>
+                        </ul>
+                    </div>
+
+                    <!-- Programming -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-terminal"></i></div>
+                        <h3>Programming</h3>
+                        <p>Solving complex problems with clean, efficient code. I build applications and tools to
+                            automate
+                            your workflows.</p>
+                        <ul class="service-list">
+                            <li>Custom Web Applications</li>
+                            <li>API Integrations</li>
+                            <li>Bug Fixing & Troubleshooting</li>
+                            <li>Languages Programming</li>
+                        </ul>
+                    </div>
+
+                    <!-- Virtual Assistance -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-headset"></i></div>
+                        <h3>Virtual Assistance</h3>
+                        <p>Reliable administrative support to free up your time. I handle the details so you can focus
+                            on the big picture.</p>
+                        <ul class="service-list">
+                            <li>Email & Calendar Management</li>
+                            <li>Data Entry & Research</li>
+                            <li>Customer Support</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cybersecurity -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>Cybersecurity</h3>
+                        <p>Identify vulnerabilities and improve your security. I perform thorough tests to ensure your
+                            systems are protected.</p>
+                        <ul class="service-list">
+                            <li>Web Application Penetration Testing</li>
+                            <li>Network Security Assessment</li>
+                            <li>Penetration Testing Tools</li>
+                            <li>Linux Security</li>
+                        </ul>
+                    </div>
+
+                    <!-- Machine Learning -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Machine Learning</h3>
+                        <p>Build and train models to solve complex problems. I create intelligent systems that learn
+                            from data.</p>
+                        <ul class="service-list">
+                            <li>Python Programming</li>
+                            <li>Machine Learning</li>
+                            <li>Deep Learning</li>
+                            <li>Artificial Intelligence</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        <section id="work">
+            <div class="container">
+                <h2>Selected Work</h2>
+                <div class="work-grid">
+
+                    <div class="work-item">
+                        <div class="work-image">
+                            <img src=""
+                                alt="Project 1">
+                        </div>
+                        <h3>Corporate Dashboard</h3>
+                        <p class="text-muted"></p>
+                        <div class="work-tags">
+                            <span class="tag"></span>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-image">
+                            <img src=""
+                                alt="Project 2">
+                        </div>
+                        <h3>Finance Tracker App</h3>
+                        <p class="text-muted"></p>
+                        <div class="work-tags">
+                            <span class="tag"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="btn-outline">View All Projects</a>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Contact Section -->
+        <section id="contact" style="border-bottom: none;">
+            <div class="container">
+                <div class="contact-layout">
+                    <div class="contact-info">
+                        <h2>Ready to get started?</h2>
+                        <p style="margin-bottom: 2rem;">I'm currently accepting new projects. Fill out the form to tell
+                            me about your project.</p>
+
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnralphbone@gmail.com&su=%20Inquiry&body=Hello,%20I%20found%20your%20portfolio"
+                            class="contact-link">johnralphbone@gmail.com</a>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <!-- FormSubmit Integration -->
+                        <form action="https://formsubmit.co/johnralphbone@gmail.com" method="POST" class="contact-form">
+                            <!-- Hidden Configuration -->
+                            <input type="hidden" name="_subject" value="New Portfolio Inquiry">
+                            <input type="hidden" name="_template" value="table">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="number">Phone number</label>
+                                <input type="text" id="number" name="number" required placeholder="0912345678">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Project Description</label>
+                                <textarea id="message" name="message" rows="4" required
+                                    placeholder="Tell me about your project..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-cta"
+                                style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JR Bone. All rights reserved.</p>
+        </div>
+        <div class="container">
+            <!-- Social Media Icons -->
+            <a href="https://www.facebook.com/jrpbone" target="_blank" class="social-icon"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/jrpbone" target="_blank" class="social-icon"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/jrpbone" target="_blank" class="social-icon"><i
+                    class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/jrpbone" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/jrpbone" target="_blank" class="social-icon"><i
+                    class="fab fa-youtube"></i></a>
+            <a href="https://twitter.com/jrpbone" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
 </body>
+
 </html>
