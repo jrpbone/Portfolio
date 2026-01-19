@@ -349,12 +349,43 @@ nav {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     /* Center content including icons */
+    height: 100%;
+    /* Ensure card fills wrapper height */
+    display: flex;
+    flex-direction: column;
 }
 
-.service-card:hover {
+.service-card-wrapper {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover,
+.service-card-wrapper:hover .service-card {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     border-color: var(--accent-color);
+}
+
+.learning-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    /* Let clicks pass through to the card if needed */
+    transition: transform 0.3s ease;
+}
+
+.service-card-wrapper:hover .learning-badge {
+    transform: translateY(-5px);
 }
 
 .service-icon {
@@ -368,7 +399,9 @@ nav {
 
 .service-list {
     list-style: none;
-    margin-top: 1.5rem;
+    margin-top: auto;
+    padding-top: 2rem;
+    /* Add some spacing if content is short */
     text-align: left;
     /* Keep list left-aligned for readability */
 }
