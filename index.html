@@ -26,6 +26,17 @@
     <!-- CSS -->
     <link rel="stylesheet" href="index.css" />
 
+    <!-- GSAP progressive animation enhancement -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const toggleBtn = document.getElementById("theme-toggle");
@@ -37,6 +48,7 @@
         const reduceMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)",
         );
+        const gsapAvailable = Boolean(window.gsap && window.ScrollTrigger);
 
         // Load saved theme
         const savedTheme = localStorage.getItem("theme");
@@ -172,7 +184,11 @@
           ".credibility-item, .about-layout, .services-heading, .service-card, .section-heading, .technology-card, .work-item, .contact-layout",
         );
 
-        if ("IntersectionObserver" in window && !reduceMotion.matches) {
+        if (
+          "IntersectionObserver" in window &&
+          !reduceMotion.matches &&
+          !gsapAvailable
+        ) {
           html.classList.add("reveal-ready");
 
           const revealObserver = new IntersectionObserver(
@@ -376,11 +392,300 @@
             );
           }
         });
+
+        if (gsapAvailable && !reduceMotion.matches) {
+          setupGsapAnimations();
+        }
+
+        function setupGsapAnimations() {
+          const gsap = window.gsap;
+          const ScrollTrigger = window.ScrollTrigger;
+          const clearAnimatedProps = "transform,opacity,visibility";
+
+          gsap.registerPlugin(ScrollTrigger);
+          html.classList.add("gsap-enhanced");
+
+          gsap.set(".scroll-progress", {
+            scaleX: 0,
+            transformOrigin: "left center",
+          });
+          gsap.to(".scroll-progress", {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+              start: 0,
+              end: "max",
+              scrub: 0.2,
+            },
+          });
+
+          const introTimeline = gsap.timeline({
+            defaults: { duration: 0.75, ease: "power3.out" },
+          });
+
+          introTimeline
+            .from(".nav-brand, .nav-links, .nav-controls", {
+              autoAlpha: 0,
+              y: -18,
+              stagger: 0.08,
+              clearProps: clearAnimatedProps,
+            })
+            .from(
+              ".hero-label",
+              {
+                autoAlpha: 0,
+                x: -24,
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.38",
+            )
+            .from(
+              ".hero h1",
+              {
+                autoAlpha: 0,
+                y: 42,
+                duration: 0.95,
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.48",
+            )
+            .from(
+              ".hero-intro, .hero-buttons, .hero-support",
+              {
+                autoAlpha: 0,
+                y: 26,
+                stagger: 0.1,
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.5",
+            )
+            .from(
+              ".hero-visual",
+              {
+                autoAlpha: 0,
+                scale: 0.94,
+                x: 34,
+                duration: 1.05,
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.9",
+            );
+
+          gsap.from(".credibility-item", {
+            autoAlpha: 0,
+            y: 26,
+            duration: 0.75,
+            stagger: 0.08,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: ".credibility-strip",
+              start: "top 90%",
+              once: true,
+            },
+          });
+
+          gsap.from(".about-layout > *", {
+            autoAlpha: 0,
+            y: 44,
+            duration: 0.9,
+            stagger: 0.14,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: "#about",
+              start: "top 76%",
+              once: true,
+            },
+          });
+
+          gsap.from(".services-heading > *", {
+            autoAlpha: 0,
+            y: 32,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: ".services-heading",
+              start: "top 84%",
+              once: true,
+            },
+          });
+
+          gsap.from(".service-card", {
+            autoAlpha: 0,
+            y: 52,
+            scale: 0.975,
+            duration: 0.85,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: ".services-grid",
+              start: "top 82%",
+              once: true,
+            },
+          });
+
+          gsap.from(".technologies-section .section-heading > *", {
+            autoAlpha: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: ".technologies-section .section-heading",
+              start: "top 84%",
+              once: true,
+            },
+          });
+
+          gsap.from(".technology-card", {
+            autoAlpha: 0,
+            y: 46,
+            rotateX: 4,
+            duration: 0.85,
+            stagger: 0.09,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: ".technologies-grid",
+              start: "top 82%",
+              once: true,
+            },
+          });
+
+          gsap.from("#work > .container > .section-heading > *", {
+            autoAlpha: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: clearAnimatedProps,
+            scrollTrigger: {
+              trigger: "#work > .container > .section-heading",
+              start: "top 84%",
+              once: true,
+            },
+          });
+
+          gsap.utils.toArray(".work-item").forEach((project, index) => {
+            const imageStage = project.querySelector(".work-image");
+
+            gsap.from(project, {
+              autoAlpha: 0,
+              x: index % 2 === 0 ? -48 : 48,
+              y: 26,
+              duration: 0.95,
+              ease: "power3.out",
+              clearProps: clearAnimatedProps,
+              scrollTrigger: {
+                trigger: project,
+                start: "top 84%",
+                once: true,
+              },
+            });
+
+            if (imageStage) {
+              gsap.from(imageStage, {
+                clipPath:
+                  index % 2 === 0
+                    ? "inset(0 10% 0 0)"
+                    : "inset(0 0 0 10%)",
+                duration: 1.15,
+                ease: "power3.out",
+                clearProps: "clipPath",
+                scrollTrigger: {
+                  trigger: project,
+                  start: "top 84%",
+                  once: true,
+                },
+              });
+            }
+          });
+
+          const contactTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".contact-layout",
+              start: "top 82%",
+              once: true,
+            },
+          });
+
+          contactTimeline
+            .from(".contact-info", {
+              autoAlpha: 0,
+              x: -46,
+              duration: 0.9,
+              ease: "power3.out",
+              clearProps: clearAnimatedProps,
+            })
+            .from(
+              ".contact-form-wrapper",
+              {
+                autoAlpha: 0,
+                x: 46,
+                duration: 0.9,
+                ease: "power3.out",
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.68",
+            )
+            .from(
+              ".contact-form .form-group, .form-submit",
+              {
+                autoAlpha: 0,
+                y: 18,
+                duration: 0.55,
+                stagger: 0.07,
+                ease: "power2.out",
+                clearProps: clearAnimatedProps,
+              },
+              "-=0.45",
+            );
+
+          document.querySelectorAll(".case-study").forEach((caseStudy) => {
+            caseStudy.addEventListener("toggle", () => {
+              if (caseStudy.open) {
+                const caseStudyTargets = caseStudy.querySelectorAll(
+                  ".architecture-heading, .architecture-node, .architecture-arrow, .architecture-support li, .case-study-body > div:not(.architecture-diagram)",
+                );
+
+                gsap.fromTo(
+                  caseStudyTargets,
+                  { autoAlpha: 0, y: 18, scale: 0.975 },
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.55,
+                    stagger: 0.045,
+                    ease: "power3.out",
+                    clearProps: clearAnimatedProps,
+                    overwrite: "auto",
+                    onComplete: () => ScrollTrigger.refresh(),
+                  },
+                );
+              } else {
+                requestAnimationFrame(() => ScrollTrigger.refresh());
+              }
+            });
+          });
+
+          window.addEventListener(
+            "load",
+            () => ScrollTrigger.refresh(),
+            { once: true },
+          );
+        }
       });
     </script>
   </head>
 
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header>

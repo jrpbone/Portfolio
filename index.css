@@ -121,6 +121,26 @@ textarea {
     outline-offset: 3px;
 }
 
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1990;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), #f29b82);
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: opacity 240ms ease;
+}
+
+.gsap-enhanced .scroll-progress {
+    opacity: 1;
+}
+
 .skip-link {
     position: fixed;
     top: 0.75rem;
