@@ -40,6 +40,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--nav-height) + 1rem);
+    overflow-x: clip;
 }
 
 body {
@@ -47,6 +48,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -2337,6 +2340,38 @@ footer {
         --nav-height: 72px;
     }
 
+    main,
+    section,
+    .container,
+    .hero-layout,
+    .about-layout,
+    .services-grid,
+    .technology-card,
+    .technologies-grid,
+    .work-list,
+    .work-item,
+    .work-media,
+    .work-content,
+    .case-study,
+    .case-study-body,
+    .contact-layout,
+    .contact-info,
+    .contact-form-wrapper {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .case-study summary,
+    .case-study-title,
+    .contact-link,
+    .contact-link strong {
+        min-width: 0;
+    }
+
+    .case-study-action {
+        flex-shrink: 0;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
@@ -2512,6 +2547,10 @@ footer {
     .nav-links {
         right: 1rem;
         left: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .credibility-grid {
