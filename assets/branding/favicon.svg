@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">JR</title>
+  <rect width="64" height="64" rx="14" fill="#1a1918" />
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#e07a5f" stroke-opacity=".55" stroke-width="3" />
+  <path d="M9 16h20v21c0 9-5 14-13 14-5 0-8-2-10-5" fill="none" stroke="#e07a5f" stroke-linecap="round" stroke-linejoin="round" stroke-width="6" />
+  <path d="M36 51V16h10c7 0 11 4 11 10s-4 10-11 10H36m10 0 12 15" fill="none" stroke="#f0f0f0" stroke-linecap="round" stroke-linejoin="round" stroke-width="6" />
+</svg>

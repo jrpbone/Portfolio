@@ -3,11 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>J.R. Bone | Full-Stack Developer</title>
+    <title>JR - Developer</title>
     <meta
       name="description"
-      content="JR Bone builds fast, secure applications  and automation tools for growing businesses."
+      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
     />
+    <meta name="author" content="John Ralph P. Bone" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="theme-color" content="#1a1918" />
+    <link rel="canonical" href="https://jrpbone.vercel.app/" />
+
+    <!-- Site identity -->
+    <link rel="icon" href="/assets/branding/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/branding/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/branding/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Social sharing preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="JR - Developer" />
+    <meta property="og:title" content="JR - Developer" />
+    <meta
+      property="og:description"
+      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
+    />
+    <meta property="og:url" content="https://jrpbone.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://jrpbone.vercel.app/assets/branding/og-preview.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="JR Developer — John Ralph P. Bone portfolio preview"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@jrpbone" />
+    <meta name="twitter:title" content="JR - Developer" />
+    <meta
+      name="twitter:description"
+      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jrpbone.vercel.app/assets/branding/og-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="JR Developer — John Ralph P. Bone portfolio preview"
+    />
+
+    <!-- Developer profile structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Ralph P. Bone",
+        "alternateName": "JR",
+        "url": "https://jrpbone.vercel.app/",
+        "image": "https://jrpbone.vercel.app/assets/jrpbone-optimized.jpg",
+        "email": "mailto:johnralphbone@gmail.com",
+        "jobTitle": "Student",
+        "description": "A student developer creating thoughtful, accessible, and reliable digital experiences.",
+        "knowsAbout": [
+          "Software development",
+          "Web development",
+          "Mobile application development",
+          "User experience",
+          "Application security"
+        ],
+        "sameAs": [
+          "https://github.com/jrpbone",
+          "https://www.linkedin.com/in/jrpbone",
+          "https://www.facebook.com/jrpbone",
+          "https://www.instagram.com/jrpbone",
+          "https://www.youtube.com/jrpbone",
+          "https://twitter.com/jrpbone"
+        ]
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -161,21 +242,23 @@
         // Pair each case study with its project image before layout and reveal setup.
         const caseStudiesSection = document.getElementById("case-studies");
 
-        document.querySelectorAll(".work-item[data-project]").forEach((project) => {
-          const projectKey = project.dataset.project;
-          const imageStage = project.querySelector(".work-image");
-          const caseStudy = document.querySelector(
-            `[data-case-study="${projectKey}"]`,
-          );
+        document
+          .querySelectorAll(".work-item[data-project]")
+          .forEach((project) => {
+            const projectKey = project.dataset.project;
+            const imageStage = project.querySelector(".work-image");
+            const caseStudy = document.querySelector(
+              `[data-case-study="${projectKey}"]`,
+            );
 
-          if (!imageStage || !caseStudy) return;
+            if (!imageStage || !caseStudy) return;
 
-          const mediaColumn = document.createElement("div");
-          mediaColumn.className = "work-media";
-          project.insertBefore(mediaColumn, imageStage);
-          mediaColumn.append(imageStage, caseStudy);
-          caseStudy.open = false;
-        });
+            const mediaColumn = document.createElement("div");
+            mediaColumn.className = "work-media";
+            project.insertBefore(mediaColumn, imageStage);
+            mediaColumn.append(imageStage, caseStudy);
+            caseStudy.open = false;
+          });
 
         caseStudiesSection?.remove();
 
@@ -401,9 +484,8 @@
           const gsap = window.gsap;
           const ScrollTrigger = window.ScrollTrigger;
           const clearAnimatedProps = "transform,opacity,visibility";
-          const useHorizontalMotion = window.matchMedia(
-            "(min-width: 901px)",
-          ).matches;
+          const useHorizontalMotion =
+            window.matchMedia("(min-width: 901px)").matches;
 
           gsap.registerPlugin(ScrollTrigger);
           html.classList.add("gsap-enhanced");
@@ -594,9 +676,7 @@
             if (imageStage) {
               gsap.from(imageStage, {
                 clipPath:
-                  index % 2 === 0
-                    ? "inset(0 10% 0 0)"
-                    : "inset(0 0 0 10%)",
+                  index % 2 === 0 ? "inset(0 10% 0 0)" : "inset(0 0 0 10%)",
                 duration: 1.15,
                 ease: "power3.out",
                 clearProps: "clipPath",
@@ -677,11 +757,9 @@
             });
           });
 
-          window.addEventListener(
-            "load",
-            () => ScrollTrigger.refresh(),
-            { once: true },
-          );
+          window.addEventListener("load", () => ScrollTrigger.refresh(), {
+            once: true,
+          });
         }
       });
     </script>
@@ -884,11 +962,14 @@
       <section id="services">
         <div class="container">
           <div class="services-heading">
-            <span class="section-kicker">Capabilities</span>
-            <h2>How I Can Help You</h2>
+            <div class="services-title">
+              <span class="section-kicker">Capabilities</span>
+              <h2>How I Can Help You</h2>
+            </div>
             <p>
               From product development to technical support, I bring together
-              the skills needed to move an idea from problem to working solution.
+              the skills needed to move an idea from problem to working
+              solution.
             </p>
           </div>
           <div class="services-grid">
@@ -1021,7 +1102,10 @@
             <article class="technology-card">
               <p class="technology-number" aria-hidden="true">02</p>
               <h3>Frameworks</h3>
-              <ul class="technology-list" aria-label="Frameworks and UI libraries">
+              <ul
+                class="technology-list"
+                aria-label="Frameworks and UI libraries"
+              >
                 <li>Flutter</li>
                 <li>React</li>
                 <li>Flask</li>
@@ -1036,7 +1120,10 @@
             <article class="technology-card">
               <p class="technology-number" aria-hidden="true">03</p>
               <h3>Infrastructure</h3>
-              <ul class="technology-list" aria-label="Infrastructure and data platforms">
+              <ul
+                class="technology-list"
+                aria-label="Infrastructure and data platforms"
+              >
                 <li>Linux</li>
                 <li>MySQL</li>
                 <li>SQLite</li>
@@ -1051,7 +1138,10 @@
             <article class="technology-card">
               <p class="technology-number" aria-hidden="true">04</p>
               <h3>Security &amp; Tools</h3>
-              <ul class="technology-list" aria-label="Security technologies and development tools">
+              <ul
+                class="technology-list"
+                aria-label="Security technologies and development tools"
+              >
                 <li>Git</li>
                 <li>GitHub</li>
                 <li>JWT</li>
@@ -1112,19 +1202,25 @@
                         <strong>React 19</strong>
                         <small>Administrative interface</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>API</span>
                         <strong>Express 5</strong>
                         <small>RBAC and protected routes</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Data access</span>
                         <strong>Sequelize</strong>
                         <small>Models and relationships</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Database</span>
                         <strong>MySQL</strong>
@@ -1195,7 +1291,9 @@
                     aria-labelledby="calcuoke-architecture-title"
                   >
                     <div class="architecture-heading">
-                      <p id="calcuoke-architecture-title">System Architecture</p>
+                      <p id="calcuoke-architecture-title">
+                        System Architecture
+                      </p>
                       <span>Configuration-to-sale workflow</span>
                     </div>
                     <div class="architecture-flow">
@@ -1204,13 +1302,17 @@
                         <strong>React + TypeScript</strong>
                         <small>Builder and management UI</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Server</span>
                         <strong>Express API</strong>
                         <small>Business and costing logic</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Database</span>
                         <strong>MySQL</strong>
@@ -1289,13 +1391,17 @@
                         <strong>Python + Tkinter</strong>
                         <small>Windows application</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Application layer</span>
                         <strong>POS Services</strong>
                         <small>Checkout, stock, and reporting</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Local database</span>
                         <strong>SQLite</strong>
@@ -1365,7 +1471,9 @@
                     aria-labelledby="appliansys-architecture-title"
                   >
                     <div class="architecture-heading">
-                      <p id="appliansys-architecture-title">System Architecture</p>
+                      <p id="appliansys-architecture-title">
+                        System Architecture
+                      </p>
                       <span>Storefront and operations flow</span>
                     </div>
                     <div class="architecture-flow">
@@ -1374,13 +1482,17 @@
                         <strong>React + Material UI</strong>
                         <small>Redux-managed customer journeys</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Backend</span>
                         <strong>Express REST API</strong>
                         <small>Commerce and admin workflows</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Database</span>
                         <strong>MySQL</strong>
@@ -1418,7 +1530,8 @@
                     <p>
                       React, Material UI, and Redux Toolkit manage the customer
                       experience; Express and MySQL support role-based admin
-                      tools, stock controls, reports, maps, and document exports.
+                      tools, stock controls, reports, maps, and document
+                      exports.
                     </p>
                   </div>
                   <div>
@@ -1460,21 +1573,31 @@
                         <strong>Flutter + PHP Admin</strong>
                         <small>Mobile app and administration</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Edge</span>
                         <strong>Nginx + HTTPS</strong>
                         <small>Reverse proxy and TLS</small>
                       </div>
-                      <span class="architecture-arrow" aria-hidden="true">→</span>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
                       <div class="architecture-node">
                         <span>Application server</span>
                         <strong>Gunicorn + Flask</strong>
                         <small>REST API and authentication</small>
                       </div>
                     </div>
-                    <div class="architecture-branch" aria-label="Backend services">
-                      <span class="architecture-branch-line" aria-hidden="true"></span>
+                    <div
+                      class="architecture-branch"
+                      aria-label="Backend services"
+                    >
+                      <span
+                        class="architecture-branch-line"
+                        aria-hidden="true"
+                      ></span>
                       <div class="architecture-node">
                         <span>Data</span>
                         <strong>MySQL 8</strong>
@@ -1514,15 +1637,17 @@
                     <p>
                       I designed a cross-platform Flutter workflow for recording
                       or selecting audio, submitting it for analysis, and
-                      presenting scores, suggestions, waveforms, and spectrograms.
+                      presenting scores, suggestions, waveforms, and
+                      spectrograms.
                     </p>
                   </div>
                   <div>
                     <h4>Engineering decisions</h4>
                     <p>
                       A Flask API and MySQL backend support the client, while
-                      Librosa, NumPy, SciPy, Pandas, and Matplotlib power the DSP
-                      pipeline. JWT, Argon2id, OTP, and secure storage protect access.
+                      Librosa, NumPy, SciPy, Pandas, and Matplotlib power the
+                      DSP pipeline. JWT, Argon2id, OTP, and secure storage
+                      protect access.
                     </p>
                   </div>
                   <div>
@@ -1867,7 +1992,10 @@
                   </a>
                 </div>
 
-                <dl class="project-meta" aria-label="ApplianSys project details">
+                <dl
+                  class="project-meta"
+                  aria-label="ApplianSys project details"
+                >
                   <div class="project-meta-wide">
                     <dt>Role</dt>
                     <dd>Project manager / Lead programmer</dd>
@@ -1924,10 +2052,7 @@
               </div>
             </article>
 
-            <article
-              class="work-item project-portrait"
-              data-project="karaok"
-            >
+            <article class="work-item project-portrait" data-project="karaok">
               <div
                 class="work-image"
                 data-gallery="assets/projects/KaraOK/home.jpg|assets/projects/KaraOK/evaluate.jpg|assets/projects/KaraOK/result.jpg|assets/projects/KaraOK/result-visualization.jpg"
@@ -2017,8 +2142,14 @@
 
       <!-- Contact Section -->
       <section id="contact" class="contact-section">
-        <div class="contact-ambient contact-ambient-one" aria-hidden="true"></div>
-        <div class="contact-ambient contact-ambient-two" aria-hidden="true"></div>
+        <div
+          class="contact-ambient contact-ambient-one"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="contact-ambient contact-ambient-two"
+          aria-hidden="true"
+        ></div>
         <div class="container">
           <div class="contact-layout">
             <div class="contact-info">
@@ -2045,7 +2176,10 @@
               >
                 <span>Email me directly</span>
                 <strong>johnralphbone@gmail.com</strong>
-                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
               </a>
             </div>
 
