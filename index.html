@@ -1,311 +1,1422 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JR Bone | Versatile Developer</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.R. Bone | Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="JR Bone builds fast, secure applications  and automation tools for growing businesses."
+    />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&display=swap"
-        rel="stylesheet" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="index.css">
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css" />
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.getElementById('theme-toggle');
-            const icon = toggleBtn.querySelector('i');
-            const html = document.documentElement;
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("theme-toggle");
+        const icon = toggleBtn.querySelector("span");
+        const html = document.documentElement;
+        const menuBtn = document.getElementById("mobile-menu-toggle");
+        const navLinks = document.getElementById("primary-navigation");
+        const hero = document.querySelector(".hero");
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
 
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                html.setAttribute('data-theme', savedTheme);
-                updateIcon(savedTheme);
-            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                html.setAttribute('data-theme', 'dark');
-                updateIcon('dark');
-            }
+        // Load saved theme
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          html.setAttribute("data-theme", savedTheme);
+          updateIcon(savedTheme);
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          html.setAttribute("data-theme", "dark");
+          updateIcon("dark");
+        }
 
-            // Toggle logic
-            toggleBtn.addEventListener('click', () => {
-                const currentTheme = html.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        // Toggle logic
+        toggleBtn.addEventListener("click", () => {
+          const changeTheme = () => {
+            const currentTheme = html.getAttribute("data-theme");
+            const newTheme = currentTheme === "light" ? "dark" : "light";
 
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateIcon(newTheme);
+            html.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            updateIcon(newTheme);
+          };
+
+          if (document.startViewTransition && !reduceMotion.matches) {
+            document.startViewTransition(changeTheme);
+          } else {
+            changeTheme();
+          }
+        });
+
+        menuBtn.addEventListener("click", () => {
+          const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+          setMenuState(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setMenuState(false));
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") setMenuState(false);
+        });
+
+        function setMenuState(isOpen) {
+          menuBtn.setAttribute("aria-expanded", String(isOpen));
+          menuBtn.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu",
+          );
+          navLinks.classList.toggle("is-open", isOpen);
+          menuBtn.querySelector("span").textContent = isOpen
+            ? "\u00d7"
+            : "\u2630";
+        }
+
+        function updateIcon(theme) {
+          if (theme === "dark") {
+            icon.textContent = "\u2600";
+            toggleBtn.setAttribute("aria-label", "Switch to light mode");
+          } else {
+            icon.textContent = "\u263e";
+            toggleBtn.setAttribute("aria-label", "Switch to dark mode");
+          }
+        }
+
+        // Turn the hero grid into a cursor-reactive signal surface.
+        if (hero && window.matchMedia("(pointer: fine)").matches) {
+          const tileSize = 48;
+          let gridFrame;
+
+          hero.addEventListener("pointerenter", () =>
+            hero.classList.add("is-grid-active"),
+          );
+          hero.addEventListener("pointerleave", () =>
+            hero.classList.remove("is-grid-active"),
+          );
+          hero.addEventListener("pointermove", (event) => {
+            if (gridFrame) cancelAnimationFrame(gridFrame);
+
+            gridFrame = requestAnimationFrame(() => {
+              const bounds = hero.getBoundingClientRect();
+              const x = event.clientX - bounds.left;
+              const y = event.clientY - bounds.top;
+
+              hero.style.setProperty("--grid-pointer-x", `${x}px`);
+              hero.style.setProperty("--grid-pointer-y", `${y}px`);
+              hero.style.setProperty(
+                "--grid-tile-x",
+                `${Math.floor(x / tileSize) * tileSize}px`,
+              );
+              hero.style.setProperty(
+                "--grid-tile-y",
+                `${Math.floor(y / tileSize) * tileSize}px`,
+              );
+            });
+          });
+        }
+
+        // Reveal supporting content once as it enters the viewport.
+        const revealTargets = document.querySelectorAll(
+          ".credibility-item, .about-layout, #services .container > h2, .service-card, .section-heading, .technology-card, .work-item, .case-studies-heading, .case-study, .contact-layout",
+        );
+
+        if ("IntersectionObserver" in window && !reduceMotion.matches) {
+          html.classList.add("reveal-ready");
+
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+          );
+
+          revealTargets.forEach((target, index) => {
+            target.classList.add("reveal");
+            target.style.setProperty("--reveal-delay", `${(index % 4) * 65}ms`);
+            revealObserver.observe(target);
+          });
+        }
+
+        // Keep the navigation in sync with the section currently being read.
+        const sectionLinks = new Map(
+          [...navLinks.querySelectorAll('a[href^="#"]')].map((link) => [
+            link.getAttribute("href").slice(1),
+            link,
+          ]),
+        );
+
+        const setActiveSection = (sectionId) => {
+          sectionLinks.forEach((link, id) => {
+            const isActive = id === sectionId;
+            link.classList.toggle("is-active", isActive);
+            if (isActive) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+          });
+        };
+
+        if ("IntersectionObserver" in window) {
+          const sectionObserver = new IntersectionObserver(
+            (entries) => {
+              const current = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+              if (current) setActiveSection(current.target.id);
+            },
+            { threshold: [0.05, 0.25, 0.5], rootMargin: "-28% 0px -58% 0px" },
+          );
+
+          sectionLinks.forEach((link, sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (section) sectionObserver.observe(section);
+          });
+        }
+
+        // Adapt each project card to the aspect ratio of its screenshot.
+        document.querySelectorAll(".work-item").forEach((project) => {
+          const imageStage = project.querySelector(".work-image");
+          const projectImage = imageStage?.querySelector("img");
+
+          if (!projectImage) return;
+
+          const setProjectOrientation = () => {
+            const ratio =
+              projectImage.naturalWidth / projectImage.naturalHeight;
+            let orientation = "square";
+
+            if (ratio > 1.05) orientation = "landscape";
+            if (ratio < 0.95) orientation = "portrait";
+
+            project.classList.remove(
+              "project-landscape",
+              "project-portrait",
+              "project-square",
+            );
+            project.classList.add(`project-${orientation}`);
+            project.dataset.orientation = orientation;
+          };
+
+          const setupProjectGallery = () => {
+            const images =
+              imageStage.dataset.gallery?.split("|").filter(Boolean) ?? [];
+
+            if (images.length < 2 || reduceMotion.matches) return;
+
+            const galleryImage = document.createElement("img");
+            let activeImage = projectImage;
+            let inactiveImage = galleryImage;
+            let imageIndex = 0;
+            let rotationTimer;
+            let isVisible = false;
+            let isPaused = false;
+
+            imageStage.style.setProperty(
+              "--gallery-ratio",
+              `${projectImage.naturalWidth} / ${projectImage.naturalHeight}`,
+            );
+            imageStage.classList.add("has-slideshow");
+            projectImage.classList.add("is-active");
+            galleryImage.alt = "";
+            galleryImage.setAttribute("aria-hidden", "true");
+            imageStage.insertBefore(
+              galleryImage,
+              imageStage.querySelector(".project-number"),
+            );
+
+            images.slice(1).forEach((source) => {
+              const preloadImage = new Image();
+              preloadImage.src = source;
             });
 
-            function updateIcon(theme) {
-                if (theme === 'dark') {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            }
-        });
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+            const stopRotation = () => {
+              window.clearTimeout(rotationTimer);
+            };
 
-<body>
+            const scheduleRotation = () => {
+              stopRotation();
+
+              if (!isVisible || isPaused || document.hidden) return;
+              rotationTimer = window.setTimeout(showNextImage, 5200);
+            };
+
+            const showNextImage = async () => {
+              imageIndex = (imageIndex + 1) % images.length;
+              inactiveImage.src = images[imageIndex];
+
+              try {
+                await inactiveImage.decode();
+              } catch {
+                // The load event can still complete when decode is unavailable.
+              }
+
+              inactiveImage.classList.add("is-active");
+              activeImage.classList.remove("is-active");
+              [activeImage, inactiveImage] = [inactiveImage, activeImage];
+              scheduleRotation();
+            };
+
+            imageStage.addEventListener("pointerenter", () => {
+              isPaused = true;
+              stopRotation();
+            });
+
+            imageStage.addEventListener("pointerleave", () => {
+              isPaused = false;
+              scheduleRotation();
+            });
+
+            const galleryObserver = new IntersectionObserver(
+              (entries) => {
+                isVisible = entries[0].isIntersecting;
+                scheduleRotation();
+              },
+              { threshold: 0.2, rootMargin: "120px 0px" },
+            );
+
+            galleryObserver.observe(imageStage);
+            document.addEventListener("visibilitychange", scheduleRotation);
+          };
+
+          if (projectImage.complete && projectImage.naturalWidth) {
+            setProjectOrientation();
+            setupProjectGallery();
+          } else {
+            projectImage.addEventListener(
+              "load",
+              () => {
+                setProjectOrientation();
+                setupProjectGallery();
+              },
+              { once: true },
+            );
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header>
-        <div class="container">
-            <nav>
-                <div class="nav-brand">
-                    <div class="logo">JR</div>
-                    <div class="brand-details">
-                        <p>JR Bone</p>
-                        <p style="opacity: 0.6;">Developer / VA</p>
-                    </div>
-                </div>
+      <div class="container">
+        <nav aria-label="Primary navigation">
+          <a class="nav-brand" href="#home" aria-label="JR Bone, home">
+            <div class="logo">JR</div>
+            <div class="brand-details">
+              <p>J.R. Bone</p>
+              <p>Full-Stack Developer</p>
+            </div>
+          </a>
 
-                <div class="nav-links">
-                    <a href="#">About</a>
-                    <a href="#services">Services</a>
-                    <!--<a href="#work">Work</a>-->
-                    <a href="#contact" class="btn-cta">Book a Call</a>
+          <div class="nav-links" id="primary-navigation">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#work">Selected Works</a>
+            <a href="#contact" class="btn-cta">Start a Project</a>
+          </div>
 
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
+          <div class="nav-controls">
+            <button
+              type="button"
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Switch to dark mode"
+            >
+              <span aria-hidden="true">&#9790;</span>
+            </button>
+            <button
+              type="button"
+              id="mobile-menu-toggle"
+              class="mobile-menu-toggle"
+              aria-expanded="false"
+              aria-controls="primary-navigation"
+              aria-label="Open navigation menu"
+            >
+              <span aria-hidden="true">&#9776;</span>
+            </button>
+          </div>
+        </nav>
+      </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-layout">
-                    <!-- Hero Image (Left) -->
-                    <div class="hero-image-wrapper">
-                        <div class="hero-img-bg"></div>
-                        <img src="assets/jrpbone.png" alt="J.R. Bone Working">
-                    </div>
-
-                    <!-- Hero Content (Right) -->
-                    <div class="hero-content">
-                        <span class="hero-label">Available for work</span>
-                        <h1>Building digital solutions <br> that drive growth.</h1>
-                        <p style="font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
-                            I combine technical expertise in web development with administrative efficiency.
-                            Whether you need a high-performance website, a reliable virtual assistant, or a penetration
-                            testing service, I'm here to help.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="#contact" class="btn-cta" style="background-color: var(--accent-color);">Let's Work
-                                Together</a>
-                        </div>
-                    </div>
-                </div>
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-grid-interaction" aria-hidden="true">
+          <span class="grid-cursor-cell"></span>
+        </div>
+        <div class="container">
+          <div class="hero-layout">
+            <div class="hero-content">
+              <span class="hero-label"
+                ><span aria-hidden="true"></span> Available for work</span
+              >
+              <h1 id="hero-title">
+                I build<br />
+                <em>fast and secure</em> apps that solve real problems
+              </h1>
+              ----------------------------------
+              <p class="hero-intro">
+                I'm J.R. Bone, a full-stack developer focused on turning
+                business needs into innovative solutions.
+              </p>
+              <div class="hero-buttons">
+                <a href="#work" class="btn-cta hero-primary-cta"
+                  >View My Work <span aria-hidden="true">&#8595;</span></a
+                >
+                <a href="#contact" class="btn-outline">Start a Project</a>
+              </div>
+              <ul class="hero-support" aria-label="Primary capabilities">
+                <li>Full-stack applications</li>
+                <li>Automation programs</li>
+                <li>Fortified by design</li>
+              </ul>
             </div>
-        </section>
 
-        <!-- Services Section -->
-        <section id="services">
-            <div class="container">
-                <h2>How I Can Help You</h2>
-                <div class="services-grid">
+            <div class="hero-visual" aria-label="JR Bone, full-stack developer">
+              <div class="hero-image-wrapper">
+                <div class="hero-img-bg" aria-hidden="true"></div>
+                <img
+                  src="assets/jrpbone-optimized.jpg"
+                  width="793"
+                  height="1152"
+                  fetchpriority="high"
+                  decoding="async"
+                  alt="Portrait of JR Bone"
+                />
+              </div>
 
-                    <!-- Web Development -->
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-code"></i></div>
-                        <h3>Web Development</h3>
-                        <p>Custom websites built for speed, performance, and conversion. I create digital presences that
-                            look great and work perfectly.</p>
-                        <ul class="service-list">
-                            <li>Responsive Website Design</li>
-                            <li>SEO Optimization</li>
-                            <li>Website Maintenance</li>
-                        </ul>
-                    </div>
-
-                    <!-- Programming -->
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-terminal"></i></div>
-                        <h3>Programming</h3>
-                        <p>Solving complex problems with clean, efficient code. I build applications and tools to
-                            automate
-                            your workflows.</p>
-                        <ul class="service-list">
-                            <li>Custom Web Applications</li>
-                            <li>API Integrations</li>
-                            <li>Bug Fixing & Troubleshooting</li>
-                            <li>Languages Programming</li>
-                        </ul>
-                    </div>
-
-                    <!-- Virtual Assistance -->
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-headset"></i></div>
-                        <h3>Virtual Assistance</h3>
-                        <p>Reliable administrative support to free up your time. I handle the details so you can focus
-                            on the big picture.</p>
-                        <ul class="service-list">
-                            <li>Email & Calendar Management</li>
-                            <li>Data Entry & Research</li>
-                            <li>Customer Support</li>
-                            <li>Project Management</li>
-                        </ul>
-                    </div>
-
-                    <!-- Cybersecurity -->
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>Cybersecurity</h3>
-                        <p>Identify vulnerabilities and improve your security. I perform thorough tests to ensure your
-                            systems are protected.</p>
-                        <ul class="service-list">
-                            <li>Web Application Penetration Testing</li>
-                            <li>Network Security Assessment</li>
-                            <li>Penetration Testing Tools</li>
-                            <li>Arch Linux</li>
-                        </ul>
-                    </div>
-
-                    <!-- Machine Learning -->
-                    <div class="service-card-wrapper">
-                        <div class="learning-badge">Currently Learning</div>
-                        <!--PASTE TO NEW SERVICE CARD WHEN LEARNING-->
-                        <div class="service-card">
-                            <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
-                            <h3>Machine Learning</h3>
-                            <p>Build and train models to solve complex problems. I create intelligent systems that learn
-                                from data.</p>
-                            <ul class="service-list">
-                                <li>Python Anaconda</li>
-                                <li>Machine Learning</li>
-                                <li>Deep Learning</li>
-                                <li>Artificial Intelligence</li>
-                            </ul>
-                        </div>
-                    </div>
-
+              <div class="hero-code-card" aria-hidden="true">
+                <div class="code-card-header">
+                  <span></span><span></span><span></span>
+                  <small>jrpbone</small>
                 </div>
+                <code
+                  ><b>const</b> focus = [<br />&nbsp;&nbsp;'application',
+                  'automation', 'security'<br />];</code
+                >
+              </div>
+
+              <div class="hero-discipline-card" aria-hidden="true">
+                <span>Build</span>
+                <strong>Easy. Reliable. Secure.</strong>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- 
-        <section id="work">
-            <div class="container">
-                <h2>Selected Work</h2>
-                <div class="work-grid">
-
-                    <div class="work-item">
-                        <div class="work-image">
-                            <img src=""
-                                alt="Project 1">
-                        </div>
-                        <h3>Corporate Dashboard</h3>
-                        <p class="text-muted"></p>
-                        <div class="work-tags">
-                            <span class="tag"></span>
-                        </div>
-                    </div>
-
-                    <div class="work-item">
-                        <div class="work-image">
-                            <img src=""
-                                alt="Project 2">
-                        </div>
-                        <h3>Finance Tracker App</h3>
-                        <p class="text-muted"></p>
-                        <div class="work-tags">
-                            <span class="tag"></span>
-                        </div>
-                    </div>
-
-                </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" class="btn-outline">View All Projects</a>
-                </div>
+      <!-- Credibility Strip -->
+      <section class="credibility-strip" aria-label="Professional highlights">
+        <div class="container">
+          <div class="credibility-grid">
+            <div class="credibility-item">
+              <strong>05</strong>
+              <span>Projects built</span>
+              <small>And more on the way</small>
             </div>
-        </section>
-        -->
-
-        <!-- Contact Section -->
-        <section id="contact" style="border-bottom: none;">
-            <div class="container">
-                <div class="contact-layout">
-                    <div class="contact-info">
-                        <h2>Ready to get started?</h2>
-                        <p style="margin-bottom: 2rem;">I'm currently accepting new projects. Fill out the form to tell
-                            me about your project.</p>
-
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnralphbone@gmail.com&su=%20Inquiry&body=Hello,%20I%20found%20your%20portfolio"
-                            class="contact-link">johnralphbone@gmail.com</a>
-                    </div>
-
-                    <div class="contact-form-wrapper">
-                        <!-- FormSubmit Integration -->
-                        <form action="https://formsubmit.co/johnralphbone@gmail.com" method="POST" class="contact-form">
-                            <!-- Hidden Configuration -->
-                            <input type="hidden" name="_subject" value="New Portfolio Inquiry">
-                            <input type="hidden" name="_template" value="table">
-
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required placeholder="John Doe">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="number">Phone number</label>
-                                <input type="text" id="number" name="number" required placeholder="0912345678">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required placeholder="john@example.com">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message">Project Description</label>
-                                <textarea id="message" name="message" rows="4" required
-                                    placeholder="Tell me about your project..."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn-cta"
-                                style="width: 100%; border: none; cursor: pointer;">Send Message</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="credibility-item">
+              <strong>Full-stack</strong>
+              <span>Applications</span>
+              <small>Web / Mobile / Desktop</small>
             </div>
-        </section>
+            <a
+              class="credibility-item credibility-link"
+              href="assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>CV</strong>
+              <span>Experience &amp; achievements</span>
+              <small>View résumé <span aria-hidden="true">&#8599;</span></small>
+            </a>
+            <a
+              class="credibility-item credibility-link"
+              href="https://github.com/jrpbone"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>GitHub</strong>
+              <span>Creations</span>
+              <small
+                >Explore repositories
+                <span aria-hidden="true">&#8599;</span></small
+              >
+            </a>
+          </div>
+        </div>
+      </section>
 
+      <!-- About Section -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="about-layout">
+            <div>
+              <span class="section-kicker">About Me</span>
+              <h2>Technical depth with practical business support.</h2>
+            </div>
+            <div class="about-copy">
+              <p>
+                I design and build technology solutions—from a wide range of
+                platforms to automation, cybersecurity, virtual operations,
+                backend systems, and custom tools that enhances the quality of
+                work.
+              </p>
+              <p>
+                My primary focus is application development. Experience with
+                cybersecurity and virtual assistance helps me approach projects
+                with stronger security awareness and attention to operational
+                details.
+              </p>
+              <div class="about-focus">
+                <div>
+                  <span>Primary focus</span>
+                  <strong>Applications &amp; Automation</strong>
+                </div>
+                <div>
+                  <span>Supporting strengths</span>
+                  <strong>Security &amp; Virtual operations</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services">
+        <div class="container">
+          <h2>How I Can Help You</h2>
+          <div class="services-grid">
+            <!-- Web Development -->
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-code"></i></div>
+              <h3>Web Development</h3>
+              <p>
+                Custom websites built for speed, performance, and conversion. I
+                create digital presences that look great and work perfectly.
+              </p>
+              <ul class="service-list">
+                <li>Responsive Website Design</li>
+                <li>SEO Optimization</li>
+                <li>Website Maintenance</li>
+              </ul>
+            </div>
+
+            <!-- Programming -->
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-terminal"></i></div>
+              <h3>Programming</h3>
+              <p>
+                Solving complex problems with clean, efficient code. I build
+                applications and tools to automate your workflows.
+              </p>
+              <ul class="service-list">
+                <li>Custom Web Applications</li>
+                <li>API Integrations</li>
+                <li>Bug Fixing & Troubleshooting</li>
+                <li>Multiple Programming Languages</li>
+              </ul>
+            </div>
+
+            <!-- Virtual Assistance -->
+            <div class="service-card">
+              <span class="service-label">Supporting capability</span>
+              <div class="service-icon"><i class="fas fa-headset"></i></div>
+              <h3>Virtual Assistance</h3>
+              <p>
+                Reliable administrative support to free up your time. I handle
+                the details so you can focus on the big picture.
+              </p>
+              <ul class="service-list">
+                <li>Email & Calendar Management</li>
+                <li>Data Entry & Research</li>
+                <li>Customer Support</li>
+                <li>Project Management</li>
+              </ul>
+            </div>
+
+            <!-- Cybersecurity -->
+            <div class="service-card">
+              <span class="service-label">Supporting capability</span>
+              <div class="service-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3>Cybersecurity</h3>
+              <p>
+                Identify vulnerabilities and improve your security. I perform
+                thorough tests to ensure your systems are protected.
+              </p>
+              <ul class="service-list">
+                <li>Web Application Penetration Testing</li>
+                <li>Network Security Assessment</li>
+                <li>Security Testing Tooling</li>
+                <li>Linux (Arch)</li>
+              </ul>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="service-card-wrapper">
+              <div class="learning-badge">Currently Learning</div>
+              <!--PASTE TO NEW SERVICE CARD WHEN LEARNING-->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3>Machine Learning</h3>
+                <p>
+                  Build and train models to solve complex problems. I create
+                  intelligent systems that learn from data.
+                </p>
+                <ul class="service-list">
+                  <li>Python &amp; Anaconda</li>
+                  <li>Machine Learning</li>
+                  <li>Deep Learning</li>
+                  <li>Artificial Intelligence</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technologies Section -->
+      <section id="technologies" class="technologies-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Technologies</span>
+              <h2>The stack behind my projects.</h2>
+            </div>
+            <p>
+              Languages, frameworks, infrastructure, and tools I have used to
+              build the selected work below.
+            </p>
+          </div>
+
+          <div class="technologies-grid">
+            <article class="technology-card">
+              <p class="technology-number" aria-hidden="true">01</p>
+              <h3>Languages</h3>
+              <ul class="technology-list" aria-label="Programming languages">
+                <li>Python</li>
+                <li>PHP</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>Dart</li>
+                <li>SQL</li>
+              </ul>
+            </article>
+
+            <article class="technology-card">
+              <p class="technology-number" aria-hidden="true">02</p>
+              <h3>Frameworks</h3>
+              <ul class="technology-list" aria-label="Frameworks and UI libraries">
+                <li>Flutter</li>
+                <li>React</li>
+                <li>Flask</li>
+                <li>Express.js</li>
+                <li>Tailwind CSS</li>
+                <li>Material UI</li>
+                <li>Tkinter</li>
+                <li>Redux Toolkit</li>
+              </ul>
+            </article>
+
+            <article class="technology-card">
+              <p class="technology-number" aria-hidden="true">03</p>
+              <h3>Infrastructure</h3>
+              <ul class="technology-list" aria-label="Infrastructure and data platforms">
+                <li>Linux</li>
+                <li>MySQL</li>
+                <li>SQLite</li>
+                <li>Node.js</li>
+                <li>OVHcloud</li>
+                <li>Nginx</li>
+                <li>Gunicorn</li>
+                <li>SSH</li>
+              </ul>
+            </article>
+
+            <article class="technology-card">
+              <p class="technology-number" aria-hidden="true">04</p>
+              <h3>Security &amp; Tools</h3>
+              <ul class="technology-list" aria-label="Security technologies and development tools">
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>JWT</li>
+                <li>Argon2id</li>
+                <li>bcrypt</li>
+                <li>Vite</li>
+                <li>Axios</li>
+                <li>Librosa</li>
+                <li>NumPy</li>
+                <li>SciPy</li>
+                <li>Pandas</li>
+                <li>Matplotlib</li>
+                <li>OpenAI API</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Case Studies Section -->
+      <section id="case-studies" class="case-studies-section">
+        <div class="container">
+          <div class="case-studies" aria-labelledby="case-studies-title">
+            <div class="case-studies-heading">
+              <span class="section-kicker">Case Studies</span>
+              <h2 id="case-studies-title">How each project came together.</h2>
+              <p>
+                Open a project to see the problem it addresses, the approach I
+                took, and the engineering decisions behind the result.
+              </p>
+            </div>
+
+            <div class="case-study-list">
+              <details class="case-study" open>
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">01</span>
+                    <span>LnPulse</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Senior high school administration involves connected
+                      student, department, curriculum, user, and academic-term
+                      records that become difficult to maintain in separate
+                      workflows.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I designed one authenticated administrative workspace for
+                      creating and reviewing student records while managing the
+                      academic structures those records depend on.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      React handles the interface and validated forms, while an
+                      Express and Sequelize API organizes MySQL data and bcrypt
+                      protects stored credentials.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      The resulting system gives administrators a consistent
+                      workflow for maintaining school records and configuring
+                      the active school year and semester.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">02</span>
+                    <span>Calcuoke</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Building and selling custom karaoke systems requires
+                      accurate component costing, stock tracking, customer
+                      records, warranties, and replacement history.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I turned the process into a guided configuration workflow
+                      that calculates setup costs and connects each sale to its
+                      components, customer, photos, and warranty information.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      A typed React interface keeps complex forms predictable,
+                      while Express and MySQL preserve the relationships among
+                      inventory, configurations, sales, and hardware swaps.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      Calcuoke provides a traceable workflow from initial system
+                      assembly through sale, printable warranty generation, and
+                      after-sales component replacement.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">03</span>
+                    <span>PyPOS</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Small retailers need dependable checkout and inventory
+                      tools even when internet access is unavailable, without
+                      sacrificing reporting, access control, or recoverability.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I built an offline-first desktop application covering
+                      barcode and SKU lookup, cart and payment workflows, stock
+                      updates, reports, user management, and audit history.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      Python and Tkinter provide a lightweight desktop UI,
+                      SQLite keeps business data local, and dedicated import,
+                      export, backup, and restore tools protect portability.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      PyPOS packages the daily retail workflow into one
+                      installable application that can operate independently of
+                      a hosted service.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">04</span>
+                    <span>ApplianSys</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      An appliance storefront must coordinate product discovery,
+                      customer accounts, inventory, checkout, fulfillment, order
+                      tracking, and administrative reporting.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I built the customer storefront and REST API as connected
+                      journeys, including search, database-backed carts,
+                      delivery or pickup, mock GCash payments, and order status.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      React, Material UI, and Redux Toolkit manage the customer
+                      experience; Express and MySQL support role-based admin
+                      tools, stock controls, reports, maps, and document exports.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      The platform connects customer purchasing and internal
+                      operations while providing AI-assisted support and a clear
+                      administrative view of products, orders, and sales.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">05</span>
+                    <span>KaraOK</span>
+                    <span class="case-study-status">In Development</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Karaoke audio quality is difficult to judge consistently
+                      because useful measurements such as loudness, noise, and
+                      spectral balance are technical and hard to interpret.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I designed a cross-platform Flutter workflow for recording
+                      or selecting audio, submitting it for analysis, and
+                      presenting scores, suggestions, waveforms, and spectrograms.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      A Flask API and MySQL backend support the client, while
+                      Librosa, NumPy, SciPy, Pandas, and Matplotlib power the DSP
+                      pipeline. JWT, Argon2id, OTP, and secure storage protect access.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Current result</h4>
+                    <p>
+                      The application can evaluate core audio characteristics
+                      and generate visual reports. The mobile experience,
+                      administration console, and production deployment continue
+                      to be refined.
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selected Work Section -->
+      <section id="work">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Selected Works</span>
+              <h2>Projects built to solve real problems.</h2>
+            </div>
+          </div>
+
+          <div class="work-list">
+            <article class="work-item work-item-featured">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/LnPulse/dashboard.png|assets/projects/LnPulse/login.png"
+              >
+                <img
+                  src="assets/projects/LnPulse/dashboard.png"
+                  alt="LnPulse school information system administrative dashboard"
+                />
+                <span class="project-number">01</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">School information system</p>
+                    <h3>LnPulse</h3>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/LnPulse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View LnPulse source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <p class="project-description">
+                  An administrative information system for organizing senior
+                  high school student records, departments, curriculum, users,
+                  and academic settings.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the authenticated admin workflow for creating and
+                    reviewing student records, managing departments and
+                    curriculum, administering users, and configuring the active
+                    school year and semester.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">JavaScript</li>
+                  <li class="tag">React Router</li>
+                  <li class="tag">Formik</li>
+                  <li class="tag">Yup</li>
+                  <li class="tag">Axios</li>
+                  <li class="tag">Node.js</li>
+                  <li class="tag">Express 5</li>
+                  <li class="tag">MySQL</li>
+                  <li class="tag">Sequelize</li>
+                  <li class="tag">bcrypt</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/Calcuoke/dashboard.png|assets/projects/Calcuoke/assemble.png|assets/projects/Calcuoke/components.png|assets/projects/Calcuoke/replacements.png"
+              >
+                <img
+                  src="assets/projects/Calcuoke/dashboard.png"
+                  alt="Calcuoke karaoke configuration and sales management dashboard"
+                />
+                <span class="project-number">02</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">
+                      Full-stack karaoke system builder
+                    </p>
+                    <h3>Calcuoke</h3>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/Calcuoke"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View Calcuoke source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <p class="project-description">
+                  A full-stack karaoke system builder for configuring setups,
+                  managing inventory, recording sales, and tracking warranties
+                  and replacements.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built a karaoke configuration and sales management platform
+                    featuring automatic cost calculation, component inventory
+                    CRUD, customer records, photo uploads, hardware swap
+                    tracking, and printable PDF warranty certificates.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">Vite</li>
+                  <li class="tag">Tailwind CSS</li>
+                  <li class="tag">Node.js</li>
+                  <li class="tag">Express</li>
+                  <li class="tag">MySQL</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/PyPOS/dashboard.png|assets/projects/PyPOS/login.png"
+              >
+                <img
+                  src="assets/projects/PyPOS/dashboard.png"
+                  alt="PyPOS desktop point-of-sale checkout and inventory interface"
+                />
+                <span class="project-number">03</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Desktop point-of-sale system</p>
+                    <h3>PyPOS</h3>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/Python-Point-of-Sale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View PyPOS source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <p class="project-description">
+                  An offline desktop point-of-sale and inventory management
+                  system for small retail businesses.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built a complete POS application with secure authentication,
+                    barcode and SKU lookup, cart management, multiple payment
+                    methods, inventory tracking, sales reports, Excel import and
+                    export, database backup and restore, user administration,
+                    and audit logging.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">Python</li>
+                  <li class="tag">Tkinter</li>
+                  <li class="tag">SQLite</li>
+                  <li class="tag">openpyxl</li>
+                  <li class="tag">PyInstaller</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item work-item-featured">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/Appliansys/storefront.png|assets/projects/Appliansys/items.png|assets/projects/Appliansys/about.png|assets/projects/Appliansys/login.png"
+              >
+                <img
+                  src="assets/projects/Appliansys/storefront.png"
+                  alt="ApplianSys e-commerce storefront showing its appliance categories"
+                />
+                <span class="project-number">04</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Full-stack e-commerce platform</p>
+                    <h3>ApplianSys</h3>
+                  </div>
+                  <a
+                    href="https://github.com/jblutaro/ApplianSys-UI-"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View ApplianSys source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <p class="project-description">
+                  A full-stack appliance e-commerce platform with product
+                  discovery, secure customer accounts, cart and checkout
+                  workflows, order tracking, administrative management,
+                  reporting, and AI-assisted customer support.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the customer storefront and REST API, including
+                    authentication, product search and categories,
+                    database-backed carts, delivery and pickup checkout, mock
+                    GCash payments, order management, stock controls, sales
+                    reports, role-based admin tools, and an AI chatbot.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">Vite</li>
+                  <li class="tag">Material UI</li>
+                  <li class="tag">Redux Toolkit</li>
+                  <li class="tag">Express.js</li>
+                  <li class="tag">MySQL</li>
+                  <li class="tag">OpenAI API</li>
+                  <li class="tag">Leaflet</li>
+                  <li class="tag">ExcelJS</li>
+                  <li class="tag">jsPDF</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item project-portrait">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/KaraOK/home.jpg|assets/projects/KaraOK/evaluate.jpg|assets/projects/KaraOK/result.jpg|assets/projects/KaraOK/result-visualization.jpg"
+              >
+                <img
+                  src="assets/projects/KaraOK/home.jpg"
+                  alt="KaraOK mobile audio quality evaluation home screen"
+                  loading="lazy"
+                />
+                <span class="project-number">05</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Mobile audio analysis app</p>
+                    <h3>KaraOK</h3>
+                    <span class="project-status">In Development</span>
+                  </div>
+                </div>
+
+                <p class="project-description">
+                  A mobile audio analysis tool that evaluates karaoke sound
+                  quality and turns technical measurements into clear scores,
+                  visual reports, and recommended audio settings.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the record-and-upload workflow, empirical five-feature
+                    grading for loudness, bass, treble, sharpness, and flatness,
+                    plus noise and distortion checks, waveform and spectrogram
+                    visualizations, saved analyses, and settings suggestions.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">Flutter</li>
+                  <li class="tag">Dart 3.12+</li>
+                  <li class="tag">Material Design</li>
+                  <li class="tag">Python 3.13</li>
+                  <li class="tag">Flask 3</li>
+                  <li class="tag">REST/JSON API</li>
+                  <li class="tag">MySQL 8</li>
+                  <li class="tag">Librosa</li>
+                  <li class="tag">NumPy</li>
+                  <li class="tag">SciPy</li>
+                  <li class="tag">Pandas</li>
+                  <li class="tag">Matplotlib</li>
+                  <li class="tag">PHP 8.2</li>
+                  <li class="tag">Tailwind CSS 3.4</li>
+                  <li class="tag">Gunicorn</li>
+                  <li class="tag">Nginx</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="contact-layout">
+            <div class="contact-info">
+              <h2>Ready to get started?</h2>
+              <p style="margin-bottom: 2rem">
+                I'm currently accepting new projects. Fill out the form to tell
+                me about your project.
+              </p>
+
+              <a
+                href="mailto:johnralphbone@gmail.com?subject=Portfolio%20Inquiry&amp;body=Hello%2C%20I%20found%20your%20portfolio."
+                class="contact-link"
+                >johnralphbone@gmail.com</a
+              >
+            </div>
+
+            <div class="contact-form-wrapper">
+              <!-- FormSubmit Integration -->
+              <form
+                action="https://formsubmit.co/johnralphbone@gmail.com"
+                method="POST"
+                class="contact-form"
+              >
+                <!-- Hidden Configuration -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Portfolio Inquiry"
+                />
+                <input type="hidden" name="_template" value="table" />
+
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="phone"
+                    >Phone number
+                    <span class="optional-label">(optional)</span></label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="0912 345 6789"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Project Description</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    placeholder="Tell me about your project..."
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn-cta form-submit">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 jrpbone. All rights reserved.</p>
-        </div>
-        <div class="container">
-            <!-- Social Media Icons -->
-            <a href="https://www.facebook.com/jrpbone" target="_blank" class="social-icon"><i
-                    class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/jrpbone" target="_blank" class="social-icon"><i
-                    class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/jrpbone" target="_blank" class="social-icon"><i
-                    class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/jrpbone" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="https://www.youtube.com/jrpbone" target="_blank" class="social-icon"><i
-                    class="fab fa-youtube"></i></a>
-            <a href="https://twitter.com/jrpbone" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-        </div>
+      <div class="container">
+        <p>&copy; 2026 jrpbone. All rights reserved.</p>
+      </div>
+      <div class="container">
+        <!-- Social Media Icons -->
+        <a
+          href="https://www.facebook.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="Facebook"
+          ><i class="fab fa-facebook-f" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="LinkedIn"
+          ><i class="fab fa-linkedin-in" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://github.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="GitHub"
+          ><i class="fab fa-github" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.youtube.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="YouTube"
+          ><i class="fab fa-youtube" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://twitter.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="X / Twitter"
+          ><i class="fab fa-twitter" aria-hidden="true"></i
+        ></a>
+      </div>
     </footer>
-
-</body>
-
+  </body>
 </html>
