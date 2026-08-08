@@ -1,0 +1,23 @@
+{
+  "name": "JR - Developer",
+  "short_name": "JR",
+  "description": "The portfolio of student developer John Ralph P. Bone.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1918",
+  "theme_color": "#1a1918",
+  "icons": [
+    {
+      "src": "/assets/branding/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/branding/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
