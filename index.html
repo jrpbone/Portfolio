@@ -401,6 +401,9 @@
           const gsap = window.gsap;
           const ScrollTrigger = window.ScrollTrigger;
           const clearAnimatedProps = "transform,opacity,visibility";
+          const useHorizontalMotion = window.matchMedia(
+            "(min-width: 901px)",
+          ).matches;
 
           gsap.registerPlugin(ScrollTrigger);
           html.classList.add("gsap-enhanced");
@@ -464,7 +467,7 @@
               {
                 autoAlpha: 0,
                 scale: 0.94,
-                x: 34,
+                x: useHorizontalMotion ? 34 : 0,
                 duration: 1.05,
                 clearProps: clearAnimatedProps,
               },
@@ -576,7 +579,7 @@
 
             gsap.from(project, {
               autoAlpha: 0,
-              x: index % 2 === 0 ? -48 : 48,
+              x: useHorizontalMotion ? (index % 2 === 0 ? -48 : 48) : 0,
               y: 26,
               duration: 0.95,
               ease: "power3.out",
@@ -617,7 +620,7 @@
           contactTimeline
             .from(".contact-info", {
               autoAlpha: 0,
-              x: -46,
+              x: useHorizontalMotion ? -46 : 0,
               duration: 0.9,
               ease: "power3.out",
               clearProps: clearAnimatedProps,
@@ -626,7 +629,7 @@
               ".contact-form-wrapper",
               {
                 autoAlpha: 0,
-                x: 46,
+                x: useHorizontalMotion ? 46 : 0,
                 duration: 0.9,
                 ease: "power3.out",
                 clearProps: clearAnimatedProps,
