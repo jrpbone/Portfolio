@@ -352,6 +352,18 @@
 
           if (!projectImage) return;
 
+          const fallbackSource = projectImage.dataset.fallbackSrc;
+
+          if (fallbackSource) {
+            projectImage.addEventListener(
+              "error",
+              () => {
+                projectImage.src = fallbackSource;
+              },
+              { once: true },
+            );
+          }
+
           const setProjectOrientation = () => {
             const ratio =
               projectImage.naturalWidth / projectImage.naturalHeight;
@@ -1794,12 +1806,13 @@
             <article class="work-item" data-project="calcuoke">
               <div
                 class="work-image"
-                data-gallery="assets/projects/Calcuoke/dashboard-optimized.jpg|assets/projects/Calcuoke/assemble-optimized.jpg|assets/projects/Calcuoke/components-optimized.jpg|assets/projects/Calcuoke/replacements-optimized.jpg"
+                data-gallery="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811|assets/projects/Calcuoke/assemble-optimized.jpg?v=20260811|assets/projects/Calcuoke/components-optimized.jpg?v=20260811|assets/projects/Calcuoke/replacements-optimized.jpg?v=20260811"
               >
                 <img
-                  src="assets/projects/Calcuoke/dashboard-optimized.jpg"
+                  src="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811"
+                  data-fallback-src="assets/projects/Calcuoke/dashboard.png"
                   width="1919"
-                  height="999"
+                  height="995"
                   loading="lazy"
                   decoding="async"
                   alt="Calcuoke karaoke configuration and sales management dashboard"
