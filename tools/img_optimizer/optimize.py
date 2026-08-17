@@ -318,9 +318,25 @@ def size_change(before: int, after: int) -> str:
     return f"{change:.1f}% {direction}"
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(
+    argv: list[str] | None = None,
+    input_fn: Callable[[str], str] = input,
+) -> int:
     parser = build_parser()
-    args = parser.parse_args(argv)
+    effective_argv = list(sys.argv[1:] if argv is None else argv)
+    if not effective_argv:
+        try:
+            effective_argv = interactive_arguments(input_fn)
+        except (EOFError, KeyboardInterrupt):
+            print("\nCancelled; no images were processed.", file=sys.stderr)
+            return 130
+        suffix_index = effective_argv.index("--suffix")
+        suffix = effective_argv[suffix_index + 1]
+        if suffix.startswith("-"):
+            effective_argv[suffix_index:suffix_index + 2] = [
+                f"--suffix={suffix}"
+            ]
+    args = parser.parse_args(effective_argv)
 
     try:
         ImageColor.getrgb(args.background)
