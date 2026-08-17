@@ -71,6 +71,81 @@ def prompt_value(
             print(f"Invalid value: {error}", file=output)
 
 
+def _existing_directory(value: str) -> str:
+    path = Path(value).expanduser()
+    if not path.is_dir():
+        raise ValueError("enter an existing source folder")
+    return str(path)
+
+
+def _one_of(*choices: str) -> Callable[[str], str]:
+    def validate(value: str) -> str:
+        normalized = value.lower()
+        if normalized not in choices:
+            raise ValueError(f"choose {', '.join(choices[:-1])}, or {choices[-1]}")
+        return normalized
+    return validate
+
+
+def _bounded_integer(parser: Callable[[str], int]) -> Callable[[str], str]:
+    return lambda value: str(parser(value))
+
+
+def interactive_arguments(
+    input_fn: Callable[[str], str] = input,
+    output: TextIO = sys.stdout,
+) -> list[str]:
+    source = prompt_value("Source folder", input_fn, output,
+                          validator=_existing_directory)
+    destination = prompt_value("Destination folder", input_fn, output)
+    recursive = prompt_value(
+        "Search subfolders? (yes/no)", input_fn, output, default="no",
+        validator=_one_of("yes", "no", "y", "n"),
+    )
+    output_format = prompt_value(
+        "Output format", input_fn, output, default="auto",
+        validator=_one_of("auto", "jpeg", "png", "webp"),
+    )
+    quality = prompt_value(
+        "JPEG/WebP quality", input_fn, output, default="82",
+        validator=_bounded_integer(quality_value),
+    )
+    png_level = prompt_value(
+        "PNG compression level", input_fn, output, default="9",
+        validator=_bounded_integer(compression_level),
+    )
+    max_width = prompt_value(
+        "Maximum width (blank for none)", input_fn, output, allow_empty=True,
+        validator=_bounded_integer(positive_int),
+    )
+    max_height = prompt_value(
+        "Maximum height (blank for none)", input_fn, output, allow_empty=True,
+        validator=_bounded_integer(positive_int),
+    )
+    suffix = prompt_value("Filename suffix", input_fn, output,
+                          default="-optimized")
+    overwrite = prompt_value(
+        "Overwrite existing files? (yes/no)", input_fn, output, default="no",
+        validator=_one_of("yes", "no", "y", "n"),
+    )
+
+    arguments = [source, "--output-dir", destination]
+    if recursive in {"yes", "y"}:
+        arguments.append("--recursive")
+    arguments.extend([
+        "--format", output_format, "--quality", quality,
+        "--png-level", png_level,
+    ])
+    if max_width:
+        arguments.extend(["--max-width", max_width])
+    if max_height:
+        arguments.extend(["--max-height", max_height])
+    arguments.extend(["--suffix", suffix])
+    if overwrite in {"yes", "y"}:
+        arguments.append("--overwrite")
+    return arguments
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Create smaller JPEG, PNG, or WebP copies of raster images.",
