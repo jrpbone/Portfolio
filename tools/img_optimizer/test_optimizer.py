@@ -1,3 +1,4 @@
+from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 import tempfile
 import unittest
@@ -9,6 +10,60 @@ import optimize
 
 
 class OptimizerTests(unittest.TestCase):
+    def test_no_arguments_run_wizard_and_write_png_to_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source images"
+            destination = root / "optimized images"
+            source.mkdir()
+            Image.new("RGB", (10, 10), "green").save(source / "sample.png")
+            answers = iter([
+                str(source), str(destination), "", "", "", "", "", "", "", "",
+            ])
+
+            with redirect_stdout(StringIO()):
+                result = optimize.main([], input_fn=lambda _: next(answers))
+
+            self.assertEqual(result, 0)
+            self.assertTrue((destination / "sample-optimized.png").exists())
+
+    def test_recursive_wizard_preserves_relative_subfolders(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source"
+            nested = source / "nested"
+            destination = root / "destination"
+            nested.mkdir(parents=True)
+            Image.new("RGB", (10, 10), "purple").save(nested / "sample.png")
+            answers = iter([
+                str(source), str(destination), "yes", "", "", "", "", "", "", "",
+            ])
+
+            with redirect_stdout(StringIO()):
+                result = optimize.main([], input_fn=lambda _: next(answers))
+
+            self.assertEqual(result, 0)
+            self.assertTrue((destination / "nested" / "sample-optimized.png").exists())
+
+    def test_explicit_cli_arguments_never_prompt(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "sample.png"
+            Image.new("RGB", (10, 10), "blue").save(source)
+            result = optimize.main(
+                [str(source)],
+                input_fn=lambda _: self.fail("CLI invocation unexpectedly prompted"),
+            )
+        self.assertEqual(result, 0)
+
+    def test_interactive_eof_cancels_without_writing(self) -> None:
+        errors = StringIO()
+        with redirect_stderr(errors):
+            result = optimize.main(
+                [], input_fn=lambda _: (_ for _ in ()).throw(EOFError())
+            )
+        self.assertEqual(result, 130)
+        self.assertIn("Cancelled", errors.getvalue())
+
     def test_interactive_arguments_map_all_settings_to_cli_flags(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "source folder"
