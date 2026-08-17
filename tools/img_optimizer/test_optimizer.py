@@ -1,3 +1,4 @@
+from io import StringIO
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +9,27 @@ import optimize
 
 
 class OptimizerTests(unittest.TestCase):
+    def test_prompt_value_uses_default_for_empty_answer(self) -> None:
+        value = optimize.prompt_value(
+            "Format", lambda _: "", StringIO(), default="auto"
+        )
+        self.assertEqual(value, "auto")
+
+    def test_prompt_value_retries_after_invalid_answer(self) -> None:
+        answers = iter(["wrong", "png"])
+        output = StringIO()
+
+        def validate(value: str) -> str:
+            if value not in {"auto", "jpeg", "png", "webp"}:
+                raise ValueError("choose auto, jpeg, png, or webp")
+            return value
+
+        value = optimize.prompt_value(
+            "Format", lambda _: next(answers), output, validator=validate
+        )
+        self.assertEqual(value, "png")
+        self.assertIn("choose auto, jpeg, png, or webp", output.getvalue())
+
     def test_jpeg_conversion_flattens_transparency_and_resizes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
