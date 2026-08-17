@@ -9,7 +9,7 @@ import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Callable, Iterable, TextIO
 
 from PIL import Image, ImageColor, ImageOps
 
@@ -44,6 +44,31 @@ def compression_level(value: str) -> int:
     if not 0 <= parsed <= 9:
         raise argparse.ArgumentTypeError("must be between 0 and 9")
     return parsed
+
+
+def prompt_value(
+    label: str,
+    input_fn: Callable[[str], str],
+    output: TextIO,
+    *,
+    default: str | None = None,
+    allow_empty: bool = False,
+    validator: Callable[[str], str] | None = None,
+) -> str:
+    default_hint = f" [{default}]" if default is not None else ""
+    while True:
+        value = input_fn(f"{label}{default_hint}: ").strip()
+        if not value and default is not None:
+            value = default
+        if not value and allow_empty:
+            return ""
+        if not value and not allow_empty:
+            print("A value is required.", file=output)
+            continue
+        try:
+            return validator(value) if validator is not None else value
+        except (ValueError, argparse.ArgumentTypeError) as error:
+            print(f"Invalid value: {error}", file=output)
 
 
 def build_parser() -> argparse.ArgumentParser:
