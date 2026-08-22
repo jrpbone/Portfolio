@@ -534,6 +534,25 @@ test("surfaces the server's safe error message to the contact form", async () =>
   );
 });
 
+test("maps a firewall rate limit response to a clear cooldown message", async () => {
+  const fetchImpl = async () =>
+    new Response("Too Many Requests", {
+      status: 429,
+      headers: { "content-type": "text/plain" },
+    });
+
+  await assert.rejects(
+    () => submitContact(VALID_SUBMISSION, { fetchImpl }),
+    (error) => {
+      assert.equal(
+        error.message,
+        "Too many messages. Please wait 10 minutes and try again.",
+      );
+      return true;
+    },
+  );
+});
+
 test("maps unexpected browser network failures to a safe message", async () => {
   const fetchImpl = async () => {
     throw new Error("internal browser network details");

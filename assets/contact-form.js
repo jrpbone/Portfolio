@@ -21,6 +21,10 @@ export async function submitContact(payload, { fetchImpl = fetch } = {}) {
     throw new Error("Message could not be sent. Please try again.");
   }
 
+  if (response.status === 429) {
+    throw new Error("Too many messages. Please wait 10 minutes and try again.");
+  }
+
   let result;
   try {
     result = await response.json();
