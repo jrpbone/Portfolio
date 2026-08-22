@@ -1,4 +1,3 @@
-## Portfolio
 
 This repository contains a collection of my academic and personal projects developed during my studies. It showcases my skills in programming, problem-solving, and software development across multiple languages and technologies.
 

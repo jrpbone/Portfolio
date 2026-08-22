@@ -1,0 +1,8 @@
+{
+  "name": "jrpbone-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/contact-security.test.mjs && python -m unittest discover -s tests"
+  }
+}
