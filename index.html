@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
@@ -2216,21 +2216,11 @@
             </div>
 
             <div class="contact-form-wrapper">
-              <!-- FormSubmit Integration -->
               <form
-                action="https://formsubmit.co/johnralphbone@gmail.com"
-                method="POST"
+                id="contact-form"
                 class="contact-form"
                 aria-label="Project inquiry form"
               >
-                <!-- Hidden Configuration -->
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New Portfolio Inquiry"
-                />
-                <input type="hidden" name="_template" value="table" />
-
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input
@@ -2238,6 +2228,8 @@
                     id="name"
                     name="name"
                     autocomplete="name"
+                    minlength="2"
+                    maxlength="80"
                     required
                   />
                 </div>
@@ -2253,6 +2245,8 @@
                     name="phone"
                     autocomplete="tel"
                     inputmode="tel"
+                    maxlength="30"
+                    pattern="[0-9+().\- ]*"
                   />
                 </div>
 
@@ -2263,6 +2257,7 @@
                     id="email"
                     name="email"
                     autocomplete="email"
+                    maxlength="254"
                     required
                   />
                 </div>
@@ -2273,12 +2268,38 @@
                     id="message"
                     name="message"
                     rows="4"
+                    minlength="20"
+                    maxlength="3000"
                     required
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
-                <button type="submit" class="btn-cta form-submit">
+                <div class="form-honeypot" aria-hidden="true">
+                  <label for="website">Leave this field empty</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div
+                  id="turnstile-widget"
+                  class="turnstile-widget"
+                  aria-label="Security verification"
+                ></div>
+
+                <p
+                  id="contact-form-status"
+                  class="form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+
+                <button type="submit" class="btn-cta form-submit" disabled>
                   <span>Send Message</span>
                   <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </button>
@@ -2345,5 +2366,10 @@
         ></a>
       </div>
     </footer>
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+      defer
+    ></script>
+    <script type="module" src="assets/contact-form.js"></script>
   </body>
 </html>
