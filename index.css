@@ -1,5 +1,5 @@
 /* 
-  Fonts: Fraunces (Serif), Space Grotesk (Sans-serif)
+  Typography: Commissioner variable, upright headings with subtle flare
 */
 
 :root {
@@ -44,7 +44,7 @@ html {
 }
 
 body {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-site);
   background-color: var(--bg-color);
   color: var(--text-main);
   line-height: 1.6;
@@ -87,7 +87,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-weight: 600;
   line-height: 1.1;
   color: var(--text-main);
@@ -221,7 +221,7 @@ nav {
 }
 
 .logo {
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-main);
@@ -686,7 +686,7 @@ nav {
 
 .hero-code-card code {
   color: var(--text-muted);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: var(--font-site);
   font-size: 0.76rem;
   line-height: 1.55;
 }
@@ -712,7 +712,7 @@ nav {
 }
 
 .hero-discipline-card strong {
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-size: 0.95rem;
 }
 
@@ -773,7 +773,7 @@ nav {
 .credibility-item strong {
   margin-bottom: 0.35rem;
   color: var(--text-main);
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.8rem, 3vw, 2.45rem);
   line-height: 1;
 }
@@ -1860,7 +1860,7 @@ nav {
   display: flex;
   gap: 1rem;
   align-items: center;
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 600;
   line-height: 1.1;
@@ -1868,7 +1868,7 @@ nav {
 
 .case-study-index {
   color: var(--accent-color);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-site);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1920,7 +1920,7 @@ nav {
   border: 1px solid var(--accent-color);
   border-radius: 999px;
   color: var(--accent-color);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-site);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1937,7 +1937,7 @@ nav {
 .case-study-body h4 {
   margin-bottom: 0.65rem;
   color: var(--accent-color);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-site);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2161,7 +2161,7 @@ nav {
 
 .contact-link strong {
   color: var(--text-main);
-  font-family: "Fraunces", serif;
+  font-family: var(--font-site);
   font-size: clamp(1rem, 2vw, 1.25rem);
   overflow-wrap: anywhere;
 }
@@ -2230,7 +2230,7 @@ nav {
   border-radius: 9px;
   background: var(--bg-color);
   color: var(--text-main);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-site);
   transition:
     border-color 360ms ease,
     box-shadow 360ms ease,
@@ -2766,4 +2766,56 @@ footer {
   .hero-grid-interaction {
     display: none;
   }
+}
+
+/* Commissioner typography system */
+@font-face {
+  font-family: "Commissioner";
+  src: url("/assets/fonts/commissioner/commissioner-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-site: "Commissioner", "Segoe UI", sans-serif;
+}
+
+body {
+  font-weight: 400;
+  font-variation-settings: "FLAR" 0, "VOLM" 0;
+}
+
+h1, h2, h3, h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-variation-settings: "FLAR" 25, "VOLM" 0;
+}
+
+.hero h1 {
+  font-weight: 650;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.hero-label,
+.section-kicker {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* Keep the hero's IDE snippet in a dedicated code face. */
+:root {
+  --font-code: Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.hero-code-card,
+.hero-code-card code {
+  font-family: var(--font-code);
+  font-variation-settings: normal;
 }
