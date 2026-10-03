@@ -58,7 +58,7 @@ body {
     color 0.3s ease;
 }
 
-/* The image sequence lives behind the existing page, without added markup. */
+/* Keep a static poster visible until the scroll video is fully buffered. */
 body.landing-page::before,
 body.landing-page::after {
   content: "";
@@ -66,9 +66,7 @@ body.landing-page::after {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background-image:
-    linear-gradient(var(--sequence-tint), var(--sequence-tint)),
-    var(--sequence-frame, url("assets/Images/ezgif-frame-001.jpg"));
+  background-image: url("assets/Images/ezgif-frame-001.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -88,10 +86,29 @@ body.landing-page::after {
 
 body.landing-page::after {
   z-index: -1;
-  background-image:
-    linear-gradient(var(--sequence-tint), var(--sequence-tint)),
-    var(--sequence-next-frame, url("assets/Images/ezgif-frame-001.jpg"));
-  opacity: var(--sequence-blend, 0);
+  background-image: none;
+  background-color: var(--sequence-tint);
+}
+
+.scroll-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.scroll-background.is-ready {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-background.is-ready {
+    opacity: 0;
+  }
 }
 
 ::view-transition-old(root),
