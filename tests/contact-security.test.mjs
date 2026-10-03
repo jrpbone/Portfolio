@@ -4,7 +4,29 @@ import test from "node:test";
 import { validateContactInput } from "../api/_contact.js";
 import { createContactHandler } from "../api/contact.js";
 import { createTurnstileConfigHandler } from "../api/contact-config.js";
-import { createContactPayload, submitContact } from "../assets/contact-form.js";
+import { createContactPayload, submitContact, loadContactConfig } from "../assets/contact-form.js";
+
+test("HTML preview responses produce a useful contact fallback", async () => {
+  for (const status of [200, 404]) {
+    await assert.rejects(
+      () => loadContactConfig({ fetchImpl: async () => new Response("<!DOCTYPE html><html></html>", { status }) }),
+      /Contact form is unavailable here\. Please use the email link/,
+    );
+  }
+});
+
+test("HTML and malformed success responses never count as sent messages", async () => {
+  for (const body of ["<!DOCTYPE html><html></html>", "null", "{}", '{"ok":false}']) {
+    await assert.rejects(
+      () => submitContact({}, { fetchImpl: async () => new Response(body) }),
+      /Message could not be sent/,
+    );
+  }
+});
+
+test("contact configuration accepts a valid backend response", async () => {
+  assert.deepEqual(await loadContactConfig({ fetchImpl: async () => Response.json({ siteKey: "test-key" }) }), { siteKey: "test-key" });
+});
 
 const VALID_SUBMISSION = {
   name: "Ada Lovelace",

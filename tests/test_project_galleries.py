@@ -39,13 +39,20 @@ class GalleryParser(HTMLParser):
 class ProjectGalleryTests(unittest.TestCase):
     def test_initial_image_is_first_gallery_source(self) -> None:
         parser = GalleryParser()
-        index_path = Path(__file__).resolve().parents[1] / "index.html"
+        index_path = Path(__file__).resolve().parents[1] / "works.html"
         parser.feed(index_path.read_text(encoding="utf-8"))
 
         self.assertIn("lnpulse", parser.galleries)
+        self.assertEqual(len(parser.galleries), 5)
         for project, (sources, initial_source) in parser.galleries.items():
             with self.subTest(project=project):
                 self.assertEqual(sources[0], initial_source)
+
+    def test_home_links_to_dedicated_work_page(self) -> None:
+        home = (Path(__file__).resolve().parents[1] / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="works.html"', home)
+        self.assertNotIn('data-project="', home)
+        self.assertNotIn('href="#work"', home)
 
 
 if __name__ == "__main__":

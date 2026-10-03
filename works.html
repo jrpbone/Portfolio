@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selected Works | JR Bone</title>
+    <meta
+      name="description"
+      content="Explore JR Bone's web, desktop, and mobile projects, with screenshot galleries and engineering case studies."
+    />
+    <meta name="author" content="John Ralph P. Bone" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="theme-color" content="#1a1918" />
+    <link rel="canonical" href="https://jrpbone.vercel.app/works.html" />
+
+    <!-- Site identity -->
+    <link
+      rel="icon"
+      href="/assets/branding/jr-monogram-bw-32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="/assets/branding/jr-monogram-bw-32.png"
+      sizes="32x32"
+      type="image/png"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/assets/branding/jr-monogram-bw-32.png"
+      sizes="32x32"
+      type="image/png"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="apple-touch-icon" href="/assets/branding/jr-monogram-bw-180.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Social sharing preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Selected Works | JR Bone" />
+    <meta property="og:title" content="Selected Works | JR Bone" />
+    <meta
+      property="og:description"
+      content="Explore JR Bone's web, desktop, and mobile projects, with screenshot galleries and engineering case studies."
+    />
+    <meta property="og:url" content="https://jrpbone.vercel.app/works.html" />
+    <meta
+      property="og:image"
+      content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="JR Bone — Full-Stack Developer, black-and-white JR monogram"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@jrpbone" />
+    <meta name="twitter:title" content="Selected Works | JR Bone" />
+    <meta
+      name="twitter:description"
+      content="Explore JR Bone's web, desktop, and mobile projects, with screenshot galleries and engineering case studies."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="JR Bone — Full-Stack Developer, black-and-white JR monogram"
+    />
+
+    <!-- Developer profile structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Ralph P. Bone",
+        "alternateName": "JR",
+        "url": "https://jrpbone.vercel.app/",
+        "image": "https://jrpbone.vercel.app/assets/jrpbone-optimized.jpg",
+        "email": "mailto:johnralphbone@gmail.com",
+        "jobTitle": "Student",
+        "description": "A student developer creating thoughtful, accessible, and reliable digital experiences.",
+        "knowsAbout": [
+          "Software development",
+          "Web development",
+          "Mobile application development",
+          "User experience",
+          "Application security"
+        ],
+        "sameAs": [
+          "https://github.com/jrpbone",
+          "https://www.linkedin.com/in/jrpbone",
+          "https://www.facebook.com/jrpbone",
+          "https://www.instagram.com/jrpbone",
+          "https://www.youtube.com/jrpbone",
+          "https://twitter.com/jrpbone"
+        ]
+      }
+    </script>
+
+    <!-- Self-hosted Commissioner variable font -->
+    <link
+      rel="preload"
+      href="/assets/fonts/commissioner/commissioner-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- GSAP progressive animation enhancement -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <script src="assets/site.js" defer></script>
+    <script src="assets/navigation.js" defer></script>
+  </head>
+
+  <body class="works-page">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="works.html?section=main-content" data-section="main-content">Skip to main content</a>
+
+    <header>
+      <div class="container">
+        <nav aria-label="Primary navigation">
+          <a class="nav-brand" href="index.html?section=home" data-section="home" aria-label="JR Bone, home">
+            <img class="logo" src="assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="" />
+            <div class="brand-details">
+              <p>J.R. Bone</p>
+              <p>Full-Stack Developer</p>
+            </div>
+          </a>
+
+          <div class="nav-links" id="primary-navigation">
+            <a href="index.html?section=about" data-section="about">About</a>
+            <a href="index.html?section=services" data-section="services">Services</a>
+            <a href="index.html?section=technologies" data-section="technologies">Technologies</a>
+            <a href="works.html" aria-current="page" class="is-active">Selected Works</a>
+            <a href="index.html?section=contact" data-section="contact" class="btn-cta">Start a Project</a>
+          </div>
+
+          <div class="nav-controls">
+            <button
+              type="button"
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Switch to dark mode"
+            >
+              <span aria-hidden="true">&#9790;</span>
+            </button>
+            <button
+              type="button"
+              id="mobile-menu-toggle"
+              class="mobile-menu-toggle"
+              aria-expanded="false"
+              aria-controls="primary-navigation"
+              aria-label="Open navigation menu"
+            >
+              <span aria-hidden="true">&#9776;</span>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Selected Work Section -->
+      <section id="work" aria-labelledby="works-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Selected Works</span>
+              <h1 id="works-title">Projects built to solve real problems.</h1>
+              <p>Explore five projects, their screenshots, and the decisions behind them.</p>
+            </div>
+          </div>
+
+          <div class="work-list">
+            <article
+              class="work-item work-item-featured"
+              data-project="lnpulse"
+            >
+              <div
+                class="work-image"
+                data-gallery="assets/projects/LnPulse/dashboard-optimized.png|assets/projects/LnPulse/login-optimized.png|assets/projects/LnPulse/students-optimized.png|assets/projects/LnPulse/departments-optimized.png|assets/projects/LnPulse/curriculum-optimized.png|assets/projects/LnPulse/users-optimized.png"
+              >
+                <img
+                  src="assets/projects/LnPulse/dashboard-optimized.png"
+                  data-fallback-src="assets/projects/LnPulse/dashboard.png"
+                  width="1919"
+                  height="998"
+                  loading="lazy"
+                  decoding="async"
+                  alt="LnPulse school information system administrative dashboard"
+                />
+                <span class="project-number">01</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">School information system</p>
+                    <h3>LnPulse</h3>
+                    <span class="project-status is-complete">Completed</span>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/LnPulse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View LnPulse source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <dl class="project-meta" aria-label="LnPulse project details">
+                  <div class="project-meta-wide">
+                    <dt>Role / Focus</dt>
+                    <dd>RBAC, security, and department features</dd>
+                  </div>
+                  <div>
+                    <dt>Timeline</dt>
+                    <dd>6 months</dd>
+                  </div>
+                  <div>
+                    <dt>Team</dt>
+                    <dd>3 members</dd>
+                  </div>
+                  <div>
+                    <dt>Project Type</dt>
+                    <dd>Academic</dd>
+                  </div>
+                  <div>
+                    <dt>Platform</dt>
+                    <dd>Web</dd>
+                  </div>
+                </dl>
+
+                <p class="project-description">
+                  An administrative information system for organizing senior
+                  high school student records, departments, curriculum, users,
+                  and academic settings.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the authenticated admin workflow for creating and
+                    reviewing student records, managing departments and
+                    curriculum, administering users, and configuring the active
+                    school year and semester.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">JavaScript</li>
+                  <li class="tag">React Router</li>
+                  <li class="tag">Formik</li>
+                  <li class="tag">Yup</li>
+                  <li class="tag">Axios</li>
+                  <li class="tag">Node.js</li>
+                  <li class="tag">Express 5</li>
+                  <li class="tag">MySQL</li>
+                  <li class="tag">Sequelize</li>
+                  <li class="tag">bcrypt</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item" data-project="calcuoke">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811|assets/projects/Calcuoke/assemble-optimized.jpg?v=20260811|assets/projects/Calcuoke/components-optimized.jpg?v=20260811|assets/projects/Calcuoke/replacements-optimized.jpg?v=20260811"
+              >
+                <img
+                  src="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811"
+                  data-fallback-src="assets/projects/Calcuoke/dashboard.png"
+                  width="1919"
+                  height="995"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Calcuoke karaoke configuration and sales management dashboard"
+                />
+                <span class="project-number">02</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">
+                      Full-stack karaoke system builder
+                    </p>
+                    <h3>Calcuoke</h3>
+                    <span class="project-status is-complete">Completed</span>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/Calcuoke"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View Calcuoke source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <dl class="project-meta" aria-label="Calcuoke project details">
+                  <div class="project-meta-wide">
+                    <dt>Role</dt>
+                    <dd>Solo developer</dd>
+                  </div>
+                  <div>
+                    <dt>Timeline</dt>
+                    <dd>2 months</dd>
+                  </div>
+                  <div>
+                    <dt>Team</dt>
+                    <dd>1 member</dd>
+                  </div>
+                  <div>
+                    <dt>Project Type</dt>
+                    <dd>Client</dd>
+                  </div>
+                  <div>
+                    <dt>Platform</dt>
+                    <dd>Web</dd>
+                  </div>
+                </dl>
+
+                <p class="project-description">
+                  A full-stack karaoke system builder for configuring setups,
+                  managing inventory, recording sales, and tracking warranties
+                  and replacements.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built a karaoke configuration and sales management platform
+                    featuring automatic cost calculation, component inventory
+                    CRUD, customer records, photo uploads, hardware swap
+                    tracking, and printable PDF warranty certificates.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">Vite</li>
+                  <li class="tag">Tailwind CSS</li>
+                  <li class="tag">Node.js</li>
+                  <li class="tag">Express</li>
+                  <li class="tag">MySQL</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item" data-project="pypos">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/PyPOS/dashboard.png|assets/projects/PyPOS/login.png"
+              >
+                <img
+                  src="assets/projects/PyPOS/dashboard.png"
+                  width="1919"
+                  height="1076"
+                  loading="lazy"
+                  decoding="async"
+                  alt="PyPOS desktop point-of-sale checkout and inventory interface"
+                />
+                <span class="project-number">03</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Desktop point-of-sale system</p>
+                    <h3>PyPOS</h3>
+                    <span class="project-status is-complete">Completed</span>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/Python-Point-of-Sale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View PyPOS source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <dl class="project-meta" aria-label="PyPOS project details">
+                  <div class="project-meta-wide">
+                    <dt>Role</dt>
+                    <dd>Solo developer</dd>
+                  </div>
+                  <div>
+                    <dt>Timeline</dt>
+                    <dd>2 months</dd>
+                  </div>
+                  <div>
+                    <dt>Team</dt>
+                    <dd>1 member</dd>
+                  </div>
+                  <div>
+                    <dt>Project Type</dt>
+                    <dd>Personal</dd>
+                  </div>
+                  <div>
+                    <dt>Platform</dt>
+                    <dd>Windows</dd>
+                  </div>
+                </dl>
+
+                <p class="project-description">
+                  An offline desktop point-of-sale and inventory management
+                  system for small retail businesses.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built a complete POS application with secure authentication,
+                    barcode and SKU lookup, cart management, multiple payment
+                    methods, inventory tracking, sales reports, Excel import and
+                    export, database backup and restore, user administration,
+                    and audit logging.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">Python</li>
+                  <li class="tag">Tkinter</li>
+                  <li class="tag">SQLite</li>
+                  <li class="tag">openpyxl</li>
+                  <li class="tag">PyInstaller</li>
+                </ul>
+              </div>
+            </article>
+
+            <article
+              class="work-item work-item-featured"
+              data-project="appliansys"
+            >
+              <div
+                class="work-image"
+                data-gallery="assets/projects/Appliansys/storefront-optimized.jpg|assets/projects/Appliansys/items-optimized.jpg|assets/projects/Appliansys/about-optimized.jpg|assets/projects/Appliansys/login-optimized.jpg"
+              >
+                <img
+                  src="assets/projects/Appliansys/storefront-optimized.jpg"
+                  width="1919"
+                  height="996"
+                  loading="lazy"
+                  decoding="async"
+                  alt="ApplianSys e-commerce storefront showing its appliance categories"
+                />
+                <span class="project-number">04</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Full-stack e-commerce platform</p>
+                    <h3>ApplianSys</h3>
+                    <span class="project-status is-complete">Completed</span>
+                  </div>
+                  <a
+                    href="https://github.com/jrpbone/Appliansys"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                    aria-label="View ApplianSys source code on GitHub"
+                  >
+                    View Code
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+
+                <dl
+                  class="project-meta"
+                  aria-label="ApplianSys project details"
+                >
+                  <div class="project-meta-wide">
+                    <dt>Role</dt>
+                    <dd>Project manager / Lead programmer</dd>
+                  </div>
+                  <div>
+                    <dt>Timeline</dt>
+                    <dd>4 months</dd>
+                  </div>
+                  <div>
+                    <dt>Team</dt>
+                    <dd>5 members</dd>
+                  </div>
+                  <div>
+                    <dt>Project Type</dt>
+                    <dd>Academic</dd>
+                  </div>
+                  <div>
+                    <dt>Platform</dt>
+                    <dd>Web</dd>
+                  </div>
+                </dl>
+
+                <p class="project-description">
+                  A full-stack appliance e-commerce platform with product
+                  discovery, secure customer accounts, cart and checkout
+                  workflows, order tracking, administrative management,
+                  reporting, and AI-assisted customer support.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the customer storefront and REST API, including
+                    authentication, product search and categories,
+                    database-backed carts, delivery and pickup checkout, mock
+                    GCash payments, order management, stock controls, sales
+                    reports, role-based admin tools, and an AI chatbot.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">React 19</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">Vite</li>
+                  <li class="tag">Material UI</li>
+                  <li class="tag">Redux Toolkit</li>
+                  <li class="tag">Express.js</li>
+                  <li class="tag">MySQL</li>
+                  <li class="tag">OpenAI API</li>
+                  <li class="tag">Leaflet</li>
+                  <li class="tag">ExcelJS</li>
+                  <li class="tag">jsPDF</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="work-item project-portrait" data-project="karaok">
+              <div
+                class="work-image"
+                data-gallery="assets/projects/KaraOK/home.jpg|assets/projects/KaraOK/evaluate.jpg|assets/projects/KaraOK/result.jpg|assets/projects/KaraOK/result-visualization.jpg"
+              >
+                <img
+                  src="assets/projects/KaraOK/home.jpg"
+                  width="918"
+                  height="1953"
+                  alt="KaraOK mobile audio quality evaluation home screen"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="project-number">05</span>
+              </div>
+
+              <div class="work-content">
+                <div class="work-heading">
+                  <div>
+                    <p class="project-type">Mobile audio analysis app</p>
+                    <h3>KaraOK</h3>
+                    <span class="project-status">In Development</span>
+                  </div>
+                </div>
+
+                <dl class="project-meta" aria-label="KaraOK project details">
+                  <div class="project-meta-wide">
+                    <dt>Role</dt>
+                    <dd>Project manager / Lead programmer</dd>
+                  </div>
+                  <div>
+                    <dt>Timeline</dt>
+                    <dd>2 months, 1 week</dd>
+                  </div>
+                  <div>
+                    <dt>Team</dt>
+                    <dd>5 members</dd>
+                  </div>
+                  <div>
+                    <dt>Project Type</dt>
+                    <dd>Academic capstone</dd>
+                  </div>
+                  <div>
+                    <dt>Platform</dt>
+                    <dd>Mobile</dd>
+                  </div>
+                </dl>
+
+                <p class="project-description">
+                  A mobile audio analysis tool that evaluates karaoke sound
+                  quality and turns technical measurements into clear scores,
+                  visual reports, and recommended audio settings.
+                </p>
+
+                <div class="project-contribution">
+                  <span>What I built</span>
+                  <p>
+                    Built the record-and-upload workflow, empirical five-feature
+                    grading for loudness, bass, treble, sharpness, and flatness,
+                    plus noise and distortion checks, waveform and spectrogram
+                    visualizations, saved analyses, and settings suggestions.
+                  </p>
+                </div>
+
+                <ul class="work-tags" aria-label="Technologies used">
+                  <li class="tag">Flutter</li>
+                  <li class="tag">Dart 3.12+</li>
+                  <li class="tag">Material Design</li>
+                  <li class="tag">Python 3.13</li>
+                  <li class="tag">Flask 3</li>
+                  <li class="tag">REST/JSON API</li>
+                  <li class="tag">MySQL 8</li>
+                  <li class="tag">Librosa</li>
+                  <li class="tag">NumPy</li>
+                  <li class="tag">SciPy</li>
+                  <li class="tag">Pandas</li>
+                  <li class="tag">Matplotlib</li>
+                  <li class="tag">PHP 8.2</li>
+                  <li class="tag">Tailwind CSS 3.4</li>
+                  <li class="tag">Gunicorn</li>
+                  <li class="tag">Nginx</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <!-- Project Case Studies Section -->
+      <section id="case-studies" class="case-studies-section">
+        <div class="container">
+          <div class="case-studies" aria-labelledby="case-studies-title">
+            <div class="case-studies-heading">
+              <span class="section-kicker">Case Studies</span>
+              <h2 id="case-studies-title">How each project came together.</h2>
+              <p>
+                Open a project to see the problem it addresses, the approach I
+                took, and the engineering decisions behind the result.
+              </p>
+            </div>
+
+            <div class="case-study-list">
+              <details class="case-study" data-case-study="lnpulse">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">01</span>
+                    <span>LnPulse</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div
+                    class="architecture-diagram"
+                    role="group"
+                    aria-labelledby="lnpulse-architecture-title"
+                  >
+                    <div class="architecture-heading">
+                      <p id="lnpulse-architecture-title">System Architecture</p>
+                      <span>Request and data flow</span>
+                    </div>
+                    <div class="architecture-flow">
+                      <div class="architecture-node">
+                        <span>Client</span>
+                        <strong>React 19</strong>
+                        <small>Administrative interface</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>API</span>
+                        <strong>Express 5</strong>
+                        <small>RBAC and protected routes</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Data access</span>
+                        <strong>Sequelize</strong>
+                        <small>Models and relationships</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Database</span>
+                        <strong>MySQL</strong>
+                        <small>School information records</small>
+                      </div>
+                    </div>
+                    <div class="architecture-support">
+                      <span>Supporting controls</span>
+                      <ul>
+                        <li>Formik + Yup validation</li>
+                        <li>Axios requests</li>
+                        <li>bcrypt credentials</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Senior high school administration involves connected
+                      student, department, curriculum, user, and academic-term
+                      records that become difficult to maintain in separate
+                      workflows.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I designed one authenticated administrative workspace for
+                      creating and reviewing student records while managing the
+                      academic structures those records depend on.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      React handles the interface and validated forms, while an
+                      Express and Sequelize API organizes MySQL data and bcrypt
+                      protects stored credentials.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      The resulting system gives administrators a consistent
+                      workflow for maintaining school records and configuring
+                      the active school year and semester.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study" data-case-study="calcuoke">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">02</span>
+                    <span>Calcuoke</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div
+                    class="architecture-diagram"
+                    role="group"
+                    aria-labelledby="calcuoke-architecture-title"
+                  >
+                    <div class="architecture-heading">
+                      <p id="calcuoke-architecture-title">
+                        System Architecture
+                      </p>
+                      <span>Configuration-to-sale workflow</span>
+                    </div>
+                    <div class="architecture-flow">
+                      <div class="architecture-node">
+                        <span>Client</span>
+                        <strong>React + TypeScript</strong>
+                        <small>Builder and management UI</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Server</span>
+                        <strong>Express API</strong>
+                        <small>Business and costing logic</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Database</span>
+                        <strong>MySQL</strong>
+                        <small>Inventory, sales, and warranties</small>
+                      </div>
+                    </div>
+                    <div class="architecture-support">
+                      <span>Generated outputs</span>
+                      <ul>
+                        <li>Customer photo uploads</li>
+                        <li>Warranty certificates</li>
+                        <li>Replacement history</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Building and selling custom karaoke systems requires
+                      accurate component costing, stock tracking, customer
+                      records, warranties, and replacement history.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I turned the process into a guided configuration workflow
+                      that calculates setup costs and connects each sale to its
+                      components, customer, photos, and warranty information.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      A typed React interface keeps complex forms predictable,
+                      while Express and MySQL preserve the relationships among
+                      inventory, configurations, sales, and hardware swaps.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      Calcuoke provides a traceable workflow from initial system
+                      assembly through sale, printable warranty generation, and
+                      after-sales component replacement.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study" data-case-study="pypos">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">03</span>
+                    <span>PyPOS</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div
+                    class="architecture-diagram"
+                    role="group"
+                    aria-labelledby="pypos-architecture-title"
+                  >
+                    <div class="architecture-heading">
+                      <p id="pypos-architecture-title">System Architecture</p>
+                      <span>Offline desktop workflow</span>
+                    </div>
+                    <div class="architecture-flow">
+                      <div class="architecture-node">
+                        <span>Desktop client</span>
+                        <strong>Python + Tkinter</strong>
+                        <small>Windows application</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Application layer</span>
+                        <strong>POS Services</strong>
+                        <small>Checkout, stock, and reporting</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Local database</span>
+                        <strong>SQLite</strong>
+                        <small>Offline business data</small>
+                      </div>
+                    </div>
+                    <div class="architecture-support">
+                      <span>Local utilities</span>
+                      <ul>
+                        <li>Excel import and export</li>
+                        <li>Backup and restore</li>
+                        <li>PyInstaller packaging</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Small retailers need dependable checkout and inventory
+                      tools even when internet access is unavailable, without
+                      sacrificing reporting, access control, or recoverability.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I built an offline-first desktop application covering
+                      barcode and SKU lookup, cart and payment workflows, stock
+                      updates, reports, user management, and audit history.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      Python and Tkinter provide a lightweight desktop UI,
+                      SQLite keeps business data local, and dedicated import,
+                      export, backup, and restore tools protect portability.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      PyPOS packages the daily retail workflow into one
+                      installable application that can operate independently of
+                      a hosted service.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study" data-case-study="appliansys">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">04</span>
+                    <span>ApplianSys</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div
+                    class="architecture-diagram"
+                    role="group"
+                    aria-labelledby="appliansys-architecture-title"
+                  >
+                    <div class="architecture-heading">
+                      <p id="appliansys-architecture-title">
+                        System Architecture
+                      </p>
+                      <span>Storefront and operations flow</span>
+                    </div>
+                    <div class="architecture-flow">
+                      <div class="architecture-node">
+                        <span>Storefront</span>
+                        <strong>React + Material UI</strong>
+                        <small>Redux-managed customer journeys</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Backend</span>
+                        <strong>Express REST API</strong>
+                        <small>Commerce and admin workflows</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Database</span>
+                        <strong>MySQL</strong>
+                        <small>Products, carts, and orders</small>
+                      </div>
+                    </div>
+                    <div class="architecture-support">
+                      <span>Connected services</span>
+                      <ul>
+                        <li>OpenAI customer support</li>
+                        <li>Leaflet delivery maps</li>
+                        <li>ExcelJS + jsPDF exports</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      An appliance storefront must coordinate product discovery,
+                      customer accounts, inventory, checkout, fulfillment, order
+                      tracking, and administrative reporting.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I built the customer storefront and REST API as connected
+                      journeys, including search, database-backed carts,
+                      delivery or pickup, mock GCash payments, and order status.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      React, Material UI, and Redux Toolkit manage the customer
+                      experience; Express and MySQL support role-based admin
+                      tools, stock controls, reports, maps, and document
+                      exports.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Outcome</h4>
+                    <p>
+                      The platform connects customer purchasing and internal
+                      operations while providing AI-assisted support and a clear
+                      administrative view of products, orders, and sales.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <details class="case-study" data-case-study="karaok">
+                <summary>
+                  <span class="case-study-title">
+                    <span class="case-study-index">05</span>
+                    <span>KaraOK</span>
+                    <span class="case-study-status">In Development</span>
+                  </span>
+                  <span class="case-study-action">
+                    <span class="when-closed">Read case study</span>
+                    <span class="when-open">Close case study</span>
+                  </span>
+                </summary>
+                <div class="case-study-body">
+                  <div
+                    class="architecture-diagram architecture-diagram-complex"
+                    role="group"
+                    aria-labelledby="karaok-architecture-title"
+                  >
+                    <div class="architecture-heading">
+                      <p id="karaok-architecture-title">System Architecture</p>
+                      <span>Cross-platform analysis pipeline</span>
+                    </div>
+                    <div class="architecture-flow">
+                      <div class="architecture-node">
+                        <span>Clients</span>
+                        <strong>Flutter + PHP Admin</strong>
+                        <small>Mobile app and administration</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Edge</span>
+                        <strong>Nginx + HTTPS</strong>
+                        <small>Reverse proxy and TLS</small>
+                      </div>
+                      <span class="architecture-arrow" aria-hidden="true"
+                        >→</span
+                      >
+                      <div class="architecture-node">
+                        <span>Application server</span>
+                        <strong>Gunicorn + Flask</strong>
+                        <small>REST API and authentication</small>
+                      </div>
+                    </div>
+                    <div
+                      class="architecture-branch"
+                      aria-label="Backend services"
+                    >
+                      <span
+                        class="architecture-branch-line"
+                        aria-hidden="true"
+                      ></span>
+                      <div class="architecture-node">
+                        <span>Data</span>
+                        <strong>MySQL 8</strong>
+                        <small>Users, assessments, and audit logs</small>
+                      </div>
+                      <div class="architecture-node">
+                        <span>DSP pipeline</span>
+                        <strong>Librosa + SciPy</strong>
+                        <small>NumPy, Pandas, and Matplotlib</small>
+                      </div>
+                      <div class="architecture-node">
+                        <span>Communications</span>
+                        <strong>SMTP + OTP</strong>
+                        <small>Verification and recovery</small>
+                      </div>
+                    </div>
+                    <div class="architecture-support">
+                      <span>Security boundary</span>
+                      <ul>
+                        <li>JWT access and refresh tokens</li>
+                        <li>Argon2id password hashing</li>
+                        <li>Secure on-device storage</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Challenge</h4>
+                    <p>
+                      Karaoke audio quality is difficult to judge consistently
+                      because useful measurements such as loudness, noise, and
+                      spectral balance are technical and hard to interpret.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Approach</h4>
+                    <p>
+                      I designed a cross-platform Flutter workflow for recording
+                      or selecting audio, submitting it for analysis, and
+                      presenting scores, suggestions, waveforms, and
+                      spectrograms.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Engineering decisions</h4>
+                    <p>
+                      A Flask API and MySQL backend support the client, while
+                      Librosa, NumPy, SciPy, Pandas, and Matplotlib power the
+                      DSP pipeline. JWT, Argon2id, OTP, and secure storage
+                      protect access.
+                    </p>
+                  </div>
+                  <div>
+                    <h4>Current result</h4>
+                    <p>
+                      The application can evaluate core audio characteristics
+                      and generate visual reports. The mobile experience,
+                      administration console, and production deployment continue
+                      to be refined.
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="works-contact"><div class="container"><h2>Have a project in mind?</h2><a class="btn-cta" href="index.html?section=contact" data-section="contact">Start a Project</a></div></section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 jrpbone. All rights reserved.</p>
+      </div>
+      <div class="container">
+        <!-- Social Media Icons -->
+        <a
+          href="https://www.facebook.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="Facebook"
+          ><i class="fab fa-facebook-f" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="LinkedIn"
+          ><i class="fab fa-linkedin-in" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://github.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="GitHub"
+          ><i class="fab fa-github" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://www.youtube.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="YouTube"
+          ><i class="fab fa-youtube" aria-hidden="true"></i
+        ></a>
+        <a
+          href="https://twitter.com/jrpbone"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="X / Twitter"
+          ><i class="fab fa-twitter" aria-hidden="true"></i
+        ></a>
+      </div>
+    </footer>
+  </body>
+</html>
