@@ -9,6 +9,22 @@ export function createContactPayload(formData, turnstileToken) {
   };
 }
 
+export async function loadContactConfig({ fetchImpl = fetch } = {}) {
+  try {
+    const response = await fetchImpl("/api/contact-config", {
+      headers: { accept: "application/json" },
+      cache: "no-store",
+    });
+    const config = await response.json();
+    if (!response.ok || typeof config?.siteKey !== "string" || !config.siteKey.trim()) {
+      throw new Error("Invalid contact configuration");
+    }
+    return config;
+  } catch {
+    throw new Error("Contact form is unavailable here. Please use the email link to get in touch.");
+  }
+}
+
 export async function submitContact(payload, { fetchImpl = fetch } = {}) {
   let response;
   try {
@@ -33,7 +49,11 @@ export async function submitContact(payload, { fetchImpl = fetch } = {}) {
   }
 
   if (!response.ok) {
-    throw new Error(result.message || "Message could not be sent. Please try again.");
+    throw new Error(result?.message || "Message could not be sent. Please try again.");
+  }
+
+  if (result?.ok !== true || typeof result.message !== "string" || !result.message.trim()) {
+    throw new Error("Message could not be sent. Please try again.");
   }
 
   return result;
@@ -72,6 +92,8 @@ async function initializeContactForm() {
   const submitLabel = submitButton.querySelector("span");
   const status = form.querySelector("#contact-form-status");
   const widgetContainer = form.querySelector("#turnstile-widget");
+  // Block native submission even when initialization fails or is still pending.
+  form.addEventListener("submit", (event) => event.preventDefault());
   let turnstileToken = "";
   let widgetId;
 
@@ -83,19 +105,8 @@ async function initializeContactForm() {
 
   try {
     setFormStatus(status, "Loading security check…");
-    const [configResponse, turnstile] = await Promise.all([
-      fetch("/api/contact-config", {
-        headers: { accept: "application/json" },
-        cache: "no-store",
-      }),
-      waitForTurnstile(),
-    ]);
-    const config = await configResponse.json();
-    if (!configResponse.ok || !config.siteKey) {
-      throw new Error(
-        config.message || "Contact form is temporarily unavailable.",
-      );
-    }
+    const config = await loadContactConfig();
+    const turnstile = await waitForTurnstile();
 
     widgetId = turnstile.render(widgetContainer, {
       sitekey: config.siteKey,
