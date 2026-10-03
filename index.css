@@ -44,6 +44,8 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   font-family: var(--font-site);
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -54,6 +56,38 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+/* The image sequence lives behind the existing page, without added markup. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--sequence-tint), var(--sequence-tint)),
+    var(--sequence-frame, url("assets/Images/ezgif-frame-001.jpg"));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+:root {
+  --sequence-tint: rgba(252, 251, 249, 0.82);
+}
+
+[data-theme="dark"] {
+  --sequence-tint: rgba(26, 25, 24, 0.72);
+}
+
+body::after {
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--sequence-tint), var(--sequence-tint)),
+    var(--sequence-next-frame, url("assets/Images/ezgif-frame-001.jpg"));
+  opacity: var(--sequence-blend, 0);
 }
 
 ::view-transition-old(root),
@@ -813,7 +847,7 @@ nav {
 
 /* About Section */
 .about-section {
-  background: var(--card-bg);
+  background: transparent;
 }
 
 .about-layout {
