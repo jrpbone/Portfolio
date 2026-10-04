@@ -2553,6 +2553,24 @@ footer {
 
 @media (max-width: 768px) {
   :root {
+    --bg-color: #fff;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #000;
+    --reading-surface: transparent;
+  }
+
+  body.landing-page::before,
+  body.landing-page::after {
+    content: none;
+  }
+
+  .scroll-background {
+    display: none;
+  }
+
+  :root {
     --nav-height: 72px;
   }
 

@@ -1,6 +1,6 @@
 // Buffer the seek-friendly video before scrubbing; retain the CSS poster while loading.
 const body = document.body;
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const staticBackground = window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 768px)");
 const video = document.createElement("video");
 video.className = "scroll-background";
 video.muted = true;
@@ -21,7 +21,7 @@ let previousTime = 0;
 let objectUrl;
 
 async function loadVideo() {
-  if (loading || ready || reducedMotion.matches) return;
+  if (loading || ready || staticBackground.matches) return;
   loading = true;
   try {
     const response = await fetch("assets/video/intro-scroll.mp4");
@@ -38,7 +38,7 @@ async function loadVideo() {
 function updateTarget() {
   const range = document.documentElement.scrollHeight - window.innerHeight;
   const progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
-  target = ready && !reducedMotion.matches
+  target = ready && !staticBackground.matches
     ? progress * Math.max(0, video.duration - FRAME_TIME)
     : 0;
   wake();
@@ -62,7 +62,7 @@ function tick(time) {
 }
 
 function wake() {
-  if (!animation && ready && !document.hidden && !reducedMotion.matches) {
+  if (!animation && ready && !document.hidden && !staticBackground.matches) {
     animation = requestAnimationFrame(tick);
   }
 }
@@ -75,7 +75,7 @@ function stopAnimation() {
 
 video.addEventListener("loadeddata", () => {
   ready = Number.isFinite(video.duration) && video.duration > 0;
-  video.classList.toggle("is-ready", ready && !reducedMotion.matches);
+  video.classList.toggle("is-ready", ready && !staticBackground.matches);
   updateTarget();
 });
 video.addEventListener("seeked", () => {
@@ -96,10 +96,10 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) stopAnimation();
   else updateTarget();
 });
-reducedMotion.addEventListener("change", () => {
+staticBackground.addEventListener("change", () => {
   stopAnimation();
-  video.classList.toggle("is-ready", ready && !reducedMotion.matches);
-  if (reducedMotion.matches) {
+  video.classList.toggle("is-ready", ready && !staticBackground.matches);
+  if (staticBackground.matches) {
     position = target = 0;
     if (ready) video.currentTime = 0;
   } else {
