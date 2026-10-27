@@ -96,18 +96,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const reveals = [...document.querySelectorAll("[data-reveal]")].filter((element) =>
       !element.closest(".pitch-hero, .home-work-grid, .works-grid, .project-content"));
-    const lines = document.querySelectorAll(".timeline-line");
-    if (!window.ScrollTrigger || (!reveals.length && !lines.length)) return;
+    const groups = document.querySelectorAll("[data-stagger]");
+    const timelines = document.querySelectorAll("[data-timeline]");
+    if (!window.ScrollTrigger || (!reveals.length && !groups.length && !timelines.length)) return;
     gsap.registerPlugin(window.ScrollTrigger);
     reveals.forEach((element) => gsap.from(element, {
-      opacity: 0, y: 24, duration: 0.5, ease: "power3.out",
+      opacity: 0, y: 24, duration: 0.6, ease: "power3.out",
       clearProps: "opacity,transform",
       scrollTrigger: { trigger: element, start: "top 85%", once: true },
     }));
-    lines.forEach((line) => gsap.from(line, {
-      scaleY: 0, transformOrigin: "top center", duration: 0.6,
-      ease: "power3.out", clearProps: "transform,transformOrigin",
-      scrollTrigger: { trigger: line.closest(".timeline") || line, start: "top 85%", once: true },
+    groups.forEach((group) => gsap.from(group.children, {
+      opacity: 0, y: 28, duration: 0.6, stagger: { each: 0.08, grid: "auto" },
+      ease: "power3.out", clearProps: "opacity,transform",
+      scrollTrigger: { trigger: group, start: "top 85%", once: true },
     }));
+
+    // The rail fills with scroll; each entry slides in from its side as it arrives.
+    timelines.forEach((timeline) => {
+      const fill = timeline.querySelector(".xp-rail-fill");
+      if (fill) gsap.fromTo(fill, { scaleY: 0 }, {
+        scaleY: 1, ease: "none",
+        scrollTrigger: { trigger: timeline, start: "top 70%", end: "bottom 55%", scrub: 0.6 },
+      });
+      const stacked = window.matchMedia("(max-width: 899px)").matches;
+      timeline.querySelectorAll(".xp-item").forEach((item, index) => {
+        const fromLeft = stacked || index % 2 === 0;
+        const step = gsap.timeline({ scrollTrigger: { trigger: item, start: "top 82%", once: true } });
+        step.from(item.querySelector(".xp-marker"), { scale: 0, duration: 0.45, ease: "back.out(2.5)", clearProps: "transform" })
+          .from(item.querySelector(".xp-card"), {
+            opacity: 0, x: fromLeft ? -36 : 36, duration: 0.65, ease: "power3.out", clearProps: "opacity,transform",
+          }, "<0.05")
+          .from(item.querySelectorAll(".xp-card .chip-list li"), {
+            opacity: 0, y: 8, duration: 0.3, stagger: 0.05, ease: "power2.out", clearProps: "opacity,transform",
+          }, "-=0.3");
+      });
+    });
   });
 });
