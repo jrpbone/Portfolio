@@ -50,7 +50,7 @@ class ProjectPagesTests(unittest.TestCase):
                     self.assertTrue(page.matching('div', 'architecture-diagram'))
                     self.assertIn('TODO(J.R.): Review these feature drafts', html)
                     self.assertIn('TODO(J.R.): Replace this factual draft', html)
-                for section in ['overview', 'stack', 'gallery', 'case-study', 'features', 'learning']:
+                for section in ['problem', 'contribution', 'how-it-works', 'result', 'gallery', 'next-steps']:
                     self.assertTrue(any(attrs.get('id') == section for _, attrs in page.nodes), section)
                 self.assertNotIn('<details', html)
                 self.assertIn('CreativeWork', html)
@@ -62,7 +62,7 @@ class ProjectPagesTests(unittest.TestCase):
 
     def test_home_features_follow_published_dates(self):
         home = PageParser((ROOT / 'index.html').read_text(encoding='utf-8'))
-        eligible = sorted([p for p in self.published if p.get('featured', True)],
+        eligible = sorted([p for p in self.published if p.get('featured') is True],
                           key=lambda p: (-int(p['date'].replace('-', '')), p['slug']))[:3]
         self.assertEqual([p['data-slug'] for p in home.matching('li', 'home-project')],
                          [p['slug'] for p in eligible])
@@ -76,7 +76,7 @@ class ProjectPagesTests(unittest.TestCase):
                 self.assertIn('noindex, nofollow', (ROOT / 'works' / project['slug'] / 'index.html').read_text(encoding='utf-8'))
 
     def test_published_local_links_and_assets_exist(self):
-        paths = [ROOT / 'index.html', ROOT / 'works/index.html'] + [ROOT / 'works' / p['slug'] / 'index.html' for p in self.published]
+        paths = [ROOT / 'index.html', ROOT / 'works/index.html', ROOT / 'about/index.html', ROOT / 'contact/index.html'] + [ROOT / 'works' / p['slug'] / 'index.html' for p in self.published]
         for path in paths:
             parser = PageParser(path.read_text(encoding='utf-8'))
             for tag, attrs in parser.nodes:

@@ -14,6 +14,12 @@ test('static builder supports date order, unpublished drafts, pagination, and a 
   try {
     await mkdir(path.join(root, 'tools'));
     await mkdir(path.join(root, 'works'));
+    for (const section of ['about', 'contact']) {
+      await mkdir(path.join(root, section));
+      await writeFile(path.join(root, section, 'index.html'), '<html><body><!-- site:header:start --><!-- site:header:end --><!-- site:footer:start --><!-- site:footer:end --></body></html>');
+    }
+    await cp(path.join(source, 'tools/site-shell.mjs'), path.join(root, 'tools/site-shell.mjs'));
+    await cp(path.join(source, 'tools/partials'), path.join(root, 'tools/partials'), { recursive: true });
     await cp(path.join(source, 'tools/build-works.mjs'), path.join(root, 'tools/build-works.mjs'));
     await cp(path.join(source, 'tools/new-project.mjs'), path.join(root, 'tools/new-project.mjs'));
     await cp(path.join(source, 'works/_template'), path.join(root, 'works/_template'), { recursive: true });
@@ -31,7 +37,7 @@ test('static builder supports date order, unpublished drafts, pagination, and a 
     await writeFile(registry, JSON.stringify(projects));
     run('tools/build-works.mjs');
     const home = await readFile(path.join(root, 'index.html'), 'utf8');
-    assert.equal((home.match(/class="home-project"/g) || []).length, 3);
+    assert.equal((home.match(/class="home-project featured-project"/g) || []).length, 3);
     assert.ok(home.indexOf('project-9/') < home.indexOf('project-8/'));
     assert.ok(home.indexOf('project-8/') < home.indexOf('project-7/'));
     const index = await readFile(path.join(root, 'works/index.html'), 'utf8');
