@@ -4,8 +4,6 @@
 .works-grid > [hidden] { display: none !important; }
 .works-page main { padding-top: calc(var(--nav-height) + 3rem); }
 .works-page main #work { padding-top: 0; }
-.works-heading { margin-bottom: 2rem; }
-.works-heading p { max-width: 60ch; color: var(--text-muted); }
 .platform-filters { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 2rem; }
 .platform-filters[hidden] { display: none; }
 html[data-content-loading] .platform-filters[hidden] { display: flex; }
@@ -17,7 +15,6 @@ html[data-theme-ready] .works-page .filter-status { min-height: calc(1.6em + 1.5
 :is(.works-grid, .home-work-grid) .home-project-link:is(:hover, :focus-visible) { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(var(--accent-rgb), .14); }
 :is(.works-grid, .home-work-grid) .home-project-image { aspect-ratio: 16 / 10; }
 :is(.works-grid, .home-work-grid) .home-project-image img { width: 100%; height: 100%; object-fit: contain; transform: none; }
-.home-project-meta, .home-project-year { color: var(--text-muted); font-size: .8rem; }
 .home-project-more { display: inline-flex; align-items: center; gap: .5rem; }
 .home-project-more :is(span, i) { display: inline-block; }
 .home-project-body { min-width: 0; }
@@ -26,8 +23,6 @@ html[data-theme-ready] .works-page .filter-status { min-height: calc(1.6em + 1.5
 .works-pagination { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-block: 2rem; }
 .works-pagination a { display: grid; place-items: center; min-width: 44px; min-height: 44px; border: 1px solid var(--border-color); border-radius: 6px; }
 .works-pagination [aria-current="page"] { background: var(--accent-light); color: var(--accent-color); }
-.works-cta { margin-block: 3rem; padding: clamp(1.5rem, 4vw, 3rem); border-top: 1px solid var(--border-color); }
-.works-cta p { color: var(--text-muted); margin-block: .75rem 1.5rem; }
 @media (max-width: 999px) { .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) { .works-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: no-preference) {
