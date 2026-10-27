@@ -1,11 +1,22 @@
-export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clearTimeout } = {}) {
+export function setupHeroAnimation(image, {
+  schedule = setTimeout, cancel = clearTimeout,
+  prepareFinal = async () => {
+    const portrait = new Image();
+    portrait.src = '/assets/hero-face.jpg';
+    await portrait.decode();
+    return portrait;
+  },
+} = {}) {
   if (!image) return;
   const original = image.getAttribute('src');
   const originalAlt = image.alt;
   let used = false;
   let completed = false;
   let timer;
+  let finalPortrait;
+  let cancelled = false;
   function restore() {
+    cancelled = true;
     cancel(timer);
     image.removeEventListener('load', loaded);
     image.removeEventListener('error', restore);
@@ -17,17 +28,25 @@ export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clea
     // The replacement GIF has 96 frames: one cycle lasts four seconds.
     timer = schedule(showFace, 4000);
   }
-  function showFace() {
+  async function showFace() {
+    const portrait = await finalPortrait;
+    if (cancelled || !portrait) { if (!cancelled) restore(); return; }
     completed = true;
     cancel(timer);
     image.removeEventListener('load', loaded);
     image.removeEventListener('error', restore);
-    image.setAttribute('src', '/assets/hero-face.jpg');
-    image.alt = 'J.R. Bone facing the camera';
+    // Swap the already-decoded element itself: changing src can clear a frame.
+    for (const { name, value } of image.attributes) {
+      if (name !== 'src' && name !== 'alt') portrait.setAttribute(name, value);
+    }
+    portrait.alt = 'J.R. Bone facing the camera';
+    image.replaceWith(portrait);
+    image = portrait;
   }
   function play() {
     if (used) return;
     used = true;
+    finalPortrait = prepareFinal().catch(() => null);
     image.setAttribute('aria-disabled', 'true');
     image.setAttribute('aria-label', 'Animated portrait already played; refresh to play again');
     image.addEventListener('load', loaded, { once: true });
@@ -46,7 +65,7 @@ export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clea
       play();
     }
   });
-  return () => { if (completed) showFace(); else restore(); };
+  return () => { if (!completed) restore(); };
 }
 
 if (typeof document !== 'undefined') {
