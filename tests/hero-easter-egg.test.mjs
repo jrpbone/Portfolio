@@ -2,18 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { setupHeroAnimation } from '../assets/hero-easter-egg.js';
 
-function portrait(ready) {
+function portrait(ready, paint = async () => {}) {
   const image = new EventTarget();
   const attrs = { src: '/assets/first_hero.jpg' };
   image.alt = 'Portrait of JR Bone';
   image.getAttribute = key => attrs[key];
   image.setAttribute = (key, value) => { attrs[key] = value; };
   Object.defineProperty(image, 'attributes', { get: () => Object.entries(attrs).map(([name, value]) => ({ name, value })) });
-  image.replaceWith = next => { Object.assign(attrs, next.attrs); image.alt = next.alt; };
-  const final = { attrs: { src: '/assets/second_hero.jpg' }, setAttribute(key, value) { this.attrs[key] = value; } };
+  let overlay;
+  image.after = next => { overlay = next; };
+  image.remove = () => { Object.assign(attrs, overlay.attrs); image.alt = overlay.alt; };
+  const final = { attrs: { src: '/assets/second_hero.jpg' }, decode: async () => {}, setAttribute(key, value) { this.attrs[key] = value; }, removeAttribute(key) { delete this.attrs[key]; delete attrs[key]; } };
   const timers = new Map();
   let next = 0;
-  setupHeroAnimation(image, { prepareFinal: async () => { if (ready) await ready; return final; }, schedule(fn, delay) { timers.set(++next, { fn, delay }); return next; }, cancel(id) { timers.delete(id); } });
+  setupHeroAnimation(image, { paint, prepareFinal: async () => { if (ready) await ready; return final; }, schedule(fn, delay) { timers.set(++next, { fn, delay }); return next; }, cancel(id) { timers.delete(id); } });
   return { image, attrs, timers };
 }
 
@@ -61,4 +63,23 @@ test('failed or stalled GIF loading restores the photo', () => {
     assert.equal(attrs.src, '/assets/first_hero.jpg');
     assert.equal(timers.size, 0);
   }
+});
+
+test('the GIF remains underneath the new image through two paint frames', async () => {
+  const paints = [];
+  const { image, attrs, timers } = portrait(undefined, () => new Promise(resolve => paints.push(resolve)));
+  image.dispatchEvent(new Event('click'));
+  image.dispatchEvent(new Event('load'));
+  const transition = [...timers.values()][0].fn();
+  await new Promise(setImmediate);
+  assert.equal(attrs.src, '/assets/hero.gif');
+  assert.equal(paints.length, 1);
+  paints.shift()();
+  await new Promise(setImmediate);
+  assert.equal(attrs.src, '/assets/hero.gif');
+  assert.equal(paints.length, 1);
+  paints.shift()();
+  await transition;
+  assert.equal(attrs.src, '/assets/second_hero.jpg');
+  assert.equal('data-hero-overlay' in attrs, false);
 });

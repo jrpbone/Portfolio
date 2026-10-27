@@ -1,5 +1,6 @@
 export function setupHeroAnimation(image, {
   schedule = setTimeout, cancel = clearTimeout,
+  paint = () => new Promise(resolve => requestAnimationFrame(resolve)),
   prepareFinal = async () => {
     const portrait = new Image();
     portrait.src = '/assets/second_hero.jpg';
@@ -31,16 +32,29 @@ export function setupHeroAnimation(image, {
   async function showFace() {
     const portrait = await finalPortrait;
     if (cancelled || !portrait) { if (!cancelled) restore(); return; }
-    completed = true;
     cancel(timer);
     image.removeEventListener('load', loaded);
     image.removeEventListener('error', restore);
-    // Swap the already-decoded element itself: changing src can clear a frame.
+    // Keep the GIF underneath until the mounted portrait has painted.
     for (const { name, value } of image.attributes) {
       if (name !== 'src' && name !== 'alt') portrait.setAttribute(name, value);
     }
     portrait.alt = 'J.R. Bone facing the camera';
-    image.replaceWith(portrait);
+    portrait.setAttribute('data-hero-overlay', '');
+    image.after(portrait);
+    try {
+      await portrait.decode();
+      await paint();
+      await paint();
+    } catch {
+      portrait.remove();
+      restore();
+      return;
+    }
+    if (cancelled) { portrait.remove(); return; }
+    completed = true;
+    image.remove();
+    portrait.removeAttribute('data-hero-overlay');
     image = portrait;
   }
   function play() {
