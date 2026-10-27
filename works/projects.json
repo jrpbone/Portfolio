@@ -34,7 +34,8 @@
     "coverHeight": 1953,
     "repo": "https://github.com/jbl2023-2879-91296-cpu/KaraOK",
     "featured": true,
-    "published": true
+    "published": true,
+    "result": "Evaluates core audio characteristics and generates visual reports."
   },
   {
     "slug": "lnpulse",

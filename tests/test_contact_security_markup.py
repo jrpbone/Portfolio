@@ -44,7 +44,7 @@ class ContactSecurityMarkupTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         parser = ContactFormParser()
-        index_path = Path(__file__).resolve().parents[1] / "index.html"
+        index_path = Path(__file__).resolve().parents[1] / "contact" / "index.html"
         parser.feed(index_path.read_text(encoding="utf-8"))
         cls.form = parser
 

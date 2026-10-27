@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { syncSharedShell } from './site-shell.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const origin = 'https://jrpbone.vercel.app';
@@ -28,6 +29,16 @@ export function card(project) {
 </li>`;
 }
 
+export function featuredCard(project) {
+  const p = Object.fromEntries(Object.entries(project).map(([key, value]) => [key, typeof value === 'string' ? escape(value) : value]));
+  return `<li class="home-project featured-project" data-platform="${p.platform.toLowerCase()}" data-slug="${p.slug}">
+    <div class="featured-project-media"><a href="/works/${p.slug}/" aria-label="Read the ${p.name} case study"><div class="home-project-image" style="view-transition-name: project-${p.slug}"><img src="${p.cover}" width="${p.coverWidth}" height="${p.coverHeight}" loading="lazy" decoding="async" alt="${p.name} project screenshot"></div></a></div>
+    <div class="home-project-body"><span class="project-type">${p.type} &middot; ${p.platform}</span><h3><a href="/works/${p.slug}/">${p.name}</a></h3><span class="project-status${p.status === 'complete' ? ' is-complete' : ''}">${p.status === 'in-development' ? 'In Development' : 'Completed'}</span>
+    <p class="project-result">${p.result || p.summary}</p><p class="project-role"><strong>My role:</strong> ${p.role}</p><ul class="work-tags" aria-label="Technologies used">${p.tags.slice(0, 3).map(tag => `<li class="tag">${escape(tag)}</li>`).join('')}</ul>
+    <div class="project-actions"><a class="btn-cta case-study-link" href="/works/${p.slug}/">Read case study</a>${p.liveUrl ? `<a class="btn-outline" href="${p.liveUrl}" target="_blank" rel="noopener noreferrer">Live demo</a>` : ''}<a class="text-link" href="${p.repo}" target="_blank" rel="noopener noreferrer">View code &nearr;</a></div></div>
+  </li>`;
+}
+
 async function validate(projects) {
   const slugs = new Set();
   for (const p of projects) {
@@ -51,8 +62,8 @@ export async function buildWorks() {
   const projects = registry.filter((project) => project.published !== false);
   await validate(registry);
   const homePath = path.join(root, 'index.html');
-  const featured = projects.filter((p) => p.featured !== false).slice(0, 3);
-  await writeFile(homePath, replaceRegion(await readFile(homePath, 'utf8'), 'featured', `<ul class="home-work-grid">\n${featured.map(card).join('\n')}\n</ul>`));
+  const featured = projects.filter((p) => p.featured === true).slice(0, 3);
+  await writeFile(homePath, replaceRegion(await readFile(homePath, 'utf8'), 'featured', `<ul class="home-work-grid">\n${featured.map(featuredCard).join('\n')}\n</ul>`));
   const indexPath = path.join(root, 'works/index.html');
   const base = await readFile(indexPath, 'utf8');
   const pages = Math.max(1, Math.ceil(projects.length / 9));
@@ -62,7 +73,7 @@ export async function buildWorks() {
     pagePaths.push(url);
     const pagination = pages > 1 ? '<nav class="works-pagination" aria-label="Project pages">' + Array.from({ length: pages }, (_, i) => `<a href="${i === 0 ? '/works/' : `/works/page/${i + 1}/`}"${page === i + 1 ? ' aria-current="page"' : ''}>${i + 1}</a>`).join(' ') + '</nav>' : '';
     let html = replaceRegion(base, 'index', `<ul class="works-grid">\n${projects.slice((page - 1) * 9, page * 9).map(card).join('\n')}\n</ul>${pagination}`);
-    if (page > 1) html = html.replace('<title>Works |', `<title>Works, page ${page} |`).replaceAll(`${origin}/works/"`, `${origin}${url}"`);
+    if (page > 1) html = html.replace(/<title>[^<]*<\/title>/, `<title>Work, page ${page} | J.R. Bone</title>`).replaceAll(`${origin}/works/"`, `${origin}${url}"`);
     const output = page === 1 ? indexPath : path.join(root, 'works/page', String(page), 'index.html');
     await mkdir(path.dirname(output), { recursive: true });
     await writeFile(output, html);
@@ -93,8 +104,10 @@ export async function buildWorks() {
     html = html.replace(/^[ \t]+$/gm, '').trimEnd() + '\n';
     await writeFile(output, html);
   }
-  const urls = ['/', ...pagePaths, ...projects.map((p) => `/works/${p.slug}/`)];
+  const urls = ['/', '/about/', '/contact/', ...pagePaths, ...projects.map((p) => `/works/${p.slug}/`)];
   await writeFile(path.join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map((url) => `  <url><loc>${origin}${url}</loc></url>`).join('\n') + '\n</urlset>\n');
+  const sharedPages = ['index.html', 'works/index.html', 'about/index.html', 'contact/index.html', 'works/_template/index.html', ...registry.map(p => `works/${p.slug}/index.html`), ...pagePaths.slice(1).map(url => `${url.slice(1)}index.html`)];
+  await syncSharedShell(root, sharedPages);
   console.log(`Built ${featured.length} homepage cards and ${projects.length} projects across ${pages} Works page(s).`);
 }
 

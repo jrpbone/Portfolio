@@ -19,7 +19,7 @@ await mkdir(destination);
 await cp(path.join(root, 'works/_template/project.css'), path.join(destination, 'project.css'));
 await mkdir(path.join(destination, 'images'));
 let html = await readFile(path.join(root, 'works/_template/index.html'), 'utf8');
-html = html.replaceAll('{{slug}}', slug).replaceAll('{{name}}', escape(name.trim())).replaceAll('{{nameJson}}', JSON.stringify(name.trim()).replaceAll('<', '\\u003c')).replaceAll('{{date}}', date);
+html = html.replaceAll('{{slug}}', slug).replaceAll('{{name}}', escape(name.trim())).replaceAll('{{nameJson}}', JSON.stringify(name.trim()).replaceAll('<', '\\u003c')).replaceAll('{{date}}', date).replaceAll('{{year}}', date.slice(0, 4));
 await writeFile(path.join(destination, 'index.html'), html);
 projects.push({ slug, name: name.trim(), type: 'Project', platform: 'Web', status: 'in-development', date, role: 'To be confirmed', timeline: 'To be confirmed', team: 'To be confirmed', projectType: 'Personal', summary: 'Project details to follow.', tags: [], cover: '/assets/branding/og-preview-bw.png', coverWidth: 1200, coverHeight: 630, repo: 'https://github.com/jrpbone', featured: false, published: false });
 await writeFile(registryPath, JSON.stringify(projects, null, 2) + '\n');

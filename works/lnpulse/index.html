@@ -18,11 +18,11 @@
   <script defer="" src="/assets/navigation.js">
   </script>
   <title>
-   LnPulse | JR Bone
+   LnPulse | J.R. Bone
   </title>
   <meta content="I worked on access control, security, and departments for a school records system." name="description"/>
   <link href="https://jrpbone.vercel.app/works/lnpulse/" rel="canonical"/>
-  <meta content="LnPulse | JR Bone" property="og:title"/>
+  <meta content="LnPulse | J.R. Bone" property="og:title"/>
   <meta content="I worked on access control, security, and departments for a school records system." property="og:description"/>
   <meta content="https://jrpbone.vercel.app/works/lnpulse/" property="og:url"/>
   <meta content="website" property="og:type"/>
@@ -35,6 +35,7 @@
   <script defer="" src="/assets/project-page.js">
   </script>
 
+  <link href="/assets/pages.css" rel="stylesheet"/>
  <meta name="robots" content="noindex, nofollow"></head>
  <body class="works-page">
   <div aria-hidden="true" class="scroll-progress">
@@ -42,53 +43,24 @@
   <a class="skip-link" href="#main-content">
    Skip to main content
   </a>
-  <header>
-   <div class="container">
-    <nav aria-label="Primary navigation">
-     <a aria-label="JR Bone, home" class="nav-brand" data-section="home" href="/index.html?section=home#home">
-      <img alt="" class="logo" height="44" src="/assets/branding/jr-monogram-bw-192.png" width="44"/>
-      <div class="brand-details">
-       <p>
-        J.R. Bone
-       </p>
-       <p>
-        Full-Stack Developer
-       </p>
-      </div>
-     </a>
-     <div class="nav-links" id="primary-navigation">
-      <a data-section="recent-work" href="/index.html?section=recent-work#recent-work">
-       Recent Work
-      </a>
-      <a data-section="services" href="/index.html?section=services#services">
-       Services
-      </a>
-      <a data-section="about" href="/index.html?section=about#about">
-       About
-      </a>
-      <a aria-current="page" class="is-active" href="/works/">
-       Works
-      </a>
-      <a class="btn-cta" data-section="contact" href="/index.html?section=contact#contact">
-       Start a Project
-      </a>
-     </div>
-     <div class="nav-controls">
-      <button aria-label="Switch to dark mode" class="theme-toggle" id="theme-toggle" type="button">
-       <span aria-hidden="true">
-        ☾
-       </span>
-      </button>
-      <button aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation menu" class="mobile-menu-toggle" id="mobile-menu-toggle" type="button">
-       <span aria-hidden="true">
-        ☰
-       </span>
-      </button>
-     </div>
-    </nav>
-   </div>
-  </header>
-  <main class="project-page" id="main-content">
+  <!-- site:header:start -->
+<header class="site-header">
+  <div class="container"><nav aria-label="Primary navigation">
+    <a class="nav-brand" href="/" aria-label="J.R. Bone, Home" >
+      <img class="logo" src="/assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="">
+      <div class="brand-details"><p>J.R. Bone</p><p>Full-Stack Developer</p></div>
+    </a>
+    <div class="nav-links" id="primary-navigation">
+      <a href="/works/" aria-current="page" class="is-active">Work</a><a href="/about/" >About</a><a href="/contact/" >Contact</a>
+    </div>
+    <div class="nav-controls">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode"><span aria-hidden="true"><svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></span></button>
+      <button type="button" id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav></div>
+</header>
+<!-- site:header:end -->
+  <main class="project-page site-main" id="main-content">
    <section class="project-hero container">
     <nav aria-label="Breadcrumb" class="breadcrumb">
      <a href="/works/">
@@ -116,13 +88,13 @@
       View code
      </a>
     </div>
-    <div class="project-hero-cover" style="view-transition-name: project-lnpulse">
-     <img alt="LnPulse school information system administrative dashboard" fetchpriority="high" height="997" src="/works/lnpulse/images/dashboard-optimized.png" width="1919"/>
-    </div>
+    <p class="project-category">
+     Academic
+    </p>
    </section>
-   <section class="container">
-    <h2>
-     At a glance
+   <section class="project-at-a-glance container">
+    <h2 class="sr-only">
+     Project facts
     </h2>
     <dl class="project-facts">
      <div>
@@ -135,14 +107,6 @@
      </div>
      <div>
       <dt>
-       Timeline
-      </dt>
-      <dd>
-       6 months
-      </dd>
-     </div>
-     <div>
-      <dt>
        Team
       </dt>
       <dd>
@@ -151,10 +115,10 @@
      </div>
      <div>
       <dt>
-       Type
+       Timeline
       </dt>
       <dd>
-       Academic
+       6 months
       </dd>
      </div>
      <div>
@@ -175,47 +139,57 @@
      </div>
     </dl>
    </section>
+   <figure class="project-cover container">
+    <div class="project-hero-cover" style="view-transition-name: project-lnpulse">
+     <img alt="LnPulse school information system administrative dashboard" fetchpriority="high" height="997" src="/works/lnpulse/images/dashboard-optimized.png" width="1919"/>
+    </div>
+   </figure>
    <div class="project-layout container">
     <nav aria-label="On this page" class="project-section-nav">
-     <a href="#overview">
-      Overview
+     <a href="#problem">
+      Problem
      </a>
-     <a href="#stack">
-      Stack
+     <a href="#contribution">
+      What I built
+     </a>
+     <a href="#how-it-works">
+      How it works
      </a>
      <a href="#gallery">
       Gallery
      </a>
-     <a href="#case-study">
-      Case study
-     </a>
     </nav>
     <div class="project-content">
-     <section id="overview">
+     <section id="problem">
       <h2>
-       Overview
+       Problem
       </h2>
       <p class="project-description">
        An administrative information system for organizing senior
                   high school student records, departments, curriculum, users,
                   and academic settings.
       </p>
-      <div class="project-contribution">
-       <span>
-        What I built
-       </span>
-       <p>
-        Built the authenticated admin workflow for creating and
+      <p>
+       Senior high school administration involves connected
+                      student, department, curriculum, user, and academic-term
+                      records that become difficult to maintain in separate
+                      workflows.
+      </p>
+     </section>
+     <section id="contribution">
+      <h2>
+       What I built
+      </h2>
+      <p>
+       Built the authenticated admin workflow for creating and
                     reviewing student records, managing departments and
                     curriculum, administering users, and configuring the active
                     school year and semester.
-       </p>
-      </div>
-     </section>
-     <section id="stack">
-      <h2>
+      </p>
+      <!-- TODO(J.R.): clarify your own implementation and the work completed by teammates. -->
+      <h3>
        Tech stack
-      </h2>
+      </h3>
       <div class="stack-groups">
        <div>
         <h3>
@@ -273,77 +247,18 @@
        </div>
       </div>
      </section>
-     <section id="gallery">
+     <section id="how-it-works">
       <h2>
-       Gallery
+       How it works
       </h2>
+      <h3>
+       Approach
+      </h3>
       <p>
-       Open a screenshot to inspect it at full size.
-      </p>
-      <div class="project-gallery">
-       <a href="/works/lnpulse/images/dashboard-optimized.png">
-        <img alt="LnPulse: dashboard" decoding="async" height="997" loading="lazy" src="/works/lnpulse/images/dashboard-optimized.png" width="1919"/>
-        <span>
-         Dashboard
-        </span>
-       </a>
-       <a href="/works/lnpulse/images/login-optimized.png">
-        <img alt="LnPulse: login" decoding="async" height="999" loading="lazy" src="/works/lnpulse/images/login-optimized.png" width="1919"/>
-        <span>
-         Login
-        </span>
-       </a>
-       <a href="/works/lnpulse/images/students-optimized.png">
-        <img alt="LnPulse: students" decoding="async" height="999" loading="lazy" src="/works/lnpulse/images/students-optimized.png" width="1919"/>
-        <span>
-         Students
-        </span>
-       </a>
-       <a href="/works/lnpulse/images/departments-optimized.png">
-        <img alt="LnPulse: departments" decoding="async" height="997" loading="lazy" src="/works/lnpulse/images/departments-optimized.png" width="1919"/>
-        <span>
-         Departments
-        </span>
-       </a>
-       <a href="/works/lnpulse/images/curriculum-optimized.png">
-        <img alt="LnPulse: curriculum" decoding="async" height="998" loading="lazy" src="/works/lnpulse/images/curriculum-optimized.png" width="1919"/>
-        <span>
-         Curriculum
-        </span>
-       </a>
-       <a href="/works/lnpulse/images/users-optimized.png">
-        <img alt="LnPulse: users" decoding="async" height="998" loading="lazy" src="/works/lnpulse/images/users-optimized.png" width="1919"/>
-        <span>
-         Users
-        </span>
-       </a>
-      </div>
-     </section>
-     <section id="case-study">
-      <h2>
-       Case study
-      </h2>
-      <div>
-       <h3>
-        Challenge
-       </h3>
-       <p>
-        Senior high school administration involves connected
-                      student, department, curriculum, user, and academic-term
-                      records that become difficult to maintain in separate
-                      workflows.
-       </p>
-      </div>
-      <div>
-       <h3>
-        Approach
-       </h3>
-       <p>
-        I designed one authenticated administrative workspace for
+       I designed one authenticated administrative workspace for
                       creating and reviewing student records while managing the
                       academic structures those records depend on.
-       </p>
-      </div>
+      </p>
       <h3>
        System architecture
       </h3>
@@ -428,55 +343,106 @@
         </ul>
        </div>
       </div>
-      <div>
-       <h3>
-        Engineering decisions
-       </h3>
-       <p>
-        React handles the interface and validated forms, while an
+      <h3>
+       Engineering decisions
+      </h3>
+      <p>
+       React handles the interface and validated forms, while an
                       Express and Sequelize API organizes MySQL data and bcrypt
                       protects stored credentials.
-       </p>
-      </div>
-      <div>
-       <h3>
-        Outcome
-       </h3>
-       <p>
-        The resulting system gives administrators a consistent
+      </p>
+      <!-- TODO(J.R.): add 2–3 key decisions, the alternatives, and each trade-off. -->
+     </section>
+     <section id="result">
+      <h2>
+       Result
+      </h2>
+      <p>
+       The resulting system gives administrators a consistent
                       workflow for maintaining school records and configuring
                       the active school year and semester.
-       </p>
+      </p>
+      <div class="feature-summary">
+       <h3>
+        Feature summary
+       </h3>
+       <!-- TODO(J.R.): Review these feature drafts against your personal contribution. -->
+       <ul>
+        <li>
+         Manage student records and curriculum.
+        </li>
+        <li>
+         Administer departments and users.
+        </li>
+        <li>
+         Configure the school year and semester.
+        </li>
+       </ul>
       </div>
      </section>
-     <section id="features">
+     <section id="gallery">
       <h2>
-       Key features
+       Gallery
       </h2>
-      <!-- TODO(J.R.): Review these feature drafts against your personal contribution. -->
-      <p class="draft-note">
-       Draft for J.R. to review.
+      <p>
+       Open a screenshot to inspect it at full size.
       </p>
-      <ul>
-       <li>
-        Manage student records and curriculum.
-       </li>
-       <li>
-        Administer departments and users.
-       </li>
-       <li>
-        Configure the school year and semester.
-       </li>
-      </ul>
+      <div class="project-gallery">
+       <figure>
+        <a href="/works/lnpulse/images/dashboard-optimized.png">
+         <img alt="LnPulse: dashboard" decoding="async" height="997" loading="lazy" src="/works/lnpulse/images/dashboard-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Dashboard
+        </figcaption>
+       </figure>
+       <figure>
+        <a href="/works/lnpulse/images/login-optimized.png">
+         <img alt="LnPulse: login" decoding="async" height="999" loading="lazy" src="/works/lnpulse/images/login-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Login
+        </figcaption>
+       </figure>
+       <figure>
+        <a href="/works/lnpulse/images/students-optimized.png">
+         <img alt="LnPulse: students" decoding="async" height="999" loading="lazy" src="/works/lnpulse/images/students-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Students
+        </figcaption>
+       </figure>
+       <figure>
+        <a href="/works/lnpulse/images/departments-optimized.png">
+         <img alt="LnPulse: departments" decoding="async" height="997" loading="lazy" src="/works/lnpulse/images/departments-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Departments
+        </figcaption>
+       </figure>
+       <figure>
+        <a href="/works/lnpulse/images/curriculum-optimized.png">
+         <img alt="LnPulse: curriculum" decoding="async" height="998" loading="lazy" src="/works/lnpulse/images/curriculum-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Curriculum
+        </figcaption>
+       </figure>
+       <figure>
+        <a href="/works/lnpulse/images/users-optimized.png">
+         <img alt="LnPulse: users" decoding="async" height="998" loading="lazy" src="/works/lnpulse/images/users-optimized.png" width="1919"/>
+        </a>
+        <figcaption>
+         Users
+        </figcaption>
+       </figure>
+      </div>
      </section>
-     <section id="learning">
+     <section id="next-steps">
       <h2>
-       What I learned / next steps
+       What I’d do next
       </h2>
       <!-- TODO(J.R.): Replace this factual draft with 2–3 lines about lessons learned and next steps. -->
-      <p class="draft-note">
-       Draft for J.R. to review.
-      </p>
       <p>
        My contribution focused on RBAC, security, and department features.
       </p>
@@ -486,50 +452,24 @@
    <!-- works:neighbors:start -->
 
 <!-- works:neighbors:end -->
-   <section class="works-contact">
+   <section class="contact-cta page-section">
     <div class="container">
      <h2>
       Have a project in mind?
      </h2>
-     <a class="btn-cta" data-section="contact" href="/index.html?section=contact#contact">
-      Start a Project
-     </a>
+     <div class="section-links">
+      <a class="btn-cta" href="/contact/">
+       Get in touch
+      </a>
+      <a class="text-link" href="mailto:johnralphbone@gmail.com">
+       Email me →
+      </a>
+     </div>
     </div>
    </section>
   </main>
-  <footer>
-   <div class="container">
-    <p>
-     © 2026 jrpbone. All rights reserved.
-    </p>
-   </div>
-   <div class="container">
-    <!-- Social Media Icons -->
-    <a aria-label="Facebook" class="social-icon" href="https://www.facebook.com/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-facebook-f">
-     </i>
-    </a>
-    <a aria-label="Instagram" class="social-icon" href="https://www.instagram.com/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-instagram">
-     </i>
-    </a>
-    <a aria-label="LinkedIn" class="social-icon" href="https://www.linkedin.com/in/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-linkedin-in">
-     </i>
-    </a>
-    <a aria-label="GitHub" class="social-icon" href="https://github.com/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-github">
-     </i>
-    </a>
-    <a aria-label="YouTube" class="social-icon" href="https://www.youtube.com/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-youtube">
-     </i>
-    </a>
-    <a aria-label="X / Twitter" class="social-icon" href="https://twitter.com/jrpbone" rel="noopener noreferrer" target="_blank">
-     <i aria-hidden="true" class="fab fa-twitter">
-     </i>
-    </a>
-   </div>
-  </footer>
+  <!-- site:footer:start -->
+<footer class="site-footer"><div class="container"><p>&copy; 2026 J.R. Bone. All rights reserved.</p><nav aria-label="Footer navigation"><a href="https://github.com/jrpbone" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/jrpbone" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:johnralphbone@gmail.com">Email</a></nav></div></footer>
+<!-- site:footer:end -->
  </body>
 </html>
