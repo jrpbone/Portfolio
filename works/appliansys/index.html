@@ -2,7 +2,22 @@
 <html data-theme="light" lang="en">
  <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- site:startup:start -->
+<script>
+(() => {
+  const root = document.documentElement;
+  let theme;
+  try { theme = localStorage.getItem('theme'); } catch { /* Storage is optional. */ }
+  if (theme !== 'light' && theme !== 'dark') {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  root.dataset.theme = theme;
+  root.setAttribute('data-theme-ready', '');
+})();
+</script>
+<script src="/assets/page-loading.js"></script>
+<!-- site:startup:end -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link href="/assets/branding/jr-monogram-bw-32.png" rel="icon"/>
   <link href="/site.webmanifest" rel="manifest"/>
   <link as="font" crossorigin="" href="/assets/fonts/commissioner/commissioner-variable.woff2" rel="preload" type="font/woff2"/>
@@ -36,7 +51,8 @@
   </script>
 
   <link href="/assets/pages.css" rel="stylesheet"/>
- <meta name="robots" content="noindex, nofollow"></head>
+ <meta name="robots" content="noindex, nofollow"><link rel="stylesheet" href="/assets/page-loading.css">
+</head>
  <body class="works-page">
   <div aria-hidden="true" class="scroll-progress">
   </div>
@@ -46,12 +62,12 @@
   <!-- site:header:start -->
 <header class="site-header">
   <div class="container"><nav aria-label="Primary navigation">
-    <a class="nav-brand" href="/" aria-label="J.R. Bone, Home" >
+    <a class="nav-brand" href="/" aria-label="J.R. Bone, Home">
       <img class="logo" src="/assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="">
       <div class="brand-details"><p>J.R. Bone</p><p>Full-Stack Developer</p></div>
     </a>
     <div class="nav-links" id="primary-navigation">
-      <a href="/works/" aria-current="page" class="is-active">Work</a><a href="/about/" >About</a><a href="/contact/" >Contact</a>
+      <a href="/" >Home</a><a href="/works/" aria-current="page" class="is-active">Works</a><a href="/about/" >About</a><a href="/contact/" >Contact</a>
     </div>
     <div class="nav-controls">
       <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode"><span aria-hidden="true"><svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></span></button>
@@ -448,7 +464,7 @@
    </section>
   </main>
   <!-- site:footer:start -->
-<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/assets/branding/jr-monogram-bw-192.png" width="40" height="40" alt="" loading="lazy"><div><p class="footer-name">J.R. Bone</p><p>Full-stack developer in the Philippines, building web, mobile, and desktop apps.</p></div></div><nav class="footer-pages" aria-label="Footer pages"><a href="/works/">Work</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/assets/files/BONE,%20JOHN%20RALPH-CV.pdf?v=2026-10" target="_blank" rel="noopener noreferrer">CV</a></nav></div><div class="footer-bottom"><p>&copy; 2026 J.R. Bone. All rights reserved.</p><nav aria-label="Footer navigation"><a href="https://github.com/jrpbone" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/jrpbone" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:johnralphbone@gmail.com">Email</a></nav></div></div></footer>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/assets/branding/jr-monogram-bw-192.png" width="40" height="40" alt="" loading="lazy"><div><p class="footer-name">J.R. Bone</p><p>Full-stack developer in the Philippines, building web, mobile, and desktop apps.</p></div></div><nav class="footer-pages" aria-label="Footer pages"><a href="/works/">Works</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/assets/files/BONE,%20JOHN%20RALPH-CV.pdf?v=2026-10" target="_blank" rel="noopener noreferrer">CV</a></nav></div><div class="footer-bottom"><p>&copy; 2026 J.R. Bone. All rights reserved.</p><nav aria-label="Footer navigation"><a href="https://github.com/jrpbone" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/jrpbone" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:johnralphbone@gmail.com">Email</a></nav></div></div></footer>
 <!-- site:footer:end -->
  </body>
 </html>
