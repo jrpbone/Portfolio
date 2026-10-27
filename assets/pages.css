@@ -165,9 +165,10 @@
 .about-story h1 { margin-block: 1rem 1.5rem; font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
 .about-story p + p { margin-top: 1.25rem; }
 .about-photo { position: relative; margin: 0; padding: 0 1.5rem 1.5rem 0; }
-.about-photo::before { content: ''; position: absolute; inset: 1.5rem 0 0 1.5rem; z-index: 0; border-radius: var(--radius-lg); background: linear-gradient(150deg, var(--accent-light), color-mix(in srgb, var(--accent-color) 30%, var(--accent-light))); }
-.about-photo-frame { position: relative; z-index: 1; display: block; overflow: hidden; border-radius: var(--radius-lg); box-shadow: 0 24px 50px rgb(15 23 42 / .18); }
-.about-photo-frame img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% center; }
+.about-heading-accent { color: var(--accent-color); }
+.about-photo::before { content: ''; position: absolute; inset: 1.5rem 0 0 1.5rem; z-index: 0; border: 1px solid color-mix(in srgb, var(--accent-color) 45%, var(--border-color)); border-radius: var(--radius-lg); }
+.about-photo-frame { position: relative; z-index: 1; display: block; overflow: hidden; padding: .5rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: 0 16px 40px rgb(15 23 42 / .12); }
+.about-photo-frame img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; border-radius: calc(var(--radius-lg) - .5rem); }
 .about-photo-tag { position: absolute; z-index: 2; left: -1rem; bottom: 3rem; display: inline-flex; align-items: center; gap: .55rem; padding: .7rem 1rem; border: 1px solid var(--border-color); border-radius: 999px; background: var(--card-bg); box-shadow: var(--card-shadow); font-size: .85rem; font-weight: 600; }
 .status-dot { width: .55rem; height: .55rem; border-radius: 50%; background: #2f9e5b; box-shadow: 0 0 0 4px rgb(47 158 91 / .18); }
 .stat-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
