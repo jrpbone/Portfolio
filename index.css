@@ -559,7 +559,7 @@ nav {
 
 
 .hero h1 {
-  font-size: clamp(2.6rem, 4.6vw, 4.5rem);
+  font-size: clamp(2.5rem, 4.2vw, 4.1rem);
 }
 
 .hero-name {
@@ -598,66 +598,61 @@ nav {
 
 .hero-contact {
   margin-top: 2.25rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
 }
 
 .hero-contact-label {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 650;
 }
 
 .hero-contact-label span {
   display: inline-block;
-  margin-left: 0.25rem;
+  margin-left: 0.3rem;
   color: var(--accent-color);
+}
+
+.hero-contact-note {
+  margin-top: 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 .hero-socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1.25rem;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   list-style: none;
 }
 
 .hero-socials a {
-  display: grid;
-  place-items: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  background: var(--card-bg);
-  color: var(--text-main);
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 1.4rem;
   transition:
     color 200ms ease,
-    border-color 200ms ease,
     transform 200ms ease;
 }
 
 .hero-socials a:hover,
 .hero-socials a:focus-visible {
-  border-color: var(--accent-color);
   color: var(--accent-color);
   transform: translateY(-2px);
 }
 
 .hero-socials .hero-resume {
-  margin-left: 0.5rem;
-  padding-left: 1.25rem;
-  border-left: 1px solid var(--border-color);
+  margin-right: 0.25rem;
 }
 
 .hero-socials .hero-resume a {
-  display: inline-flex;
   gap: 0.55rem;
-  width: auto;
-  padding: 0 1.25rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-color);
   border-radius: 999px;
-  border-color: var(--text-main);
+  color: var(--text-main);
   font-size: 0.95rem;
   font-weight: 600;
 }
@@ -665,8 +660,7 @@ nav {
 .hero-socials .hero-resume a:hover,
 .hero-socials .hero-resume a:focus-visible {
   border-color: var(--accent-color);
-  background: var(--accent-color);
-  color: #fff;
+  color: var(--accent-color);
 }
 
 .hero-visual {
@@ -2304,7 +2298,7 @@ footer {
   }
 
   .hero h1 {
-    font-size: clamp(2.7rem, 12vw, 4.2rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
   }
 
   .hero-intro {
@@ -2465,6 +2459,7 @@ footer {
 
 :root {
   --font-site: "Commissioner", "Segoe UI", sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
 }
 
 body {
@@ -2479,9 +2474,11 @@ h1, h2, h3, h4 {
 }
 
 .hero h1 {
-  font-weight: 650;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-variation-settings: normal;
   line-height: 1.06;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .hero h1 em {
