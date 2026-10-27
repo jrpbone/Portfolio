@@ -60,3 +60,12 @@ Project: header → facts → full-width screenshot → problem → personal con
 Use GSAP only inside `prefers-reduced-motion: no-preference`. Sections rise 16–24px once; grids stagger with `grid: 'auto'` and `power3.out`; cards lift 4px without scaling screenshots. Cross-document transitions retain the cover name. Timeline line draw runs once. Reduced motion shows final states. No parallax or scroll-scrubbed backgrounds.
 
 Pre-delivery checks: native landmarks and heading order; keyboard focus and menu Escape; accessible form labels; dark/light contrast; 375/768/1440px layouts; no-JS navigation/content; reduced motion; complete local image and link targets. Contact delivery and Turnstile verification require the deployed environment.
+
+## Visual redesign (October 2026)
+
+- Sections alternate a flat band and a tinted band (`.band`, `.band-tint`) with a faint 48px grid that echoes the hero. The hero itself is unchanged.
+- Section heads: numbered pill kicker, large heading on the left, one-sentence intro on the right (`.section-head`; a `div`, because `index.css` fixes every `header`).
+- Cards share an 18px radius, a soft shadow, and a 4px hover lift. Service cards are `.skill-card` (the old `.service-card` rules in `index.css` still exist).
+- Experience uses `.xp-timeline`: a center rail on desktop with alternating cards, a left rail under 900px. GSAP scrubs the rail fill to scroll and slides each card in from its side; current roles have a pulsing marker. Reduced motion shows the final state.
+- Closing CTA is a gradient `.cta-panel` (blue in light mode, terracotta in dark mode) with white buttons.
+- The CV lives at `/assets/files/BONE, JOHN RALPH-CV.pdf`; links add `?v=2026-10` to bust caches when the file changes.
