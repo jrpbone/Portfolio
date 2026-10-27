@@ -1,0 +1,38 @@
+/* Loading frames occupy the content's actual boxes; navigation stays usable. */
+html[data-content-loading] :is(.portfolio-home, .works-page) main :is(
+  .hero h1, .hero-meta, .hero-intro, .hero-contact, .hero-visual,
+  .section-head, .home-project, .skill-grid > li, .process,
+  .xp-card, .resume-strip, .cta-panel, .works-intro > div,
+  .platform-filters, .filter-status, .works-cta
+) {
+  position: relative;
+  visibility: hidden;
+  pointer-events: none;
+}
+html[data-content-loading] :is(.portfolio-home, .works-page) main :is(
+  .hero h1, .hero-meta, .hero-intro, .hero-contact, .hero-visual,
+  .section-head, .home-project, .skill-grid > li, .process,
+  .xp-card, .resume-strip, .cta-panel, .works-intro > div,
+  .platform-filters, .filter-status, .works-cta
+)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  visibility: visible;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--text-muted) 10%, var(--bg-color));
+  animation: var(--skeleton-animation, none);
+  pointer-events: none;
+}
+html[data-content-loading] main :is(.hero-visual, .home-project)::after {
+  border-radius: var(--project-radius, 14px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-content-loading] {
+    --skeleton-animation: skeleton-breathe 2.4s ease-in-out infinite alternate;
+  }
+  @keyframes skeleton-breathe {
+    from { opacity: .55; }
+    to { opacity: 1; }
+  }
+}

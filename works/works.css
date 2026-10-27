@@ -8,6 +8,8 @@
 .works-heading p { max-width: 60ch; color: var(--text-muted); }
 .platform-filters { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 2rem; }
 .platform-filters[hidden] { display: none; }
+html[data-content-loading] .platform-filters[hidden] { display: flex; }
+html[data-theme-ready] .works-page .filter-status { min-height: calc(1.6em + 1.5rem); padding: .75rem 0; }
 .platform-filters button { min-height: 44px; padding: .6rem 1.1rem; border: 1px solid var(--border-color); border-radius: 999px; background: var(--card-bg); color: var(--text-main); font: inherit; cursor: pointer; }
 .platform-filters button[aria-pressed="true"] { background: var(--accent-color); border-color: var(--accent-color); color: var(--bg-color); }
 .platform-filters button:focus-visible, .works-pagination a:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
