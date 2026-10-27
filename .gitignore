@@ -5,3 +5,5 @@ docs
 .vercel
 __pycache__/
 *.py[cod]
+node_modules/
+package-lock.json
