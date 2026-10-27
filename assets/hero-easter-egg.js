@@ -2,7 +2,7 @@ export function setupHeroAnimation(image, {
   schedule = setTimeout, cancel = clearTimeout,
   prepareFinal = async () => {
     const portrait = new Image();
-    portrait.src = '/assets/hero-face.jpg';
+    portrait.src = '/assets/second_hero.jpg';
     await portrait.decode();
     return portrait;
   },
@@ -53,7 +53,7 @@ export function setupHeroAnimation(image, {
     image.addEventListener('error', restore, { once: true });
     timer = schedule(restore, 30000);
     image.alt = 'Animated portrait of J.R. Bone';
-    image.setAttribute('src', '/assets/hero-animation.gif');
+    image.setAttribute('src', '/assets/hero.gif');
   }
   image.setAttribute('role', 'button');
   image.setAttribute('tabindex', '0');
