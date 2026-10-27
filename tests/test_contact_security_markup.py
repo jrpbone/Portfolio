@@ -44,14 +44,14 @@ class ContactSecurityMarkupTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         parser = ContactFormParser()
-        index_path = Path(__file__).resolve().parents[1] / "index.html"
+        index_path = Path(__file__).resolve().parents[1] / "contact" / "index.html"
         parser.feed(index_path.read_text(encoding="utf-8"))
         cls.form = parser
 
     def test_form_uses_protected_javascript_submission(self) -> None:
         self.assertEqual(self.form.form_attributes.get("novalidate"), None)
         self.assertNotIn("action", self.form.form_attributes)
-        self.assertIn("assets/contact-form.js", self.form.script_sources)
+        self.assertIn("/assets/contact-form.js", self.form.script_sources)
         self.assertTrue(
             any("challenges.cloudflare.com/turnstile" in src for src in self.form.script_sources)
         )

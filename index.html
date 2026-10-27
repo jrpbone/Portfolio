@@ -1,196 +1,93 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JR - Developer</title>
-    <meta
-      name="description"
-      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
-    />
-    <meta name="author" content="John Ralph P. Bone" />
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <meta name="theme-color" content="#1a1918" />
-    <link rel="canonical" href="https://jrpbone.vercel.app/" />
-
-    <!-- Site identity -->
-    <link
-      rel="icon"
-      href="/assets/branding/jr-monogram-bw-32.png"
-      sizes="32x32"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      href="/assets/branding/jr-monogram-bw-32.png"
-      sizes="32x32"
-      type="image/png"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      href="/assets/branding/jr-monogram-bw-32.png"
-      sizes="32x32"
-      type="image/png"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link rel="apple-touch-icon" href="/assets/branding/jr-monogram-bw-180.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- Social sharing preview -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="JR - Developer" />
-    <meta property="og:title" content="JR - Developer" />
-    <meta
-      property="og:description"
-      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
-    />
-    <meta property="og:url" content="https://jrpbone.vercel.app/" />
-    <meta
-      property="og:image"
-      content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png"
-    />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="JR Bone — Full-Stack Developer, black-and-white JR monogram"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@jrpbone" />
-    <meta name="twitter:title" content="JR - Developer" />
-    <meta
-      name="twitter:description"
-      content="John Ralph P. Bone is a student developer creating thoughtful, accessible, and reliable digital experiences for web, mobile, and beyond."
-    />
-    <meta
-      name="twitter:image"
-      content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png"
-    />
-    <meta
-      name="twitter:image:alt"
-      content="JR Bone — Full-Stack Developer, black-and-white JR monogram"
-    />
-
-    <!-- Developer profile structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "John Ralph P. Bone",
-        "alternateName": "JR",
-        "url": "https://jrpbone.vercel.app/",
-        "image": "https://jrpbone.vercel.app/assets/jrpbone-optimized.jpg",
-        "email": "mailto:johnralphbone@gmail.com",
-        "jobTitle": "Student",
-        "description": "A student developer creating thoughtful, accessible, and reliable digital experiences.",
-        "knowsAbout": [
-          "Software development",
-          "Web development",
-          "Mobile application development",
-          "User experience",
-          "Application security"
-        ],
-        "sameAs": [
-          "https://github.com/jrpbone",
-          "https://www.linkedin.com/in/jrpbone",
-          "https://www.facebook.com/jrpbone",
-          "https://www.instagram.com/jrpbone",
-          "https://www.youtube.com/jrpbone",
-          "https://twitter.com/jrpbone"
-        ]
-      }
-    </script>
-
-    <!-- Self-hosted Commissioner variable font -->
-    <link
-      rel="preload"
-      href="/assets/fonts/commissioner/commissioner-variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="index.css" />
-
-    <!-- GSAP progressive animation enhancement -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <script
-      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
-      defer
-    ></script>
-
-    <script src="assets/site.js" defer></script>
-    <script src="assets/navigation.js" defer></script>
-  </head>
-
-  <body class="landing-page">
-    <div class="scroll-progress" aria-hidden="true"></div>
-    <a class="skip-link" href="index.html?section=main-content" data-section="main-content">Skip to main content</a>
-
-    <header>
-      <div class="container">
-        <nav aria-label="Primary navigation">
-          <a class="nav-brand" href="index.html?section=home" data-section="home" aria-label="JR Bone, home">
-            <img class="logo" src="assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="" />
-            <div class="brand-details">
-              <p>J.R. Bone</p>
-              <p>Full-Stack Developer</p>
-            </div>
-          </a>
-
-          <div class="nav-links" id="primary-navigation">
-            <a href="index.html?section=about" data-section="about">About</a>
-            <a href="index.html?section=services" data-section="services">Services</a>
-            <a href="index.html?section=technologies" data-section="technologies">Technologies</a>
-            <a href="works.html">Selected Works</a>
-            <a href="index.html?section=contact" data-section="contact" class="btn-cta">Start a Project</a>
-          </div>
-
-          <div class="nav-controls">
-            <button
-              type="button"
-              id="theme-toggle"
-              class="theme-toggle"
-              aria-label="Switch to dark mode"
-            >
-              <span aria-hidden="true">&#9790;</span>
-            </button>
-            <button
-              type="button"
-              id="mobile-menu-toggle"
-              class="mobile-menu-toggle"
-              aria-expanded="false"
-              aria-controls="primary-navigation"
-              aria-label="Open navigation menu"
-            >
-              <span aria-hidden="true">&#9776;</span>
-            </button>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main-content">
-      <!-- Hero Section -->
-      <section class="hero" id="home" aria-labelledby="hero-title">
+<!doctype html>
+<html lang="en" data-theme="light"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>J.R. Bone | Full-Stack Developer</title>
+<meta content="I build web, mobile, and desktop apps for schools and small businesses. Explore KaraOK and get in touch." name="description"/>
+<meta content="John Ralph P. Bone" name="author"/>
+<meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+<meta content="#1a1918" name="theme-color"/>
+<link href="https://jrpbone.vercel.app/" rel="canonical"/>
+<!-- Site identity -->
+<link href="/assets/branding/jr-monogram-bw-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/branding/jr-monogram-bw-32.png" media="(prefers-color-scheme: light)" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/branding/jr-monogram-bw-32.png" media="(prefers-color-scheme: dark)" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/branding/jr-monogram-bw-180.png" rel="apple-touch-icon"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<!-- Social sharing preview -->
+<meta content="website" property="og:type"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="J.R. Bone | Full-Stack Developer" property="og:site_name"/>
+<meta content="J.R. Bone | Full-Stack Developer" property="og:title"/>
+<meta content="I build web, mobile, and desktop apps for schools and small businesses. Explore KaraOK and get in touch." property="og:description"/>
+<meta content="https://jrpbone.vercel.app/" property="og:url"/>
+<meta content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="JR Bone — Full-Stack Developer, black-and-white JR monogram" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@jrpbone" name="twitter:creator"/>
+<meta content="J.R. Bone | Full-Stack Developer" name="twitter:title"/>
+<meta content="I build web, mobile, and desktop apps for schools and small businesses. Explore KaraOK and get in touch." name="twitter:description"/>
+<meta content="https://jrpbone.vercel.app/assets/branding/og-preview-bw.png" name="twitter:image"/>
+<meta content="JR Bone — Full-Stack Developer, black-and-white JR monogram" name="twitter:image:alt"/>
+<!-- Developer profile structured data -->
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Ralph P. Bone",
+  "alternateName": "JR",
+  "url": "https://jrpbone.vercel.app/",
+  "image": "https://jrpbone.vercel.app/assets/jrpbone-optimized.jpg",
+  "email": "mailto:johnralphbone@gmail.com",
+  "jobTitle": "Full-Stack Developer",
+  "description": "I build web, mobile, and desktop apps for schools and small businesses.",
+  "knowsAbout": [
+    "Software development",
+    "Web development",
+    "Mobile application development",
+    "User experience",
+    "Application security"
+  ],
+  "sameAs": [
+    "https://github.com/jrpbone",
+    "https://www.linkedin.com/in/jrpbone",
+    "https://www.facebook.com/jrpbone",
+    "https://www.instagram.com/jrpbone",
+    "https://www.youtube.com/jrpbone",
+    "https://twitter.com/jrpbone"
+  ]
+}</script>
+<!-- Self-hosted Commissioner variable font -->
+<link as="font" crossorigin="" href="/assets/fonts/commissioner/commissioner-variable.woff2" rel="preload" type="font/woff2"/>
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- CSS -->
+<link href="/index.css" rel="stylesheet"/>
+<!-- GSAP progressive animation enhancement -->
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer="" src="/assets/site.js"></script>
+<script defer="" src="/assets/navigation.js"></script>
+<link href="/assets/project-page.css" rel="stylesheet"/><link href="/assets/pages.css" rel="stylesheet"/><script defer="" src="/assets/works.js"></script></head><body class="portfolio-home"><div class="scroll-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to main content</a><!-- site:header:start -->
+<header class="site-header">
+  <div class="container"><nav aria-label="Primary navigation">
+    <a class="nav-brand is-active" href="/" aria-label="J.R. Bone, Home" aria-current="page">
+      <img class="logo" src="/assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="">
+      <div class="brand-details"><p>J.R. Bone</p><p>Full-Stack Developer</p></div>
+    </a>
+    <div class="nav-links" id="primary-navigation">
+      <a href="/works/" >Work</a><a href="/about/" >About</a><a href="/contact/" >Contact</a>
+    </div>
+    <div class="nav-controls">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode"><span aria-hidden="true"><svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></span></button>
+      <button type="button" id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav></div>
+</header>
+<!-- site:header:end --><main id="main-content" class="site-main"><section class="hero" id="home" aria-labelledby="hero-title">
         <div class="hero-grid-interaction" aria-hidden="true">
           <span class="grid-cursor-cell"></span>
           <span class="grid-ripple grid-ripple-one"></span>
@@ -212,10 +109,10 @@
                 business needs into innovative solutions.
               </p>
               <div class="hero-buttons">
-                <a href="works.html" class="btn-cta hero-primary-cta"
+                <a href="/#featured-work" data-section="featured-work" class="btn-cta hero-primary-cta"
                   >View My Work <span aria-hidden="true">&#8595;</span></a
                 >
-                <a href="index.html?section=contact" data-section="contact" class="btn-outline">Start a Project</a>
+                <a href="/contact/" class="btn-outline">Start a Project</a>
               </div>
               <ul class="hero-support" aria-label="Primary capabilities">
                 <li>Full-stack applications</li>
@@ -228,7 +125,7 @@
               <div class="hero-image-wrapper">
                 <div class="hero-img-bg" aria-hidden="true"></div>
                 <img
-                  src="assets/jr-bone-hero.jpg"
+                  src="/assets/jr-bone-hero.jpg"
                   width="1242"
                   height="813"
                   fetchpriority="high"
@@ -255,490 +152,45 @@
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Credibility Strip -->
-      <section class="credibility-strip" aria-label="Professional highlights">
-        <div class="container">
-          <div class="credibility-grid">
-            <div class="credibility-item">
-              <strong>05</strong>
-              <span>Projects built</span>
-              <small>And more on the way</small>
-            </div>
-            <div class="credibility-item">
-              <strong>Full-stack</strong>
-              <span>Applications</span>
-              <small>Web / Mobile / Desktop</small>
-            </div>
-            <a
-              class="credibility-item credibility-link"
-              href="assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <strong>CV</strong>
-              <span>Experience &amp; achievements</span>
-              <small>View résumé <span aria-hidden="true">&#8599;</span></small>
-            </a>
-            <a
-              class="credibility-item credibility-link"
-              href="https://github.com/jrpbone"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <strong>GitHub</strong>
-              <span>Creations</span>
-              <small
-                >Explore repositories
-                <span aria-hidden="true">&#8599;</span></small
-              >
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="about-section">
-        <div class="container">
-          <div class="about-layout">
-            <div>
-              <span class="section-kicker">About Me</span>
-              <h2>Technical depth with practical business support.</h2>
-            </div>
-            <div class="about-copy">
-              <p>
-                I design and build technology solutions—from a wide range of
-                platforms to automation, cybersecurity, virtual operations,
-                backend systems, and custom tools that enhances the quality of
-                work.
-              </p>
-              <p>
-                My primary focus is application development. Experience with
-                cybersecurity and virtual assistance helps me approach projects
-                with stronger security awareness and attention to operational
-                details.
-              </p>
-              <div class="about-focus">
-                <div>
-                  <span>Primary focus</span>
-                  <strong>Applications &amp; Automation</strong>
-                </div>
-                <div>
-                  <span>Supporting strengths</span>
-                  <strong>Security &amp; Virtual operations</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Services Section -->
-      <section id="services">
-        <div class="container">
-          <div class="services-heading">
-            <div class="services-title">
-              <span class="section-kicker">Capabilities</span>
-              <h2>How I Can Help You</h2>
-            </div>
-            <p>
-              From product development to technical support, I bring together
-              the skills needed to move an idea from problem to working
-              solution.
-            </p>
-          </div>
-          <div class="services-grid">
-            <!-- Web Development -->
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-code" aria-hidden="true"></i>
-              </div>
-              <h3>Web Development</h3>
-              <p>
-                Custom websites built for speed, performance, and conversion. I
-                create digital presences that look great and work perfectly.
-              </p>
-              <ul class="service-list">
-                <li>Responsive Website Design</li>
-                <li>SEO Optimization</li>
-                <li>Website Maintenance</li>
-              </ul>
-            </div>
-
-            <!-- Programming -->
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-terminal" aria-hidden="true"></i>
-              </div>
-              <h3>Programming</h3>
-              <p>
-                Solving complex problems with clean, efficient code. I build
-                applications and tools to automate your workflows.
-              </p>
-              <ul class="service-list">
-                <li>Custom Web Applications</li>
-                <li>API Integrations</li>
-                <li>Bug Fixing & Troubleshooting</li>
-                <li>Multiple Programming Languages</li>
-              </ul>
-            </div>
-
-            <!-- Virtual Assistance -->
-            <div class="service-card">
-              <span class="service-label">Supporting capability</span>
-              <div class="service-icon">
-                <i class="fas fa-headset" aria-hidden="true"></i>
-              </div>
-              <h3>Virtual Assistance</h3>
-              <p>
-                Reliable administrative support to free up your time. I handle
-                the details so you can focus on the big picture.
-              </p>
-              <ul class="service-list">
-                <li>Email & Calendar Management</li>
-                <li>Data Entry & Research</li>
-                <li>Customer Support</li>
-                <li>Project Management</li>
-              </ul>
-            </div>
-
-            <!-- Cybersecurity -->
-            <div class="service-card">
-              <span class="service-label">Supporting capability</span>
-              <div class="service-icon">
-                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-              </div>
-              <h3>Cybersecurity</h3>
-              <p>
-                Identify vulnerabilities and improve your security. I perform
-                thorough tests to ensure your systems are protected.
-              </p>
-              <ul class="service-list">
-                <li>Web Application Penetration Testing</li>
-                <li>Network Security Assessment</li>
-                <li>Security Testing Tooling</li>
-                <li>Linux (Ubuntu)</li>
-              </ul>
-            </div>
-
-            <!-- Machine Learning -->
-            <div class="service-card-wrapper">
-              <div class="learning-badge">Currently Learning</div>
-              <!--PASTE TO NEW SERVICE CARD WHEN LEARNING-->
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fa-solid fa-brain" aria-hidden="true"></i>
-                </div>
-                <h3>Machine Learning</h3>
-                <p>
-                  Build and train models to solve complex problems. I create
-                  intelligent systems that learn from data.
-                </p>
-                <ul class="service-list">
-                  <li>Python &amp; Anaconda</li>
-                  <li>Machine Learning</li>
-                  <li>Deep Learning</li>
-                  <li>Artificial Intelligence</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technologies Section -->
-      <section id="technologies" class="technologies-section">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <span class="section-kicker">Technologies</span>
-              <h2>The stack behind my projects.</h2>
-            </div>
-            <p>
-              Languages, frameworks, infrastructure, and tools I have used
-              across my projects.
-            </p>
-          </div>
-
-          <div class="technologies-grid">
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">01</p>
-              <h3>Languages</h3>
-              <ul class="technology-list" aria-label="Programming languages">
-                <li>Python</li>
-                <li>PHP</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>Dart</li>
-                <li>SQL</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">02</p>
-              <h3>Frameworks</h3>
-              <ul
-                class="technology-list"
-                aria-label="Frameworks and UI libraries"
-              >
-                <li>Flutter</li>
-                <li>React</li>
-                <li>Flask</li>
-                <li>Express.js</li>
-                <li>Tailwind CSS</li>
-                <li>Material UI</li>
-                <li>Tkinter</li>
-                <li>Redux Toolkit</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">03</p>
-              <h3>Infrastructure</h3>
-              <ul
-                class="technology-list"
-                aria-label="Infrastructure and data platforms"
-              >
-                <li>Linux</li>
-                <li>MySQL</li>
-                <li>SQLite</li>
-                <li>Node.js</li>
-                <li>OVHcloud</li>
-                <li>Nginx</li>
-                <li>Gunicorn</li>
-                <li>SSH</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">04</p>
-              <h3>Security &amp; Tools</h3>
-              <ul
-                class="technology-list"
-                aria-label="Security technologies and development tools"
-              >
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>JWT</li>
-                <li>Argon2id</li>
-                <li>bcrypt</li>
-                <li>Vite</li>
-                <li>Axios</li>
-                <li>Librosa</li>
-                <li>NumPy</li>
-                <li>SciPy</li>
-                <li>Pandas</li>
-                <li>Matplotlib</li>
-                <li>OpenAI API</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact-section">
-        <div
-          class="contact-ambient contact-ambient-one"
-          aria-hidden="true"
-        ></div>
-        <div
-          class="contact-ambient contact-ambient-two"
-          aria-hidden="true"
-        ></div>
-        <div class="container">
-          <div class="contact-layout">
-            <div class="contact-info">
-              <span class="contact-status">
-                <span aria-hidden="true"></span>
-                Available for new projects
-              </span>
-              <p class="section-kicker">Let’s work together</p>
-              <h2>Ready to get started?</h2>
-              <p class="contact-intro">
-                Tell me what you are building, the problem you want to solve,
-                and where you need a developer’s help.
-              </p>
-
-              <ul class="contact-highlights" aria-label="Ways I can help">
-                <li>Full-stack web applications</li>
-                <li>Mobile and desktop solutions</li>
-                <li>APIs, automation, and secure systems</li>
-              </ul>
-
-              <a
-                href="mailto:johnralphbone@gmail.com?subject=Portfolio%20Inquiry&amp;body=Hello%2C%20I%20found%20your%20portfolio."
-                class="contact-link"
-              >
-                <span>Email me directly</span>
-                <strong>johnralphbone@gmail.com</strong>
-                <i
-                  class="fa-solid fa-arrow-up-right-from-square"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </div>
-
-            <div class="contact-form-wrapper">
-              <form
-                id="contact-form"
-                class="contact-form"
-                aria-label="Project inquiry form"
-              >
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    autocomplete="name"
-                    minlength="2"
-                    maxlength="80"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="phone"
-                    >Phone number
-                    <span class="optional-label">(optional)</span></label
-                  >
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    autocomplete="tel"
-                    inputmode="tel"
-                    maxlength="30"
-                    pattern="[0-9+().\- ]*"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    autocomplete="email"
-                    maxlength="254"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="message">Project Description</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    minlength="20"
-                    maxlength="3000"
-                    required
-                    placeholder="Tell me about your project..."
-                  ></textarea>
-                </div>
-
-                <div class="form-honeypot" aria-hidden="true">
-                  <label for="website">Leave this field empty</label>
-                  <input
-                    type="text"
-                    id="website"
-                    name="website"
-                    tabindex="-1"
-                    autocomplete="off"
-                  />
-                </div>
-
-                <div
-                  id="turnstile-widget"
-                  class="turnstile-widget"
-                  aria-label="Security verification"
-                ></div>
-
-                <p
-                  id="contact-form-status"
-                  class="form-status"
-                  role="status"
-                  aria-live="polite"
-                ></p>
-
-                <p class="contact-email-fallback">
-                  You can also <a href="mailto:johnralphbone@gmail.com">email me directly</a>.
-                </p>
-
-                <button type="submit" class="btn-cta form-submit" disabled>
-                  <span>Send Message</span>
-                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2026 jrpbone. All rights reserved.</p>
-      </div>
-      <div class="container">
-        <!-- Social Media Icons -->
-        <a
-          href="https://www.facebook.com/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="Facebook"
-          ><i class="fab fa-facebook-f" aria-hidden="true"></i
-        ></a>
-        <a
-          href="https://www.instagram.com/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="Instagram"
-          ><i class="fab fa-instagram" aria-hidden="true"></i
-        ></a>
-        <a
-          href="https://www.linkedin.com/in/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="LinkedIn"
-          ><i class="fab fa-linkedin-in" aria-hidden="true"></i
-        ></a>
-        <a
-          href="https://github.com/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="GitHub"
-          ><i class="fab fa-github" aria-hidden="true"></i
-        ></a>
-        <a
-          href="https://www.youtube.com/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="YouTube"
-          ><i class="fab fa-youtube" aria-hidden="true"></i
-        ></a>
-        <a
-          href="https://twitter.com/jrpbone"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon"
-          aria-label="X / Twitter"
-          ><i class="fab fa-twitter" aria-hidden="true"></i
-        ></a>
-      </div>
-    </footer>
-    <script
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-      defer
-    ></script>
-    <script type="module" src="assets/contact-form.js"></script>
-    <script type="module" src="assets/scroll-background.js"></script>
-  </body>
-</html>
+      </section><section id="featured-work" class="page-section featured-work band band-tint"><div class="container"><div class="section-head" data-reveal><span class="section-kicker"><span class="kicker-index">01</span>Featured work</span><h2>Built end to end, from the screen to the server.</h2><p>A closer look at what I built, the decisions behind it, and how it works.</p></div><!-- works:featured:start -->
+<ul class="home-work-grid">
+<li class="home-project featured-project" data-platform="mobile" data-slug="karaok">
+    <div class="featured-project-media"><a href="/works/karaok/" aria-label="Read the KaraOK case study"><div class="home-project-image" style="view-transition-name: project-karaok"><img src="/works/karaok/images/home.jpg" width="918" height="1953" loading="lazy" decoding="async" alt="KaraOK project screenshot"></div></a></div>
+    <div class="home-project-body"><span class="project-type">Mobile audio analysis app &middot; Mobile</span><h3><a href="/works/karaok/">KaraOK</a></h3><span class="project-status">In Development</span>
+    <p class="project-result">Evaluates core audio characteristics and generates visual reports.</p><dl class="featured-facts"><div><dt>Role</dt><dd>Project manager / Lead programmer</dd></div><div><dt>Team</dt><dd>5 members</dd></div><div><dt>Timeline</dt><dd>2 months, 1 week</dd></div><div><dt>Type</dt><dd>Academic capstone</dd></div></dl><ul class="work-tags" aria-label="Technologies used"><li class="tag">Flutter</li><li class="tag">Dart 3.12+</li><li class="tag">Material Design</li><li class="tag">Python 3.13</li><li class="tag">Flask 3</li></ul>
+    <div class="project-actions"><a class="btn-cta case-study-link" href="/works/karaok/">Read case study</a><a class="text-link" href="https://github.com/jbl2023-2879-91296-cpu/KaraOK" target="_blank" rel="noopener noreferrer">View code &nearr;</a></div></div>
+  </li>
+</ul>
+<!-- works:featured:end --><div class="section-links section-links-end"><a class="text-link" href="/works/">View all work <span aria-hidden="true">&rarr;</span></a></div></div></section>
+<section id="services" class="page-section band"><div class="container">
+  <div class="section-head" data-reveal><span class="section-kicker"><span class="kicker-index">02</span>What I do</span><h2>Software for the way people actually work.</h2><p>I've spent years behind a store counter, so I build tools around real routines: selling, counting stock, keeping records, and signing in safely.</p></div>
+  <ul class="skill-grid" data-stagger>
+    <li class="skill-card"><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><h3>Web applications</h3><p>Dashboards, storefronts, and admin tools with clean interfaces, REST APIs, and well-structured databases.</p><ul class="chip-list" aria-label="Tools"><li>React</li><li>TypeScript</li><li>Node.js</li><li>MySQL</li></ul></li>
+    <li class="skill-card"><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><h3>Mobile apps</h3><p>Android apps that work offline, scan with the camera, read text with OCR, and keep data safe on the device.</p><ul class="chip-list" aria-label="Tools"><li>Flutter</li><li>Dart</li><li>ML Kit</li><li>SQLite</li></ul></li>
+    <li class="skill-card"><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16v-5M11 16V6M16 16v-8M21 4l-4 4-3-2-3 3"/></svg></span><h3>Business systems and automation</h3><p>Point-of-sale, inventory, and cost calculators that replace manual records, repeated math, and messy spreadsheets.</p><ul class="chip-list" aria-label="Tools"><li>Python</li><li>Tkinter</li><li>Excel import/export</li></ul></li>
+    <li class="skill-card"><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Security and access</h3><p>Sign-in, sessions, and role-based permissions, so each person sees and changes only what they should.</p><ul class="chip-list" aria-label="Tools"><li>JWT</li><li>RBAC</li><li>bcrypt</li><li>Argon2id</li></ul></li>
+  </ul>
+  <div class="process" data-reveal>
+    <h3 class="process-title">How I work</h3>
+    <ol class="process-steps">
+      <li><span class="process-num" aria-hidden="true">1</span><strong>Listen</strong><span>I learn the routine and write down what the software must do.</span></li>
+      <li><span class="process-num" aria-hidden="true">2</span><strong>Prototype</strong><span>I sketch the screens in Figma and agree on the features first.</span></li>
+      <li><span class="process-num" aria-hidden="true">3</span><strong>Build and test</strong><span>I build in small steps, with automated tests along the way.</span></li>
+      <li><span class="process-num" aria-hidden="true">4</span><strong>Support</strong><span>I hand it over, train the people using it, and fix what comes up.</span></li>
+    </ol>
+  </div>
+</div></section><section id="experience" class="page-section band band-tint"><div class="container">
+  <div class="section-head" data-reveal><span class="section-kicker"><span class="kicker-index">03</span>Experience</span><h2>From the sales floor to the source code.</h2><p>I've served customers in electronics retail since 2019. Today I run my own store and study IT while I build software.</p></div>
+  <div class="xp-timeline" data-timeline>
+    <span class="xp-rail" aria-hidden="true"><span class="xp-rail-fill"></span></span>
+    <ol>
+      <li class="xp-item"><span class="xp-marker" aria-hidden="true"></span><article class="xp-card"><div class="xp-meta"><span class="xp-date">2019 &ndash; 2023</span><span class="xp-kind">Work</span></div><h3>Client Sales Associate</h3><p class="xp-place">JMB Electronics &amp; Electrical Supply</p><p>I helped customers choose products and provided sales and service support.</p><ul class="chip-list" aria-label="Highlights"><li>Customer service</li><li>Sales</li></ul></article></li>
+      <li class="xp-item"><span class="xp-marker" aria-hidden="true"></span><article class="xp-card"><div class="xp-meta"><span class="xp-date">2023 &ndash; 2024</span><span class="xp-kind">Work</span></div><h3>Assistant Manager</h3><p class="xp-place">JMB Electronics &amp; Electrical Supply</p><p>I helped with store opening and closing, cash reconciliation, and customer issues.</p><ul class="chip-list" aria-label="Highlights"><li>Operations</li><li>Cash handling</li></ul></article></li>
+      <li class="xp-item is-current"><span class="xp-marker" aria-hidden="true"></span><article class="xp-card"><div class="xp-meta"><span class="xp-date">2023 &ndash; Present</span><span class="xp-kind xp-kind-edu">Education</span></div><h3>B.S. in Information Technology</h3><p class="xp-place">Bicol University</p><p>Coursework in web development and networking. I've led one capstone and two team projects, and I serve as deputy finance officer of the Sports Club.</p><ul class="chip-list" aria-label="Highlights"><li>Team lead</li><li>Web development</li><li>Networking</li></ul></article></li>
+      <li class="xp-item is-current"><span class="xp-marker" aria-hidden="true"></span><article class="xp-card"><div class="xp-meta"><span class="xp-date">2024 &ndash; Present</span><span class="xp-kind">Work</span></div><h3>Proprietor / Manager</h3><p class="xp-place">JRB Consumer Electronics Trading</p><p>I run sales and inventory, handle customer concerns, and coach staff. I also built Calcuoke, a React and TypeScript app that calculates karaoke assembly costs and keeps sales and stock records.</p><ul class="chip-list" aria-label="Highlights"><li>Management</li><li>React</li><li>TypeScript</li></ul></article></li>
+    </ol>
+  </div>
+  <div class="resume-strip" data-reveal><div><strong>Want the full picture?</strong><span>My CV covers skills, projects, and education in two pages.</span></div><div class="resume-actions"><a class="btn-cta" href="/assets/files/BONE,%20JOHN%20RALPH-CV.pdf?v=2026-10" target="_blank" rel="noopener noreferrer">View my CV <span aria-hidden="true">&nearr;</span></a><a class="text-link" href="/about/">More about me <span aria-hidden="true">&rarr;</span></a></div></div>
+</div></section><!-- TODO(J.R.): add testimonials or certifications --><section id="contact" class="contact-cta page-section"><div class="container"><div class="cta-panel" data-reveal><div><span class="section-kicker">Get in touch</span><h2>Tell me what you need to build.</h2><p>Share the problem and who will use it. I'll reply with how I'd approach it.</p></div><div class="section-links"><a class="btn-cta" href="mailto:johnralphbone@gmail.com">Email me</a><a class="btn-outline" href="/contact/">Use the contact form</a></div></div></div></section></main><!-- site:footer:start -->
+<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/assets/branding/jr-monogram-bw-192.png" width="40" height="40" alt="" loading="lazy"><div><p class="footer-name">J.R. Bone</p><p>Full-stack developer in the Philippines, building web, mobile, and desktop apps.</p></div></div><nav class="footer-pages" aria-label="Footer pages"><a href="/works/">Work</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/assets/files/BONE,%20JOHN%20RALPH-CV.pdf?v=2026-10" target="_blank" rel="noopener noreferrer">CV</a></nav></div><div class="footer-bottom"><p>&copy; 2026 J.R. Bone. All rights reserved.</p><nav aria-label="Footer navigation"><a href="https://github.com/jrpbone" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/jrpbone" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:johnralphbone@gmail.com">Email</a></nav></div></div></footer>
+<!-- site:footer:end --></body></html>
