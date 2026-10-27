@@ -447,16 +447,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "-=0.9",
       );
 
-    gsap.from(".credibility-item", {
+    gsap.from(".home-project", {
       autoAlpha: 0,
-      y: 26,
-      duration: 0.75,
+      y: 40,
+      duration: 0.85,
       stagger: 0.08,
       ease: "power3.out",
       clearProps: clearAnimatedProps,
       scrollTrigger: {
-        trigger: ".credibility-strip",
-        start: "top 90%",
+        trigger: ".home-work-grid",
+        start: "top 84%",
         once: true,
       },
     });
@@ -499,35 +499,6 @@ document.addEventListener("DOMContentLoaded", () => {
       clearProps: clearAnimatedProps,
       scrollTrigger: {
         trigger: ".services-grid",
-        start: "top 82%",
-        once: true,
-      },
-    });
-
-    gsap.from(".technologies-section .section-heading > *", {
-      autoAlpha: 0,
-      y: 30,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out",
-      clearProps: clearAnimatedProps,
-      scrollTrigger: {
-        trigger: ".technologies-section .section-heading",
-        start: "top 84%",
-        once: true,
-      },
-    });
-
-    gsap.from(".technology-card", {
-      autoAlpha: 0,
-      y: 46,
-      rotateX: 4,
-      duration: 0.85,
-      stagger: 0.09,
-      ease: "power3.out",
-      clearProps: clearAnimatedProps,
-      scrollTrigger: {
-        trigger: ".technologies-grid",
         start: "top 82%",
         once: true,
       },

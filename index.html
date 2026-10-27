@@ -157,10 +157,10 @@
           </a>
 
           <div class="nav-links" id="primary-navigation">
-            <a href="index.html?section=about" data-section="about">About</a>
+            <a href="index.html?section=selected-work" data-section="selected-work">Work</a>
             <a href="index.html?section=services" data-section="services">Services</a>
-            <a href="index.html?section=technologies" data-section="technologies">Technologies</a>
-            <a href="works.html">Selected Works</a>
+            <a href="index.html?section=about" data-section="about">About</a>
+            <a href="works.html">Case Studies</a>
             <a href="index.html?section=contact" data-section="contact" class="btn-cta">Start a Project</a>
           </div>
 
@@ -212,7 +212,7 @@
                 business needs into innovative solutions.
               </p>
               <div class="hero-buttons">
-                <a href="works.html" class="btn-cta hero-primary-cta"
+                <a href="index.html?section=selected-work" data-section="selected-work" class="btn-cta hero-primary-cta"
                   >View My Work <span aria-hidden="true">&#8595;</span></a
                 >
                 <a href="index.html?section=contact" data-section="contact" class="btn-outline">Start a Project</a>
@@ -257,43 +257,183 @@
         </div>
       </section>
 
-      <!-- Credibility Strip -->
-      <section class="credibility-strip" aria-label="Professional highlights">
+      <!-- Selected Work Section -->
+      <section id="selected-work" class="home-work-section" aria-labelledby="selected-work-title">
         <div class="container">
-          <div class="credibility-grid">
-            <div class="credibility-item">
-              <strong>05</strong>
-              <span>Projects built</span>
-              <small>And more on the way</small>
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Selected Work</span>
+              <h2 id="selected-work-title">Five projects, from school systems to point of sale.</h2>
             </div>
-            <div class="credibility-item">
-              <strong>Full-stack</strong>
-              <span>Applications</span>
-              <small>Web / Mobile / Desktop</small>
+            <p>
+              Each one started with a real workflow to fix. Open a project for
+              screenshots, my role, and the case study.
+            </p>
+          </div>
+
+          <ul class="home-work-grid">
+            <li class="home-project home-project-wide">
+              <a class="home-project-link" href="works.html#lnpulse">
+                <div class="home-project-image">
+                  <img src="assets/projects/LnPulse/dashboard-optimized.png" width="1919" height="998" loading="lazy" decoding="async" alt="LnPulse administrative dashboard" />
+                </div>
+                <div class="home-project-body">
+                  <span class="project-type">School information system &middot; Web</span>
+                  <h3>LnPulse</h3>
+                  <p>Admin system for senior high school student records, departments, curriculum, and users.</p>
+                  <ul class="work-tags" aria-label="Technologies used">
+                    <li class="tag">React 19</li>
+                    <li class="tag">Express 5</li>
+                    <li class="tag">MySQL</li>
+                  </ul>
+                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+            <li class="home-project home-project-wide">
+              <a class="home-project-link" href="works.html#appliansys">
+                <div class="home-project-image">
+                  <img src="assets/projects/Appliansys/storefront-optimized.jpg" loading="lazy" decoding="async" alt="ApplianSys e-commerce storefront" />
+                </div>
+                <div class="home-project-body">
+                  <span class="project-type">E-commerce platform &middot; Web</span>
+                  <h3>ApplianSys</h3>
+                  <p>Appliance store with accounts, checkout, order tracking, admin reports, and AI-assisted support. I led a team of five.</p>
+                  <ul class="work-tags" aria-label="Technologies used">
+                    <li class="tag">React 19</li>
+                    <li class="tag">TypeScript</li>
+                    <li class="tag">OpenAI API</li>
+                  </ul>
+                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+            <li class="home-project">
+              <a class="home-project-link" href="works.html#calcuoke">
+                <div class="home-project-image">
+                  <img src="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811" loading="lazy" decoding="async" alt="Calcuoke configuration and sales dashboard" />
+                </div>
+                <div class="home-project-body">
+                  <span class="project-type">Client project &middot; Web</span>
+                  <h3>Calcuoke</h3>
+                  <p>Karaoke system builder for setups, inventory, sales, and warranty tracking.</p>
+                  <ul class="work-tags" aria-label="Technologies used">
+                    <li class="tag">TypeScript</li>
+                    <li class="tag">Tailwind CSS</li>
+                    <li class="tag">MySQL</li>
+                  </ul>
+                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+            <li class="home-project">
+              <a class="home-project-link" href="works.html#pypos">
+                <div class="home-project-image">
+                  <img src="assets/projects/PyPOS/dashboard.png" loading="lazy" decoding="async" alt="PyPOS checkout and inventory screen" />
+                </div>
+                <div class="home-project-body">
+                  <span class="project-type">Point of sale &middot; Windows</span>
+                  <h3>PyPOS</h3>
+                  <p>Offline checkout and inventory app for small retail shops.</p>
+                  <ul class="work-tags" aria-label="Technologies used">
+                    <li class="tag">Python</li>
+                    <li class="tag">Tkinter</li>
+                    <li class="tag">SQLite</li>
+                  </ul>
+                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+            <li class="home-project">
+              <a class="home-project-link" href="works.html#karaok">
+                <div class="home-project-image">
+                  <img src="assets/projects/KaraOK/home.jpg" loading="lazy" decoding="async" alt="KaraOK audio evaluation home screen" />
+                </div>
+                <div class="home-project-body">
+                  <span class="project-type">Audio analysis &middot; Mobile</span>
+                  <h3>KaraOK <span class="project-status">In Development</span></h3>
+                  <p>Scores karaoke sound quality and recommends audio settings.</p>
+                  <ul class="work-tags" aria-label="Technologies used">
+                    <li class="tag">Flutter</li>
+                    <li class="tag">Flask 3</li>
+                    <li class="tag">Librosa</li>
+                  </ul>
+                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <div class="home-work-footer">
+            <a href="works.html" class="btn-outline">See all projects and case studies</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services">
+        <div class="container">
+          <div class="services-heading">
+            <div class="services-title">
+              <span class="section-kicker">Services</span>
+              <h2>How I can help</h2>
             </div>
-            <a
-              class="credibility-item credibility-link"
-              href="assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <strong>CV</strong>
-              <span>Experience &amp; achievements</span>
-              <small>View résumé <span aria-hidden="true">&#8599;</span></small>
-            </a>
-            <a
-              class="credibility-item credibility-link"
-              href="https://github.com/jrpbone"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <strong>GitHub</strong>
-              <span>Creations</span>
-              <small
-                >Explore repositories
-                <span aria-hidden="true">&#8599;</span></small
-              >
-            </a>
+            <p>
+              I take a project from the first conversation to a working,
+              secure release.
+            </p>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-code" aria-hidden="true"></i>
+              </div>
+              <h3>Web &amp; Mobile Apps</h3>
+              <p>
+                Full-stack applications, from the database to the screen your
+                users touch every day.
+              </p>
+              <ul class="service-list">
+                <li>Custom web applications</li>
+                <li>Mobile apps with Flutter</li>
+                <li>Responsive websites</li>
+                <li>API integrations</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-terminal" aria-hidden="true"></i>
+              </div>
+              <h3>Automation &amp; Tools</h3>
+              <p>
+                Desktop apps and scripts that take repetitive work off your
+                team.
+              </p>
+              <ul class="service-list">
+                <li>Workflow automation</li>
+                <li>Desktop apps in Python</li>
+                <li>Data processing and reports</li>
+                <li>Bug fixing and maintenance</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              </div>
+              <h3>Security</h3>
+              <p>
+                Security built into what I make, and testing for the systems
+                you already run.
+              </p>
+              <ul class="service-list">
+                <li>Web application penetration testing</li>
+                <li>Network security assessment</li>
+                <li>Secure sign-in (JWT, Argon2id, bcrypt)</li>
+                <li>Linux servers (Ubuntu)</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -304,235 +444,57 @@
           <div class="about-layout">
             <div>
               <span class="section-kicker">About Me</span>
-              <h2>Technical depth with practical business support.</h2>
+              <h2>A developer with a security habit.</h2>
+              <div class="about-links">
+                <a
+                  class="btn-cta"
+                  href="assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View résumé <span aria-hidden="true">&#8599;</span></a
+                >
+                <a
+                  class="btn-outline"
+                  href="https://github.com/jrpbone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub <span aria-hidden="true">&#8599;</span></a
+                >
+              </div>
             </div>
             <div class="about-copy">
               <p>
-                I design and build technology solutions—from a wide range of
-                platforms to automation, cybersecurity, virtual operations,
-                backend systems, and custom tools that enhances the quality of
-                work.
+                I build web, mobile, and desktop applications, plus the
+                automation around them. Most of my projects start with a
+                business problem: keeping school records, running a shop
+                counter, selling appliances online.
               </p>
               <p>
-                My primary focus is application development. Experience with
-                cybersecurity and virtual assistance helps me approach projects
-                with stronger security awareness and attention to operational
-                details.
+                My background in cybersecurity shapes how I handle sign-in,
+                permissions, and data. Work as a virtual assistant taught me
+                to think about the people who run a system every day. I'm
+                currently learning machine learning with Python.
               </p>
-              <div class="about-focus">
+
+              <dl class="about-stack" aria-label="Technologies I use">
                 <div>
-                  <span>Primary focus</span>
-                  <strong>Applications &amp; Automation</strong>
+                  <dt>Languages</dt>
+                  <dd>Python, PHP, JavaScript, TypeScript, Dart, SQL</dd>
                 </div>
                 <div>
-                  <span>Supporting strengths</span>
-                  <strong>Security &amp; Virtual operations</strong>
+                  <dt>Frameworks</dt>
+                  <dd>React, Flutter, Flask, Express.js, Tailwind CSS, Material UI, Redux Toolkit, Tkinter</dd>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Services Section -->
-      <section id="services">
-        <div class="container">
-          <div class="services-heading">
-            <div class="services-title">
-              <span class="section-kicker">Capabilities</span>
-              <h2>How I Can Help You</h2>
-            </div>
-            <p>
-              From product development to technical support, I bring together
-              the skills needed to move an idea from problem to working
-              solution.
-            </p>
-          </div>
-          <div class="services-grid">
-            <!-- Web Development -->
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-code" aria-hidden="true"></i>
-              </div>
-              <h3>Web Development</h3>
-              <p>
-                Custom websites built for speed, performance, and conversion. I
-                create digital presences that look great and work perfectly.
-              </p>
-              <ul class="service-list">
-                <li>Responsive Website Design</li>
-                <li>SEO Optimization</li>
-                <li>Website Maintenance</li>
-              </ul>
-            </div>
-
-            <!-- Programming -->
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-terminal" aria-hidden="true"></i>
-              </div>
-              <h3>Programming</h3>
-              <p>
-                Solving complex problems with clean, efficient code. I build
-                applications and tools to automate your workflows.
-              </p>
-              <ul class="service-list">
-                <li>Custom Web Applications</li>
-                <li>API Integrations</li>
-                <li>Bug Fixing & Troubleshooting</li>
-                <li>Multiple Programming Languages</li>
-              </ul>
-            </div>
-
-            <!-- Virtual Assistance -->
-            <div class="service-card">
-              <span class="service-label">Supporting capability</span>
-              <div class="service-icon">
-                <i class="fas fa-headset" aria-hidden="true"></i>
-              </div>
-              <h3>Virtual Assistance</h3>
-              <p>
-                Reliable administrative support to free up your time. I handle
-                the details so you can focus on the big picture.
-              </p>
-              <ul class="service-list">
-                <li>Email & Calendar Management</li>
-                <li>Data Entry & Research</li>
-                <li>Customer Support</li>
-                <li>Project Management</li>
-              </ul>
-            </div>
-
-            <!-- Cybersecurity -->
-            <div class="service-card">
-              <span class="service-label">Supporting capability</span>
-              <div class="service-icon">
-                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-              </div>
-              <h3>Cybersecurity</h3>
-              <p>
-                Identify vulnerabilities and improve your security. I perform
-                thorough tests to ensure your systems are protected.
-              </p>
-              <ul class="service-list">
-                <li>Web Application Penetration Testing</li>
-                <li>Network Security Assessment</li>
-                <li>Security Testing Tooling</li>
-                <li>Linux (Ubuntu)</li>
-              </ul>
-            </div>
-
-            <!-- Machine Learning -->
-            <div class="service-card-wrapper">
-              <div class="learning-badge">Currently Learning</div>
-              <!--PASTE TO NEW SERVICE CARD WHEN LEARNING-->
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fa-solid fa-brain" aria-hidden="true"></i>
+                <div>
+                  <dt>Infrastructure</dt>
+                  <dd>Node.js, MySQL, SQLite, Linux, Nginx, Gunicorn, OVHcloud</dd>
                 </div>
-                <h3>Machine Learning</h3>
-                <p>
-                  Build and train models to solve complex problems. I create
-                  intelligent systems that learn from data.
-                </p>
-                <ul class="service-list">
-                  <li>Python &amp; Anaconda</li>
-                  <li>Machine Learning</li>
-                  <li>Deep Learning</li>
-                  <li>Artificial Intelligence</li>
-                </ul>
-              </div>
+                <div>
+                  <dt>Security &amp; tools</dt>
+                  <dd>JWT, Argon2id, bcrypt, Git, Vite, Pandas, NumPy, OpenAI API</dd>
+                </div>
+              </dl>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technologies Section -->
-      <section id="technologies" class="technologies-section">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <span class="section-kicker">Technologies</span>
-              <h2>The stack behind my projects.</h2>
-            </div>
-            <p>
-              Languages, frameworks, infrastructure, and tools I have used
-              across my projects.
-            </p>
-          </div>
-
-          <div class="technologies-grid">
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">01</p>
-              <h3>Languages</h3>
-              <ul class="technology-list" aria-label="Programming languages">
-                <li>Python</li>
-                <li>PHP</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>Dart</li>
-                <li>SQL</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">02</p>
-              <h3>Frameworks</h3>
-              <ul
-                class="technology-list"
-                aria-label="Frameworks and UI libraries"
-              >
-                <li>Flutter</li>
-                <li>React</li>
-                <li>Flask</li>
-                <li>Express.js</li>
-                <li>Tailwind CSS</li>
-                <li>Material UI</li>
-                <li>Tkinter</li>
-                <li>Redux Toolkit</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">03</p>
-              <h3>Infrastructure</h3>
-              <ul
-                class="technology-list"
-                aria-label="Infrastructure and data platforms"
-              >
-                <li>Linux</li>
-                <li>MySQL</li>
-                <li>SQLite</li>
-                <li>Node.js</li>
-                <li>OVHcloud</li>
-                <li>Nginx</li>
-                <li>Gunicorn</li>
-                <li>SSH</li>
-              </ul>
-            </article>
-
-            <article class="technology-card">
-              <p class="technology-number" aria-hidden="true">04</p>
-              <h3>Security &amp; Tools</h3>
-              <ul
-                class="technology-list"
-                aria-label="Security technologies and development tools"
-              >
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>JWT</li>
-                <li>Argon2id</li>
-                <li>bcrypt</li>
-                <li>Vite</li>
-                <li>Axios</li>
-                <li>Librosa</li>
-                <li>NumPy</li>
-                <li>SciPy</li>
-                <li>Pandas</li>
-                <li>Matplotlib</li>
-                <li>OpenAI API</li>
-              </ul>
-            </article>
           </div>
         </div>
       </section>
