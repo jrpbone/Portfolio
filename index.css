@@ -512,30 +512,7 @@ nav {
   justify-content: center;
 }
 
-.hero-label {
-  display: inline-flex;
-  width: fit-content;
-  gap: 0.65rem;
-  align-items: center;
-  margin-bottom: 1.25rem;
-  padding: 0.42rem 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--card-bg);
-  color: var(--accent-color);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
-.hero-label > span {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: #36a269;
-  box-shadow: 0 0 0 4px rgba(54, 162, 105, 0.13);
-}
 
 .hero h1 {
   max-width: 760px;
@@ -556,20 +533,8 @@ nav {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
 }
 
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 2rem;
-}
 
-.hero-primary-cta {
-  background-color: var(--accent-color);
-}
 
-.hero-primary-cta span {
-  margin-left: 0.5rem;
-}
 
 .btn-outline {
   border: 1px solid var(--text-main);
@@ -591,23 +556,117 @@ nav {
   box-shadow: 0 10px 24px rgba(45, 42, 38, 0.12);
 }
 
-.hero-support {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1.5rem;
-  margin-top: 2rem;
+
+
+.hero h1 {
+  font-size: clamp(2.6rem, 4.6vw, 4.5rem);
+}
+
+.hero-name {
+  white-space: nowrap;
+}
+
+.hero-wave {
+  display: inline-block;
+  transform-origin: 70% 75%;
+  animation: hero-wave 2.4s ease-in-out 0.6s 2;
+}
+
+@keyframes hero-wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.hero-meta {
+  margin-top: 1.25rem;
+  color: var(--text-main);
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  font-weight: 500;
+}
+
+.hero-flag {
+  margin-left: 0.4rem;
+  vertical-align: -0.12em;
+  width: 1.75rem;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.hero-contact {
+  margin-top: 2.25rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
+}
+
+.hero-contact-label {
   color: var(--text-muted);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
+}
+
+.hero-contact-label span {
+  display: inline-block;
+  margin-left: 0.25rem;
+  color: var(--accent-color);
+}
+
+.hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
   list-style: none;
 }
 
-.hero-support li::before {
-  content: "/";
-  margin-right: 0.5rem;
+.hero-socials a {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.hero-socials a:hover,
+.hero-socials a:focus-visible {
+  border-color: var(--accent-color);
   color: var(--accent-color);
-  font-weight: 700;
+  transform: translateY(-2px);
+}
+
+.hero-socials .hero-resume {
+  margin-left: 0.5rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.hero-socials .hero-resume a {
+  display: inline-flex;
+  gap: 0.55rem;
+  width: auto;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  border-color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hero-socials .hero-resume a:hover,
+.hero-socials .hero-resume a:focus-visible {
+  border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: #fff;
 }
 
 .hero-visual {
@@ -2252,10 +2311,6 @@ footer {
     margin-top: 1.35rem;
   }
 
-  .hero-support {
-    flex-direction: column;
-    gap: 0.45rem;
-  }
 
   .hero-visual {
     padding-right: 0.75rem;
@@ -2362,10 +2417,6 @@ footer {
     border-bottom: none;
   }
 
-  .hero-buttons a {
-    width: 100%;
-    text-align: center;
-  }
 
   .hero-visual {
     padding: 0 0.6rem 3.5rem 0;
@@ -2438,7 +2489,6 @@ h1, h2, h3, h4 {
   font-weight: inherit;
 }
 
-.hero-label,
 .section-kicker {
   font-weight: 500;
   letter-spacing: 0.04em;
