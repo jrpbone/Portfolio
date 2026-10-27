@@ -14,7 +14,7 @@ function portrait() {
   return { image, attrs, timers };
 }
 
-test('photo plays once after activation and returns after one eight-second GIF cycle', () => {
+test('photo plays once and shows the final portrait after the four-second GIF cycle', () => {
   const { image, attrs, timers } = portrait();
   assert.equal(attrs.src, '/assets/jr-bone-hero.jpg');
   image.dispatchEvent(new Event('click'));
@@ -22,14 +22,14 @@ test('photo plays once after activation and returns after one eight-second GIF c
   image.dispatchEvent(new Event('load'));
   assert.equal(timers.size, 1);
   const cycle = [...timers.values()][0];
-  assert.equal(cycle.delay, 8000);
+  assert.equal(cycle.delay, 4000);
   image.dispatchEvent(new Event('click'));
   assert.equal(timers.size, 1);
   cycle.fn();
-  assert.equal(attrs.src, '/assets/jr-bone-hero.jpg');
-  assert.equal(image.alt, 'Portrait of JR Bone');
+  assert.equal(attrs.src, '/assets/hero-face.jpg');
+  assert.equal(image.alt, 'J.R. Bone facing the camera');
   image.dispatchEvent(new Event('click'));
-  assert.equal(attrs.src, '/assets/jr-bone-hero.jpg');
+  assert.equal(attrs.src, '/assets/hero-face.jpg');
   const refreshed = portrait();
   refreshed.image.dispatchEvent(new Event('click'));
   assert.equal(refreshed.attrs.src, '/assets/hero-animation.gif');

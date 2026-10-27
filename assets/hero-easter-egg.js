@@ -3,6 +3,7 @@ export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clea
   const original = image.getAttribute('src');
   const originalAlt = image.alt;
   let used = false;
+  let completed = false;
   let timer;
   function restore() {
     cancel(timer);
@@ -13,8 +14,16 @@ export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clea
   }
   function loaded() {
     cancel(timer);
-    // The supplied GIF has 192 frames and one full cycle lasts 8 seconds.
-    timer = schedule(restore, 8000);
+    // The replacement GIF has 96 frames: one cycle lasts four seconds.
+    timer = schedule(showFace, 4000);
+  }
+  function showFace() {
+    completed = true;
+    cancel(timer);
+    image.removeEventListener('load', loaded);
+    image.removeEventListener('error', restore);
+    image.setAttribute('src', '/assets/hero-face.jpg');
+    image.alt = 'J.R. Bone facing the camera';
   }
   function play() {
     if (used) return;
@@ -37,7 +46,7 @@ export function setupHeroAnimation(image, { schedule = setTimeout, cancel = clea
       play();
     }
   });
-  return restore;
+  return () => { if (completed) showFace(); else restore(); };
 }
 
 if (typeof document !== 'undefined') {
