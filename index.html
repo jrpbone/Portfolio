@@ -124,7 +124,7 @@
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="/index.css" />
 
     <!-- GSAP progressive animation enhancement -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -137,19 +137,19 @@
       defer
     ></script>
 
-    <script src="assets/site.js" defer></script>
-    <script src="assets/navigation.js" defer></script>
-  </head>
+    <script src="/assets/site.js" defer></script>
+    <script src="/assets/navigation.js" defer></script>
+  <link rel="stylesheet" href="/assets/project-page.css"><script defer src="/assets/works.js"></script></head>
 
   <body>
     <div class="scroll-progress" aria-hidden="true"></div>
-    <a class="skip-link" href="index.html?section=main-content" data-section="main-content">Skip to main content</a>
+    <a class="skip-link" href="/index.html?section=main-content#main-content" data-section="main-content">Skip to main content</a>
 
     <header>
       <div class="container">
         <nav aria-label="Primary navigation">
-          <a class="nav-brand" href="index.html?section=home" data-section="home" aria-label="JR Bone, home">
-            <img class="logo" src="assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="" />
+          <a aria-current="page" class="nav-brand" href="/index.html?section=home#home" data-section="home" aria-label="JR Bone, home">
+            <img class="logo" src="/assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="" />
             <div class="brand-details">
               <p>J.R. Bone</p>
               <p>Full-Stack Developer</p>
@@ -157,11 +157,11 @@
           </a>
 
           <div class="nav-links" id="primary-navigation">
-            <a href="index.html?section=selected-work" data-section="selected-work">Work</a>
-            <a href="index.html?section=services" data-section="services">Services</a>
-            <a href="index.html?section=about" data-section="about">About</a>
-            <a href="works.html">Case Studies</a>
-            <a href="index.html?section=contact" data-section="contact" class="btn-cta">Start a Project</a>
+            <a href="/index.html?section=recent-work#recent-work" data-section="recent-work">Recent Work</a>
+            <a href="/index.html?section=services#services" data-section="services">Services</a>
+            <a href="/index.html?section=about#about" data-section="about">About</a>
+            <a href="/works/">Works</a>
+            <a href="/index.html?section=contact#contact" data-section="contact" class="btn-cta">Start a Project</a>
           </div>
 
           <div class="nav-controls">
@@ -212,10 +212,10 @@
                 business needs into innovative solutions.
               </p>
               <div class="hero-buttons">
-                <a href="index.html?section=selected-work" data-section="selected-work" class="btn-cta hero-primary-cta"
+                <a href="/index.html?section=recent-work#recent-work" data-section="recent-work" class="btn-cta hero-primary-cta"
                   >View My Work <span aria-hidden="true">&#8595;</span></a
                 >
-                <a href="index.html?section=contact" data-section="contact" class="btn-outline">Start a Project</a>
+                <a href="/index.html?section=contact#contact" data-section="contact" class="btn-outline">Start a Project</a>
               </div>
               <ul class="hero-support" aria-label="Primary capabilities">
                 <li>Full-stack applications</li>
@@ -228,7 +228,7 @@
               <div class="hero-image-wrapper">
                 <div class="hero-img-bg" aria-hidden="true"></div>
                 <img
-                  src="assets/jr-bone-hero.jpg"
+                  src="/assets/jr-bone-hero.jpg"
                   width="1242"
                   height="813"
                   fetchpriority="high"
@@ -257,115 +257,36 @@
         </div>
       </section>
 
-      <!-- Selected Work Section -->
-      <section id="selected-work" class="home-work-section" aria-labelledby="selected-work-title">
+      <!-- Recent Work Section -->
+      <section id="recent-work" class="home-work-section" aria-labelledby="recent-work-title">
         <div class="container">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Selected Work</span>
-              <h2 id="selected-work-title">Five projects, from school systems to point of sale.</h2>
+              <span class="section-kicker">Recent Work</span>
+              <h2 id="recent-work-title">My latest project.</h2>
             </div>
             <p>
-              Each one started with a real workflow to fix. Open a project for
-              screenshots, my role, and the case study.
+              Open KaraOK for screenshots, my role, and the engineering notes.
             </p>
           </div>
 
-          <ul class="home-work-grid">
-            <li class="home-project home-project-wide">
-              <a class="home-project-link" href="works.html#lnpulse">
-                <div class="home-project-image">
-                  <img src="assets/projects/LnPulse/dashboard-optimized.png" width="1919" height="998" loading="lazy" decoding="async" alt="LnPulse administrative dashboard" />
-                </div>
-                <div class="home-project-body">
-                  <span class="project-type">School information system &middot; Web</span>
-                  <h3>LnPulse</h3>
-                  <p>Admin system for senior high school student records, departments, curriculum, and users.</p>
-                  <ul class="work-tags" aria-label="Technologies used">
-                    <li class="tag">React 19</li>
-                    <li class="tag">Express 5</li>
-                    <li class="tag">MySQL</li>
-                  </ul>
-                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
-                </div>
-              </a>
-            </li>
-            <li class="home-project home-project-wide">
-              <a class="home-project-link" href="works.html#appliansys">
-                <div class="home-project-image">
-                  <img src="assets/projects/Appliansys/storefront-optimized.jpg" loading="lazy" decoding="async" alt="ApplianSys e-commerce storefront" />
-                </div>
-                <div class="home-project-body">
-                  <span class="project-type">E-commerce platform &middot; Web</span>
-                  <h3>ApplianSys</h3>
-                  <p>Appliance store with accounts, checkout, order tracking, admin reports, and AI-assisted support. I led a team of five.</p>
-                  <ul class="work-tags" aria-label="Technologies used">
-                    <li class="tag">React 19</li>
-                    <li class="tag">TypeScript</li>
-                    <li class="tag">OpenAI API</li>
-                  </ul>
-                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
-                </div>
-              </a>
-            </li>
-            <li class="home-project">
-              <a class="home-project-link" href="works.html#calcuoke">
-                <div class="home-project-image">
-                  <img src="assets/projects/Calcuoke/dashboard-optimized.jpg?v=20260811" loading="lazy" decoding="async" alt="Calcuoke configuration and sales dashboard" />
-                </div>
-                <div class="home-project-body">
-                  <span class="project-type">Client project &middot; Web</span>
-                  <h3>Calcuoke</h3>
-                  <p>Karaoke system builder for setups, inventory, sales, and warranty tracking.</p>
-                  <ul class="work-tags" aria-label="Technologies used">
-                    <li class="tag">TypeScript</li>
-                    <li class="tag">Tailwind CSS</li>
-                    <li class="tag">MySQL</li>
-                  </ul>
-                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
-                </div>
-              </a>
-            </li>
-            <li class="home-project">
-              <a class="home-project-link" href="works.html#pypos">
-                <div class="home-project-image">
-                  <img src="assets/projects/PyPOS/dashboard.png" loading="lazy" decoding="async" alt="PyPOS checkout and inventory screen" />
-                </div>
-                <div class="home-project-body">
-                  <span class="project-type">Point of sale &middot; Windows</span>
-                  <h3>PyPOS</h3>
-                  <p>Offline checkout and inventory app for small retail shops.</p>
-                  <ul class="work-tags" aria-label="Technologies used">
-                    <li class="tag">Python</li>
-                    <li class="tag">Tkinter</li>
-                    <li class="tag">SQLite</li>
-                  </ul>
-                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
-                </div>
-              </a>
-            </li>
-            <li class="home-project">
-              <a class="home-project-link" href="works.html#karaok">
-                <div class="home-project-image">
-                  <img src="assets/projects/KaraOK/home.jpg" loading="lazy" decoding="async" alt="KaraOK audio evaluation home screen" />
-                </div>
-                <div class="home-project-body">
-                  <span class="project-type">Audio analysis &middot; Mobile</span>
-                  <h3>KaraOK <span class="project-status">In Development</span></h3>
-                  <p>Scores karaoke sound quality and recommends audio settings.</p>
-                  <ul class="work-tags" aria-label="Technologies used">
-                    <li class="tag">Flutter</li>
-                    <li class="tag">Flask 3</li>
-                    <li class="tag">Librosa</li>
-                  </ul>
-                  <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
-                </div>
-              </a>
-            </li>
-          </ul>
+          <!-- works:featured:start -->
+<ul class="home-work-grid">
+<li class="home-project" data-platform="mobile" data-slug="karaok">
+  <a class="home-project-link" href="/works/karaok/">
+    <div class="home-project-image" style="view-transition-name: project-karaok"><img src="/works/karaok/images/home.jpg" width="918" height="1953" loading="lazy" decoding="async" alt="KaraOK project screenshot"></div>
+    <div class="home-project-body"><span class="project-type">Mobile audio analysis app &middot; Mobile</span><h3>KaraOK</h3>
+      <div class="project-card-meta"><span class="project-status">In Development</span><time datetime="2026-10">2026</time></div>
+      <p>I built a mobile workflow to measure karaoke audio and review visual reports.</p><ul class="work-tags" aria-label="Technologies used"><li class="tag">Flutter</li><li class="tag">Dart 3.12+</li><li class="tag">Material Design</li></ul>
+      <span class="home-project-more">View project <span aria-hidden="true">&rarr;</span></span>
+    </div>
+  </a>
+</li>
+</ul>
+<!-- works:featured:end -->
 
           <div class="home-work-footer">
-            <a href="works.html" class="btn-outline">See all projects and case studies</a>
+            <a href="/works/" class="btn-outline">View all works</a>
           </div>
         </div>
       </section>
@@ -448,7 +369,7 @@
               <div class="about-links">
                 <a
                   class="btn-cta"
-                  href="assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
+                  href="/assets/files/BONE,%20JOHN%20RALPH-CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   >View résumé <span aria-hidden="true">&#8599;</span></a
@@ -700,6 +621,6 @@
       src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
       defer
     ></script>
-    <script type="module" src="assets/contact-form.js"></script>
+    <script type="module" src="/assets/contact-form.js"></script>
   </body>
 </html>

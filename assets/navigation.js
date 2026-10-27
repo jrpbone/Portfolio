@@ -2,6 +2,7 @@
 const normalizePath = (path) => path.replace(/\/index\.html$/, "/");
 
 function goToSection(id, behavior) {
+  if (id === "selected-work") id = "recent-work";
   const section = document.getElementById(id);
   if (!section) return false;
   if (!section.hasAttribute("tabindex")) section.setAttribute("tabindex", "-1");

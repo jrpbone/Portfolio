@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateIcon("dark");
   }
 
+  html.setAttribute("data-theme-ready", "");
+
   // Toggle logic
   toggleBtn.addEventListener("click", () => {
     const changeTheme = () => {
@@ -118,32 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Pair each case study with its project image before layout and reveal setup.
-  const caseStudiesSection = document.getElementById("case-studies");
-
-  document
-    .querySelectorAll(".work-item[data-project]")
-    .forEach((project) => {
-      const projectKey = project.dataset.project;
-      const imageStage = project.querySelector(".work-image");
-      const caseStudy = document.querySelector(
-        `[data-case-study="${projectKey}"]`,
-      );
-
-      if (!imageStage || !caseStudy) return;
-
-      const mediaColumn = document.createElement("div");
-      mediaColumn.className = "work-media";
-      project.insertBefore(mediaColumn, imageStage);
-      mediaColumn.append(imageStage, caseStudy);
-      caseStudy.open = false;
-    });
-
-  caseStudiesSection?.remove();
-
   // Reveal supporting content once as it enters the viewport.
   const revealTargets = document.querySelectorAll(
-    ".credibility-item, .about-layout, .services-heading, .service-card, .section-heading, .technology-card, .work-item, .contact-layout",
+    ".credibility-item, .about-layout, .services-heading, .service-card, .section-heading, .technology-card, .contact-layout",
   );
 
   if (
@@ -183,8 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionLinks.forEach((link, id) => {
       const isActive = id === sectionId;
       link.classList.toggle("is-active", isActive);
-      if (isActive) link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
+      if (isActive && link.getAttribute("aria-current") !== "page") link.setAttribute("aria-current", "location");
+      else if (link.getAttribute("aria-current") !== "page") link.removeAttribute("aria-current");
     });
   };
 
@@ -206,169 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Adapt each project card to the aspect ratio of its screenshot.
-  document.querySelectorAll(".work-item").forEach((project) => {
-    const imageStage = project.querySelector(".work-image");
-    const projectImage = imageStage?.querySelector("img");
-
-    if (!projectImage) return;
-
-    const fallbackSource = projectImage.dataset.fallbackSrc;
-
-    if (fallbackSource) {
-      projectImage.addEventListener(
-        "error",
-        () => {
-          projectImage.src = fallbackSource;
-        },
-        { once: true },
-      );
-    }
-
-    const setProjectOrientation = () => {
-      const ratio =
-        projectImage.naturalWidth / projectImage.naturalHeight;
-      let orientation = "square";
-
-      if (ratio > 1.05) orientation = "landscape";
-      if (ratio < 0.95) orientation = "portrait";
-
-      project.classList.remove(
-        "project-landscape",
-        "project-portrait",
-        "project-square",
-      );
-      project.classList.add(`project-${orientation}`);
-      project.dataset.orientation = orientation;
-    };
-
-    const setupProjectGallery = () => {
-      const images =
-        imageStage.dataset.gallery?.split("|").filter(Boolean) ?? [];
-
-      if (images.length < 2 || reduceMotion.matches) return;
-
-      const galleryImage = document.createElement("img");
-      const galleryToggle = document.createElement("button");
-      const projectName =
-        project.querySelector("h3")?.textContent.trim() || "project";
-      let activeImage = projectImage;
-      let inactiveImage = galleryImage;
-      let imageIndex = 0;
-      let rotationTimer;
-      let isVisible = false;
-      let isPointerPaused = false;
-      let isUserPaused = false;
-
-      imageStage.style.setProperty(
-        "--gallery-ratio",
-        `${projectImage.naturalWidth} / ${projectImage.naturalHeight}`,
-      );
-      imageStage.classList.add("has-slideshow");
-      projectImage.classList.add("is-active");
-      galleryImage.alt = "";
-      galleryImage.decoding = "async";
-      galleryImage.setAttribute("aria-hidden", "true");
-      imageStage.insertBefore(
-        galleryImage,
-        imageStage.querySelector(".project-number"),
-      );
-      galleryToggle.type = "button";
-      galleryToggle.className = "gallery-toggle";
-      galleryToggle.textContent = "Pause";
-      galleryToggle.setAttribute(
-        "aria-label",
-        `Pause ${projectName} screenshot gallery`,
-      );
-      imageStage.append(galleryToggle);
-
-      images.slice(1).forEach((source) => {
-        const preloadImage = new Image();
-        preloadImage.src = source;
-      });
-
-      const stopRotation = () => {
-        window.clearTimeout(rotationTimer);
-      };
-
-      const scheduleRotation = () => {
-        stopRotation();
-
-        if (
-          !isVisible ||
-          isPointerPaused ||
-          isUserPaused ||
-          document.hidden
-        )
-          return;
-        rotationTimer = window.setTimeout(showNextImage, 5200);
-      };
-
-      const showNextImage = async () => {
-        imageIndex = (imageIndex + 1) % images.length;
-        inactiveImage.src = images[imageIndex];
-
-        try {
-          await inactiveImage.decode();
-        } catch {
-          // The load event can still complete when decode is unavailable.
-        }
-
-        inactiveImage.classList.add("is-active");
-        activeImage.classList.remove("is-active");
-        [activeImage, inactiveImage] = [inactiveImage, activeImage];
-        scheduleRotation();
-      };
-
-      imageStage.addEventListener("pointerenter", () => {
-        isPointerPaused = true;
-        stopRotation();
-      });
-
-      imageStage.addEventListener("pointerleave", () => {
-        isPointerPaused = false;
-        scheduleRotation();
-      });
-
-      galleryToggle.addEventListener("click", () => {
-        isUserPaused = !isUserPaused;
-        galleryToggle.textContent = isUserPaused ? "Play" : "Pause";
-        galleryToggle.setAttribute(
-          "aria-label",
-          `${isUserPaused ? "Play" : "Pause"} ${projectName} screenshot gallery`,
-        );
-        scheduleRotation();
-      });
-
-      const galleryObserver = new IntersectionObserver(
-        (entries) => {
-          isVisible = entries[0].isIntersecting;
-          scheduleRotation();
-        },
-        { threshold: 0.2, rootMargin: "120px 0px" },
-      );
-
-      galleryObserver.observe(imageStage);
-      document.addEventListener("visibilitychange", scheduleRotation);
-    };
-
-    if (projectImage.complete && projectImage.naturalWidth) {
-      setProjectOrientation();
-      setupProjectGallery();
-    } else {
-      projectImage.addEventListener(
-        "load",
-        () => {
-          setProjectOrientation();
-          setupProjectGallery();
-        },
-        { once: true },
-      );
-    }
-  });
-
-  if (gsapAvailable && !reduceMotion.matches) {
-    setupGsapAnimations();
+  if (gsapAvailable && hero) {
+    window.gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      setupGsapAnimations();
+    });
   }
 
   function setupGsapAnimations() {
@@ -447,20 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "-=0.9",
       );
 
-    gsap.from(".home-project", {
-      autoAlpha: 0,
-      y: 40,
-      duration: 0.85,
-      stagger: 0.08,
-      ease: "power3.out",
-      clearProps: clearAnimatedProps,
-      scrollTrigger: {
-        trigger: ".home-work-grid",
-        start: "top 84%",
-        once: true,
-      },
-    });
-
     gsap.from(".about-layout > *", {
       autoAlpha: 0,
       y: 44,
@@ -504,56 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    if (document.querySelector("#work")) {
-      gsap.from("#work > .container > .section-heading > *", {
-        autoAlpha: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        clearProps: clearAnimatedProps,
-        scrollTrigger: {
-          trigger: "#work > .container > .section-heading",
-          start: "top 84%",
-          once: true,
-        },
-      });
-
-    }
-
-    gsap.utils.toArray(".work-item").forEach((project, index) => {
-      const imageStage = project.querySelector(".work-image");
-
-      gsap.from(project, {
-        autoAlpha: 0,
-        x: useHorizontalMotion ? (index % 2 === 0 ? -48 : 48) : 0,
-        y: 26,
-        duration: 0.95,
-        ease: "power3.out",
-        clearProps: clearAnimatedProps,
-        scrollTrigger: {
-          trigger: project,
-          start: "top 84%",
-          once: true,
-        },
-      });
-
-      if (imageStage) {
-        gsap.from(imageStage, {
-          clipPath:
-            index % 2 === 0 ? "inset(0 10% 0 0)" : "inset(0 0 0 10%)",
-          duration: 1.15,
-          ease: "power3.out",
-          clearProps: "clipPath",
-          scrollTrigger: {
-            trigger: project,
-            start: "top 84%",
-            once: true,
-          },
-        });
-      }
-    });
-
     const contactTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".contact-layout",
@@ -593,34 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         "-=0.45",
       );
-
-    document.querySelectorAll(".case-study").forEach((caseStudy) => {
-      caseStudy.addEventListener("toggle", () => {
-        if (caseStudy.open) {
-          const caseStudyTargets = caseStudy.querySelectorAll(
-            ".architecture-heading, .architecture-node, .architecture-arrow, .architecture-support li, .case-study-body > div:not(.architecture-diagram)",
-          );
-
-          gsap.fromTo(
-            caseStudyTargets,
-            { autoAlpha: 0, y: 18, scale: 0.975 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.55,
-              stagger: 0.045,
-              ease: "power3.out",
-              clearProps: clearAnimatedProps,
-              overwrite: "auto",
-              onComplete: () => ScrollTrigger.refresh(),
-            },
-          );
-        } else {
-          requestAnimationFrame(() => ScrollTrigger.refresh());
-        }
-      });
-    });
 
     window.addEventListener("load", () => ScrollTrigger.refresh(), {
       once: true,

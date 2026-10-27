@@ -51,7 +51,7 @@ class ContactSecurityMarkupTests(unittest.TestCase):
     def test_form_uses_protected_javascript_submission(self) -> None:
         self.assertEqual(self.form.form_attributes.get("novalidate"), None)
         self.assertNotIn("action", self.form.form_attributes)
-        self.assertIn("assets/contact-form.js", self.form.script_sources)
+        self.assertIn("/assets/contact-form.js", self.form.script_sources)
         self.assertTrue(
             any("challenges.cloudflare.com/turnstile" in src for src in self.form.script_sources)
         )
