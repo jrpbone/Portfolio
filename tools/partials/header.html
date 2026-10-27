@@ -1,0 +1,15 @@
+<header class="site-header">
+  <div class="container"><nav aria-label="Primary navigation">
+    <a class="nav-brand" href="/" aria-label="J.R. Bone, Home" {{homeCurrent}}>
+      <img class="logo" src="/assets/branding/jr-monogram-bw-192.png" width="44" height="44" alt="">
+      <div class="brand-details"><p>J.R. Bone</p><p>Full-Stack Developer</p></div>
+    </a>
+    <div class="nav-links" id="primary-navigation">
+      <a href="/works/" {{workCurrent}}>Work</a><a href="/about/" {{aboutCurrent}}>About</a><a href="/contact/" {{contactCurrent}}>Contact</a>
+    </div>
+    <div class="nav-controls">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode"><span aria-hidden="true"><svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></span></button>
+      <button type="button" id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav></div>
+</header>
