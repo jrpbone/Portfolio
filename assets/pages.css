@@ -113,3 +113,6 @@
 .timeline-line { background: var(--accent-color); }
 .site-footer { text-align: left; }
 @media (max-width: 767px) { .about-intro > img.about-photo { max-width: 320px; } }
+
+/* The original hero includes its own header clearance. */
+.portfolio-home > .site-main { padding-top: 0; }

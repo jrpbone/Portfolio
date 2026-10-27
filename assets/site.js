@@ -51,10 +51,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const hero = document.querySelector(".hero");
+
+  if (hero && window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches) {
+    const tileSize = 48;
+    let gridFrame;
+
+    hero.addEventListener("pointerenter", () =>
+      hero.classList.add("is-grid-active"),
+    );
+    hero.addEventListener("pointerleave", () =>
+      hero.classList.remove("is-grid-active"),
+    );
+    hero.addEventListener("pointermove", (event) => {
+      if (gridFrame) cancelAnimationFrame(gridFrame);
+
+      gridFrame = requestAnimationFrame(() => {
+        const bounds = hero.getBoundingClientRect();
+        const x = event.clientX - bounds.left;
+        const y = event.clientY - bounds.top;
+
+        hero.style.setProperty("--grid-pointer-x", `${x}px`);
+        hero.style.setProperty("--grid-pointer-y", `${y}px`);
+        hero.style.setProperty(
+          "--grid-tile-x",
+          `${Math.floor(x / tileSize) * tileSize}px`,
+        );
+        hero.style.setProperty(
+          "--grid-tile-y",
+          `${Math.floor(y / tileSize) * tileSize}px`,
+        );
+      });
+    });
+  }
+
+
   const gsap = window.gsap;
   if (!gsap) return;
   gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
-    const hero = document.querySelectorAll(".pitch-hero .hero-identity, .pitch-hero h1, .pitch-hero .pitch-copy, .pitch-hero .availability, .pitch-hero .hero-actions");
+    const hero = document.querySelectorAll(".hero-label, .hero h1, .hero-intro, .hero-buttons, .hero-support, .hero-visual");
     if (hero.length) gsap.from(hero, {
       opacity: 0, y: 20, duration: 0.6, stagger: 0.08,
       ease: "power3.out", clearProps: "opacity,transform",
