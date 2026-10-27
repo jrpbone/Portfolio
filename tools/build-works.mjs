@@ -73,7 +73,7 @@ export async function buildWorks() {
     pagePaths.push(url);
     const pagination = pages > 1 ? '<nav class="works-pagination" aria-label="Project pages">' + Array.from({ length: pages }, (_, i) => `<a href="${i === 0 ? '/works/' : `/works/page/${i + 1}/`}"${page === i + 1 ? ' aria-current="page"' : ''}>${i + 1}</a>`).join(' ') + '</nav>' : '';
     let html = replaceRegion(base, 'index', `<ul class="works-grid">\n${projects.slice((page - 1) * 9, page * 9).map(card).join('\n')}\n</ul>${pagination}`);
-    if (page > 1) html = html.replace(/<title>[^<]*<\/title>/, `<title>Work, page ${page} | J.R. Bone</title>`).replaceAll(`${origin}/works/"`, `${origin}${url}"`);
+    if (page > 1) html = html.replace(/<title>[^<]*<\/title>/, `<title>Works, page ${page} | J.R. Bone</title>`).replaceAll(`${origin}/works/"`, `${origin}${url}"`);
     const output = page === 1 ? indexPath : path.join(root, 'works/page', String(page), 'index.html');
     await mkdir(path.dirname(output), { recursive: true });
     await writeFile(output, html);
