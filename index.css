@@ -700,6 +700,13 @@ nav {
   cursor: default;
 }
 .hero-image-wrapper img:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
+.hero-image-wrapper img[data-hero-overlay] {
+  position: absolute;
+  top: .8rem;
+  left: .8rem;
+  width: calc(100% - 1.6rem);
+  height: calc(100% - 1.6rem);
+}
 
 .hero-code-card,
 .hero-discipline-card {
