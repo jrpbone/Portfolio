@@ -12,6 +12,9 @@ export async function syncSharedShell(root, pages) {
     html = html.replace(/\s*<!-- site:startup:start -->[\s\S]*?<!-- site:startup:end -->\s*/g, '\n');
     const headStart = /(<head\b[^>]*>\s*(?:<meta\b[^>]*charset[^>]*>\s*)?)/i;
     html = html.replace(headStart, (_, opening) => `${opening}${startup.trim()}\n`);
+    if (!html.includes('href="/assets/page-loading.css"')) {
+      html = html.replace('</head>', '<link rel="stylesheet" href="/assets/page-loading.css">\n</head>');
+    }
     const current = relative === 'index.html' ? 'home' : relative.startsWith('about/') ? 'about' : relative.startsWith('contact/') ? 'contact' : 'work';
     let pageHeader = header;
     for (const name of ['home', 'work', 'about', 'contact']) pageHeader = pageHeader.replaceAll(`{{${name}Current}}`, name === current ? 'aria-current="page" class="is-active"' : '');

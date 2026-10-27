@@ -62,6 +62,8 @@
       addEventListener('popstate', () => apply(read(), true));
       reduced.addEventListener('change', () => { flip?.kill(); apply(read()); });
     }
+    // Skeletons reveal these static grids in their final positions.
+    if (document.body.matches('.portfolio-home, .works-page')) return;
     if (!(gsap && window.ScrollTrigger)) return;
     gsap.registerPlugin(window.ScrollTrigger);
     gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
