@@ -104,6 +104,14 @@ class SiteStructureTests(unittest.TestCase):
         for path in ['/', '/works/', '/about/', '/contact/']:
             self.assertIn('https://jrpbone.vercel.app' + path + '</loc>', sitemap)
 
+    def test_about_portrait_uses_one_image_slot_for_both_themes(self):
+        html = (ROOT / 'about/index.html').read_text(encoding='utf-8')
+        page = SiteParser(html)
+        portraits = [attrs for tag, attrs in page.elements if tag == 'img' and 'about-hero-editorial' in attrs.get('src', '')]
+        self.assertEqual(len(portraits), 1)
+        self.assertTrue(any(tag == 'source' and attrs.get('srcset') == '/assets/about-hero-editorial.png' for tag, attrs in page.elements))
+        self.assertIn('data-theme-picture', html)
+
 
 if __name__ == '__main__':
     unittest.main()

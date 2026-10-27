@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setTheme(theme) {
     html.dataset.theme = theme;
+    document.querySelectorAll('[data-theme-picture] source').forEach(source => {
+      source.media = theme === 'dark' ? 'all' : 'not all';
+    });
     toggle?.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} mode`);
     toggle?.setAttribute("aria-pressed", String(theme === "dark"));
   }
