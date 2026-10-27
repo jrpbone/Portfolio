@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="en" data-theme="light"><head>
 <meta charset="utf-8"/>
+<!-- site:startup:start -->
+<script>
+(() => {
+  const root = document.documentElement;
+  let theme;
+  try { theme = localStorage.getItem('theme'); } catch { /* Storage is optional. */ }
+  if (theme !== 'light' && theme !== 'dark') {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  root.dataset.theme = theme;
+  root.setAttribute('data-theme-ready', '');
+})();
+</script>
+<!-- site:startup:end -->
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About | J.R. Bone</title>
 <meta content="Learn about J.R. Bone, his software projects, electronics retail experience, education, and development tools." name="description"/>

@@ -38,6 +38,7 @@
 }
 
 html {
+  background-color: var(--bg-color);
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 1rem);
   overflow-x: clip;
