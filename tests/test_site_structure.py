@@ -51,7 +51,7 @@ class SiteStructureTests(unittest.TestCase):
                 html = (ROOT / path).read_text(encoding='utf-8')
                 page = SiteParser(html)
                 primary = page.navigation['Primary navigation']
-                self.assertEqual([a['href'] for a in primary], ['/', '/works/', '/about/', '/contact/'])
+                self.assertEqual([a['href'] for a in primary], ['/', '/', '/works/', '/about/', '/contact/'])
                 active = [a['href'] for a in primary if a.get('aria-current') == 'page']
                 expected = '/' if path == 'index.html' else '/about/' if path.startswith('about/') else '/contact/' if path.startswith('contact/') else '/works/'
                 self.assertEqual(active, [expected])

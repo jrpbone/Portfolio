@@ -650,17 +650,14 @@ nav {
 .hero-socials .hero-resume a {
   gap: 0.55rem;
   padding: 0.6rem 1.1rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   border-radius: 8px;
-  color: var(--text-main);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
-.hero-socials .hero-resume a:hover,
-.hero-socials .hero-resume a:focus-visible {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
+.hero-socials .hero-resume a {
+  transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .hero-visual {
