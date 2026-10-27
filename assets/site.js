@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const gsap = window.gsap;
   if (!gsap) return;
+  // Home and Works settle in place behind skeletons, without entrance movement.
+  if (document.body.matches('.portfolio-home, .works-page')) return;
   gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
     const hero = document.querySelectorAll(".hero h1, .hero-meta, .hero-intro, .hero-contact, .hero-visual");
     if (hero.length) gsap.from(hero, {
