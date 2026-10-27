@@ -90,6 +90,7 @@ export async function buildWorks() {
       html = replaceRegion(html, 'neighbors', '');
       html = html.replace('</head>', '<meta name="robots" content="noindex, nofollow"></head>');
     }
+    html = html.replace(/^[ \t]+$/gm, '').trimEnd() + '\n';
     await writeFile(output, html);
   }
   const urls = ['/', ...pagePaths, ...projects.map((p) => `/works/${p.slug}/`)];
