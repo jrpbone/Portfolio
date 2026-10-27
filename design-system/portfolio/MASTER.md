@@ -40,7 +40,7 @@ The existing palette is the primitive source. Semantic aliases in `assets/pages.
 | Featured card | Large horizontal screenshot/body layout, stacked on small screens. Screenshot uses `contain`; result, role, status, three tags, and separate case-study/code/demo actions. No nested links. |
 | Work-index card | One linked card, fixed 16:10 uncropped cover, summary, status, year, tags. |
 | Fact row | Role, Team, Timeline, Platform, Year; five columns wide, fewer columns on mobile. Project type remains in the header. |
-| Timeline | Date, role/program, place, one factual line. DOM order is newest first. Decorative line draws once; content never depends on that animation. |
+| Timeline | Date, role/program, place, one factual line. DOM order is oldest first, so scrolling down ends at the present roles. Decorative line draws once; content never depends on that animation. |
 | Primary button | Existing `btn-cta`; one dominant action per group. |
 | Secondary button | Existing `btn-outline`; bordered action such as Get in touch or Download résumé. |
 | Text link | `text-link`; visible focus and underline affordance, no icon-only navigation. |
