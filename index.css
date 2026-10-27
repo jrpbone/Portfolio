@@ -695,14 +695,15 @@ nav {
   height: auto;
   display: block;
   border-radius: 11px;
-  aspect-ratio: 1242 / 813;
-  object-fit: contain;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   cursor: default;
 }
 .hero-image-wrapper img:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
 
 .hero-code-card,
 .hero-discipline-card {
+  pointer-events: none;
   position: absolute;
   border: 1px solid var(--border-color);
   border-radius: 10px;
