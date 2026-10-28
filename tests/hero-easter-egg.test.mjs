@@ -1,85 +1,52 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { setupHeroAnimation } from '../assets/hero-easter-egg.js';
-
-function portrait(ready, paint = async () => {}) {
-  const image = new EventTarget();
-  const attrs = { src: '/assets/first_hero.jpg' };
-  image.alt = 'Portrait of JR Bone';
+import { readFile } from 'node:fs/promises';
+import { setupHeroAnimation, singlePlayGif } from '../assets/hero-easter-egg.js';
+const settle = () => new Promise(setImmediate);
+function harness(ready) {
+  const image = new EventTarget(), attrs = { src: '/assets/first_hero.jpg' }, timers = new Map();
+  let visibility, next = 0;
   image.getAttribute = key => attrs[key];
   image.setAttribute = (key, value) => { attrs[key] = value; };
+  image.alt = 'Original';
   Object.defineProperty(image, 'attributes', { get: () => Object.entries(attrs).map(([name, value]) => ({ name, value })) });
-  let overlay;
-  image.after = next => { overlay = next; };
-  image.remove = () => { Object.assign(attrs, overlay.attrs); image.alt = overlay.alt; };
-  const final = { attrs: { src: '/assets/second_hero.jpg' }, decode: async () => {}, setAttribute(key, value) { this.attrs[key] = value; }, removeAttribute(key) { delete this.attrs[key]; delete attrs[key]; } };
-  const timers = new Map();
-  let next = 0;
-  setupHeroAnimation(image, { paint, prepareFinal: async () => { if (ready) await ready; return final; }, schedule(fn, delay) { timers.set(++next, { fn, delay }); return next; }, cancel(id) { timers.delete(id); } });
-  return { image, attrs, timers };
+  image.replaceWith = portrait => Object.assign(attrs, portrait.attrs);
+  setupHeroAnimation(image, {
+    prepareAnimation: async () => 'blob:animation',
+    prepareFinal: async () => { await ready; return { attrs: { src: '/assets/second_hero.jpg' }, setAttribute(key, value) { this.attrs[key] = value; } }; },
+    observeVisibility(callback) { visibility = callback; return () => {}; },
+    schedule(fn, delay) { timers.set(++next, { fn, delay }); return next; }, cancel(id) { timers.delete(id); }
+  });
+  return { image, attrs, timers, visible(value) { visibility(value); }, async play() { image.dispatchEvent(new Event('click')); await settle(); image.dispatchEvent(new Event('load')); }, async end() { await [...timers.values()][0].fn(); await settle(); } };
 }
-
-test('photo plays once and shows the final portrait after the four-second GIF cycle', async () => {
-  const { image, attrs, timers } = portrait();
-  assert.equal(attrs.src, '/assets/first_hero.jpg');
-  image.dispatchEvent(new Event('click'));
-  assert.equal(attrs.src, '/assets/hero.gif');
-  image.dispatchEvent(new Event('load'));
-  assert.equal(timers.size, 1);
-  const cycle = [...timers.values()][0];
-  assert.equal(cycle.delay, 4000);
-  image.dispatchEvent(new Event('click'));
-  assert.equal(timers.size, 1);
-  await cycle.fn();
-  assert.equal(attrs.src, '/assets/second_hero.jpg');
-  assert.equal(image.alt, 'J.R. Bone facing the camera');
-  image.dispatchEvent(new Event('click'));
-  assert.equal(attrs.src, '/assets/second_hero.jpg');
-  const refreshed = portrait();
-  refreshed.image.dispatchEvent(new Event('click'));
-  assert.equal(refreshed.attrs.src, '/assets/hero.gif');
+test('holds final frame until fully offscreen, then shows photo and cannot replay', async () => {
+  const p = harness(); await p.play(); await p.end();
+  assert.equal(p.attrs.src, 'blob:animation');
+  p.visible(true); await settle(); assert.equal(p.attrs.src, 'blob:animation');
+  p.visible(false); await settle(); assert.equal(p.attrs.src, '/assets/second_hero.jpg');
+  p.visible(true); p.image.dispatchEvent(new Event('click')); await settle();
+  assert.equal(p.attrs.src, '/assets/second_hero.jpg');
+  assert.equal(harness().attrs.src, '/assets/first_hero.jpg');
 });
-
-test('the GIF stays displayed until the replacement has finished decoding', async () => {
-  let decoded;
-  const ready = new Promise(resolve => { decoded = resolve; });
-  const { image, attrs, timers } = portrait(ready);
-  image.dispatchEvent(new Event('click'));
-  image.dispatchEvent(new Event('load'));
-  const transition = [...timers.values()][0].fn();
-  await Promise.resolve();
-  assert.equal(attrs.src, '/assets/hero.gif');
-  decoded();
-  await transition;
-  assert.equal(attrs.src, '/assets/second_hero.jpg');
+test('scrolling away mid-animation waits for playback to finish', async () => {
+  const p = harness(); await p.play(); p.visible(false); await settle();
+  assert.equal(p.attrs.src, 'blob:animation');
+  await p.end(); assert.equal(p.attrs.src, '/assets/second_hero.jpg');
 });
-
-test('failed or stalled GIF loading restores the photo', () => {
-  for (const error of [true, false]) {
-    const { image, attrs, timers } = portrait();
-    image.dispatchEvent(new Event('click'));
-    if (error) image.dispatchEvent(new Event('error'));
-    else [...timers.values()][0].fn();
-    assert.equal(attrs.src, '/assets/first_hero.jpg');
-    assert.equal(timers.size, 0);
-  }
+test('returning before portrait decode completes postpones the swap', async () => {
+  let resolve;
+  const p = harness(new Promise(r => { resolve = r; }));
+  await p.play(); await p.end(); p.visible(false); await settle();
+  p.visible(true); resolve(); await settle(); assert.equal(p.attrs.src, 'blob:animation');
+  p.visible(false); await settle(); assert.equal(p.attrs.src, '/assets/second_hero.jpg');
 });
-
-test('the GIF remains underneath the new image through two paint frames', async () => {
-  const paints = [];
-  const { image, attrs, timers } = portrait(undefined, () => new Promise(resolve => paints.push(resolve)));
-  image.dispatchEvent(new Event('click'));
-  image.dispatchEvent(new Event('load'));
-  const transition = [...timers.values()][0].fn();
-  await new Promise(setImmediate);
-  assert.equal(attrs.src, '/assets/hero.gif');
-  assert.equal(paints.length, 1);
-  paints.shift()();
-  await new Promise(setImmediate);
-  assert.equal(attrs.src, '/assets/hero.gif');
-  assert.equal(paints.length, 1);
-  paints.shift()();
-  await transition;
-  assert.equal(attrs.src, '/assets/second_hero.jpg');
-  assert.equal('data-hero-overlay' in attrs, false);
+test('animation load failure restores original photo', async () => {
+  const p = harness(); await p.play(); p.image.dispatchEvent(new Event('error'));
+  assert.equal(p.attrs.src, '/assets/first_hero.jpg'); assert.equal(p.timers.size, 0);
+});
+test('GIF conversion removes only the loop extension, preserving every frame', async () => {
+  const original = await readFile(new URL('../assets/hero.gif', import.meta.url));
+  const start = original.indexOf('NETSCAPE2.0') - 3;
+  assert.ok(start > 0);
+  assert.deepEqual(Buffer.from(singlePlayGif(original)), Buffer.concat([original.subarray(0, start), original.subarray(start + 19)]));
 });
