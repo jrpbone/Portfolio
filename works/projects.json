@@ -154,5 +154,33 @@
     "repo": "https://github.com/jrpbone/Python-Point-of-Sale",
     "featured": false,
     "published": false
+  },
+  {
+    "slug": "reynolds-apparatus",
+    "name": "Reynolds' Apparatus",
+    "type": "Interactive 3D lab simulator",
+    "platform": "Web",
+    "status": "complete",
+    "date": "2026-11",
+    "role": "Freelance developer",
+    "timeline": "3 weeks",
+    "team": "Solo",
+    "projectType": "Client project",
+    "summary": "I built an interactive 3D model of a Reynolds apparatus that walks engineering students through the lab procedure step by step.",
+    "tags": [
+      "Three.js",
+      "WebGL",
+      "JavaScript",
+      "Vite",
+      "Vercel"
+    ],
+    "cover": "/works/reynolds-apparatus/images/overview-optimized.jpg",
+    "coverWidth": 1600,
+    "coverHeight": 1000,
+    "repo": "https://github.com/jrpbone-bu/O-Reynolds-Apparatus",
+    "liveUrl": "https://o-reynolds-apparatus.vercel.app/",
+    "featured": false,
+    "published": true,
+    "result": "Students can explore each part of the apparatus and follow the 11-step operating procedure in the browser."
   }
 ]

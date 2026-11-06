@@ -91,7 +91,9 @@ class SiteStructureTests(unittest.TestCase):
                 html = (ROOT / path).read_text(encoding='utf-8')
                 page = SiteParser(html)
                 sections = [a.get('id') for tag, a in page.elements if tag == 'section' and a.get('id')]
-                self.assertEqual(sections, ['problem', 'contribution', 'how-it-works', 'result', 'gallery', 'next-steps'])
+                # "What I'd do next" is optional: finished client commissions leave it out.
+                required = ['problem', 'contribution', 'how-it-works', 'result', 'gallery']
+                self.assertIn(sections, [required, required + ['next-steps']])
                 facts = [i for i, (tag, a) in enumerate(page.elements) if a.get('class') == 'project-facts']
                 cover = next(i for i, (tag, a) in enumerate(page.elements) if a.get('class') == 'project-cover container')
                 self.assertLess(facts[0], cover)

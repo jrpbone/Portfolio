@@ -290,3 +290,94 @@ html:not([data-theme-ready]) .nav-controls { display: none; }
   html:not([data-theme-ready]) header nav { height: auto; min-height: var(--nav-height); flex-wrap: wrap; gap: 1rem; padding-block: 1rem; }
   html:not([data-theme-ready]) .nav-links { position: static; display: flex; flex-basis: 100%; flex-wrap: wrap; gap: 1rem; padding: 0; border: 0; background: transparent; box-shadow: none; }
 }
+
+/* ==========================================================================
+   Mobile polish (phones and small tablets only).
+   Every rule below sits inside a max-width query, so 769px and wider are untouched.
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Rhythm: tighter section spacing so phones scroll less between sections. */
+  :root { --page-section-space: 3.5rem; }
+  .section-head { gap: .75rem; margin-bottom: 2rem; }
+  .section-head p { font-size: 1rem; }
+
+  /* Header: 44px+ controls that sit inside the thumb's reach on the right. */
+  .nav-controls { gap: .5rem; }
+  .theme-toggle, .mobile-menu-toggle { width: 2.75rem; height: 2.75rem; border-radius: 10px; }
+  .nav-links { right: .75rem; left: .75rem; gap: .25rem; padding: .5rem; border-radius: 0 0 16px 16px; max-height: calc(100dvh - var(--nav-height) - 1rem); overflow-y: auto; overscroll-behavior: contain; }
+  .nav-links.is-open { box-shadow: 0 18px 40px rgba(45, 42, 38, .14), 0 0 0 100vmax rgb(15 23 42 / .28); clip-path: inset(0 -100vmax -100vmax -100vmax); }
+  .nav-links a:not(.btn-cta) { display: flex; align-items: center; min-height: 52px; padding: .75rem 1rem; border-radius: 12px; font-size: 1.05rem; }
+  .nav-links a:not(.btn-cta)::after { display: none; }
+  .nav-links a[aria-current='page'] { background: var(--accent-light); font-weight: 600; }
+
+  /* Hero: the code card no longer floats over the photo. It sits below the
+     frame, aligned right, with smaller type and padding. */
+  .hero-visual { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: flex-end; gap: .75rem; padding: 0 1rem 0 0; }
+  .hero-image-wrapper { flex: 0 0 100%; }
+  .hero-img-bg { inset: 1.25rem -1rem -1rem 1.25rem; }
+  .hero-code-card, .hero-discipline-card { position: relative; inset: auto; backdrop-filter: none; background: var(--card-bg); box-shadow: 0 10px 24px rgba(45, 42, 38, .12); }
+  /* Tuck the card up so it overlaps the bottom ~5% of the photo: flex row gap (.75rem) + frame padding (.8rem) + border + 5% of the 16:9 image height. */
+  .hero-code-card { width: auto; max-width: min(100%, 300px); margin-top: calc(-.75rem - .8rem - 1px - 2.8125% + .045rem); padding: .6rem .8rem .7rem; }
+  .hero-code-card .code-card-header { margin-bottom: .45rem; }
+  .hero-code-card code { font-size: .7rem; line-height: 1.5; }
+  .hero-discipline-card { order: -1; margin-top: .5rem; margin-right: auto; padding: .6rem .8rem; }
+  .hero-discipline-card strong { font-size: .85rem; }
+  .hero-image-wrapper { order: -2; }
+
+  /* Hero contact icons: 44px tap areas without changing their look. */
+  .hero-socials { gap: .25rem; }
+  .hero-socials li:not(.hero-resume) a { justify-content: center; min-width: 44px; min-height: 44px; }
+  .hero-socials .hero-resume { margin-right: .5rem; }
+  .hero-socials .hero-resume a { min-height: 44px; }
+
+  /* Headings: balanced wraps, no single-word last lines. */
+  :is(.page-intro h1, .about-story h1, .section-head h2, .cta-panel h2, .contact-cta h2, .project-hero h1) { text-wrap: balance; }
+  .contact-cta > .container > h2 { font-size: clamp(1.85rem, 8vw, 2.25rem); line-height: 1.12; }
+
+  /* Cards: a little less padding so text gets more of the width. */
+  .skill-card { padding: 1.35rem 1.25rem; gap: .6rem; }
+  .skill-icon { width: 2.6rem; height: 2.6rem; border-radius: 12px; }
+  .stack-group { padding: 1.25rem; }
+  .xp-card { padding: 1.25rem; }
+  .process { padding: 1.25rem; }
+  .resume-strip { padding: 1.25rem; }
+  .featured-project .home-project-body { padding: 1.5rem 1.25rem; }
+  .portfolio-home .featured-project .home-project-image { min-height: 18rem; padding: 1.75rem 1.25rem 0; }
+  .portfolio-home .featured-project .home-project-image img { max-height: 24rem; }
+  .works-grid > .home-project:only-child .home-project-image { min-height: 18rem; padding: 1.75rem 1.25rem 0; }
+  .works-grid > .home-project:only-child .home-project-image img { max-height: 24rem; }
+  .works-grid > .home-project:only-child .home-project-body { padding: 1.5rem 1.25rem; }
+
+  /* Footer: every link gets a 44px target. */
+  .site-footer nav { gap: 0 .5rem; }
+  .site-footer nav a { min-width: 44px; padding-inline: .5rem; }
+  .site-footer nav a:first-child { margin-left: -.5rem; }
+
+  /* Contact: the email card stacks so its label never wraps letter by letter. */
+  .contact-link { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+  .contact-link i { grid-row: auto; grid-column: auto; }
+  .contact-email-fallback a { display: inline-block; padding-block: .75rem; margin-block: -.75rem; }
+  .contact-form .form-group:focus-within { transform: none; }
+  .contact-ambient { animation: none; }
+
+  /* Project pages */
+  .project-breadcrumb a, .breadcrumb a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; }
+  .featured-project .home-project-body h3 a { display: inline-flex; align-items: center; min-height: 44px; }
+  .site-main .section-links .text-link { min-width: 44px; justify-content: center; }
+  .project-breadcrumb, .breadcrumb { align-items: center; margin-bottom: 1rem; }
+  .project-page .project-section-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .project-page .project-section-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: .6rem .75rem; border: 1px solid var(--border-color); border-radius: 999px; text-align: center; }
+  .project-page .project-section-nav a[aria-current="location"] { border-color: var(--accent-color); }
+  .project-cover .project-hero-cover img { max-height: 65svh; }
+  .project-gallery figure > a img { max-height: 65svh; }
+  .project-page > figure.project-cover.container { margin-block: 1.5rem 2rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-visual { padding-right: .75rem; }
+  .hero-img-bg { inset: 1rem -.75rem -.75rem 1rem; }
+  .hero-code-card { width: auto; }
+  .cta-panel { padding: 1.75rem 1.25rem; }
+  .contact-layout .contact-info { padding-inline: 1.25rem; }
+  .project-page .project-section-nav a { font-size: .85rem; }
+}

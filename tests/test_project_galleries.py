@@ -50,7 +50,8 @@ class ProjectPagesTests(unittest.TestCase):
                     self.assertTrue(page.matching('div', 'architecture-diagram'))
                     self.assertIn('TODO(J.R.): Review these feature drafts', html)
                     self.assertIn('TODO(J.R.): Replace this factual draft', html)
-                for section in ['problem', 'contribution', 'how-it-works', 'result', 'gallery', 'next-steps']:
+                # "What I'd do next" is optional: finished client commissions leave it out.
+                for section in ['problem', 'contribution', 'how-it-works', 'result', 'gallery']:
                     self.assertTrue(any(attrs.get('id') == section for _, attrs in page.nodes), section)
                 self.assertNotIn('<details', html)
                 self.assertIn('CreativeWork', html)
