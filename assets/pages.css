@@ -72,6 +72,20 @@
 .featured-project-media > a { position: relative; z-index: 1; display: flex; width: 100%; color: inherit; }
 .portfolio-home .featured-project .home-project-image { display: grid; place-items: center; width: 100%; min-height: 30rem; aspect-ratio: auto; padding: clamp(2rem, 4vw, 3.5rem) 2rem 0; border: 0; background: transparent; }
 .portfolio-home .featured-project .home-project-image img { display: block; width: auto; max-width: 62%; height: auto; max-height: 34rem; object-fit: contain; align-self: end; border: 6px solid #111; border-bottom: 0; border-radius: 28px 28px 0 0; box-shadow: 0 30px 60px rgb(15 23 42 / .28); transition: transform .5s var(--ease-out); }
+/* Web projects: a browser window, with an optional phone view layered in front. */
+.portfolio-home .featured-project[data-platform="web"] .home-project-image { position: relative; display: block; min-height: 0; height: 100%; padding: clamp(3.5rem, 6vw, 4.5rem) clamp(1.5rem, 3.5vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); align-content: center; }
+.portfolio-home .featured-project[data-platform="web"] .home-project-image img { width: 100%; max-width: 100%; max-height: none; border: 0; border-radius: 0; box-shadow: none; }
+.browser-frame { position: relative; display: block; overflow: hidden; border: 1px solid rgb(15 23 42 / .5); border-radius: 12px; background: #1f2937; box-shadow: 0 28px 60px rgb(15 23 42 / .28), 0 0 0 6px rgba(var(--accent-rgb), .07); transition: transform .5s var(--ease-out); }
+.browser-bar { display: flex; align-items: center; gap: .75rem; height: 1.75rem; padding: 0 .7rem; }
+.browser-dots { flex: none; width: 2.1rem; height: .5rem; background: radial-gradient(circle at .25rem 50%, #ff5f57 .24rem, transparent .26rem), radial-gradient(circle at 1.05rem 50%, #febc2e .24rem, transparent .26rem), radial-gradient(circle at 1.85rem 50%, #28c840 .24rem, transparent .26rem); }
+.browser-url { flex: 1; min-width: 0; max-width: 18rem; margin-inline: auto; padding: .12rem .6rem; overflow: hidden; border-radius: 999px; background: rgb(255 255 255 / .09); color: rgb(226 232 240 / .78); font-size: .66rem; letter-spacing: .02em; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.browser-url::before { content: ''; display: inline-block; width: .42rem; height: .5rem; margin-right: .35rem; border: 1.5px solid currentColor; border-radius: 2px; vertical-align: -1px; opacity: .7; }
+.device-phone { position: absolute; z-index: 2; right: clamp(.75rem, 2.5vw, 1.75rem); bottom: clamp(1rem, 3vw, 2rem); width: clamp(4.75rem, 19%, 7.5rem); padding: 4px; border-radius: 16px; background: #111; box-shadow: 0 18px 40px rgb(15 23 42 / .35); transition: transform .5s var(--ease-out); }
+.portfolio-home .featured-project .device-phone img { display: block; width: 100%; max-width: none; max-height: none; border: 0; border-radius: 12px; box-shadow: none; }
+.media-badge { position: absolute; z-index: 3; top: 1.1rem; left: 1.1rem; display: inline-flex; align-items: center; gap: .45rem; padding: .3rem .7rem; border: 1px solid var(--border-color); border-radius: 999px; background: color-mix(in srgb, var(--card-bg) 88%, transparent); backdrop-filter: blur(8px); color: var(--text-main); font-size: .74rem; font-weight: 600; }
+.live-dot { width: .5rem; height: .5rem; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 3px rgb(22 163 74 / .2); }
+.featured-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; color: var(--text-muted); font-size: .8rem; font-weight: 600; }
+.featured-latest { padding: .2rem .6rem; border-radius: 999px; background: var(--accent-color); color: var(--bg-color); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
 .featured-project .home-project-body { justify-content: center; gap: .85rem; padding: clamp(1.75rem, 4vw, 3.5rem); }
 .featured-project .home-project-body .project-type { color: var(--accent-color); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .featured-project .home-project-body h3 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.03em; }
@@ -238,6 +252,9 @@
   .featured-project, .skill-card, .stack-group, .stat-row li { transition: transform .35s var(--ease-out), box-shadow .35s ease, border-color .35s ease; }
   .featured-project:is(:hover, :focus-within) { transform: translateY(-4px); border-color: rgba(var(--accent-rgb), .5); box-shadow: var(--card-shadow-hover); }
   .featured-project:is(:hover, :focus-within) .home-project-image img { transform: translateY(-8px); }
+  .featured-project[data-platform="web"]:is(:hover, :focus-within) .home-project-image img { transform: none; }
+  .featured-project:is(:hover, :focus-within) .browser-frame { transform: translateY(-6px); }
+  .featured-project:is(:hover, :focus-within) .device-phone { transform: translateY(-12px) rotate(-1.5deg); }
   .skill-card:hover, .stack-group:hover, .stat-row li:hover { transform: translateY(-4px); border-color: rgba(var(--accent-rgb), .5); box-shadow: var(--card-shadow-hover); }
   .skill-card:hover::before { transform: scaleX(1); }
   .xp-card:hover { border-color: rgba(var(--accent-rgb), .5); box-shadow: var(--card-shadow-hover); }
@@ -380,4 +397,36 @@ html:not([data-theme-ready]) .nav-controls { display: none; }
   .cta-panel { padding: 1.75rem 1.25rem; }
   .contact-layout .contact-info { padding-inline: 1.25rem; }
   .project-page .project-section-nav a { font-size: .85rem; }
+}
+
+/* Detail pass: small finishing touches shared across every page. */
+::selection { background: rgba(var(--accent-rgb), .22); color: inherit; }
+
+/* Page intros and case-study eyebrows get a short accent rule before the label. */
+:is(.page-intro, .about-story) .section-kicker::before, .project-hero .project-type::before { content: ''; display: inline-block; width: 1.75rem; height: 2px; margin-right: .6rem; border-radius: 2px; background: var(--accent-color); vertical-align: middle; }
+:is(.page-intro, .about-story) .section-kicker::before { margin-right: 0; }
+
+/* Works index cards: platform label, blueprint grid behind the screenshot, gentle zoom on hover. */
+.works-grid > .home-project { position: relative; }
+.works-grid > .home-project::before { content: attr(data-platform); position: absolute; z-index: 2; top: .85rem; left: .85rem; padding: .18rem .6rem; border: 1px solid var(--border-color); border-radius: 999px; background: color-mix(in srgb, var(--card-bg) 90%, transparent); backdrop-filter: blur(6px); color: var(--text-muted); font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; pointer-events: none; }
+.works-grid .home-project-image { background-color: var(--accent-light); background-image: linear-gradient(rgba(var(--accent-rgb), .07) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--accent-rgb), .07) 1px, transparent 1px); background-size: 24px 24px; background-position: center; }
+.works-grid .home-project-image img { transition: transform .5s var(--ease-out); }
+
+/* Stat cards: accent edge so the numbers read as one set. */
+.stat-row li { position: relative; overflow: hidden; }
+.stat-row li::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, var(--accent-color), rgba(var(--accent-rgb), 0)); }
+
+/* Contact panel: soft accent glow in the empty corner. */
+.contact-info::before { content: ''; position: absolute; top: -20%; right: -25%; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(var(--accent-rgb), .18), transparent 65%); pointer-events: none; }
+
+/* Case studies: accent bar over each section heading, labelled facts. */
+.project-content h2::before { content: ''; display: block; width: 2rem; height: 3px; margin-bottom: .85rem; border-radius: 3px; background: var(--accent-color); }
+.project-facts dt { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+
+/* Footer: accent hairline along the top edge. */
+.site-footer { position: relative; }
+.site-footer::before { content: ''; position: absolute; top: -1px; left: 50%; width: min(1200px, 100%); height: 1px; translate: -50% 0; background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .7), transparent); pointer-events: none; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .works-grid .home-project-link:is(:hover, :focus-visible) .home-project-image img { transform: scale(1.03); }
 }

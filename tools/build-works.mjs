@@ -29,11 +29,26 @@ export function card(project) {
 </li>`;
 }
 
-export function featuredCard(project) {
+const monthYear = (date) => new Date(`${date}-01T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+function featuredMedia(p) {
+  const cover = `<img src="${p.cover}" width="${p.coverWidth}" height="${p.coverHeight}" loading="lazy" decoding="async" alt="${p.name} project screenshot">`;
+  if (p.platform !== 'Web') return cover;
+  const host = p.liveUrl ? new URL(project_unescape(p.liveUrl)).host : '';
+  const mobile = p.coverMobile && p.coverMobileWidth > 0 && p.coverMobileHeight > 0
+    ? `<span class="device-phone"><img src="${p.coverMobile}" width="${p.coverMobileWidth}" height="${p.coverMobileHeight}" loading="lazy" decoding="async" alt="${p.name} on a phone"></span>`
+    : '';
+  return `<span class="browser-frame"><span class="browser-bar" aria-hidden="true"><span class="browser-dots"></span>${host ? `<span class="browser-url">${escape(host)}</span>` : ''}</span>${cover}</span>${mobile}`;
+}
+
+const project_unescape = (value) => value.replace(/&amp;/g, '&');
+
+export function featuredCard(project, index = 0) {
   const p = Object.fromEntries(Object.entries(project).map(([key, value]) => [key, typeof value === 'string' ? escape(value) : value]));
+  const badge = p.liveUrl ? `<span class="media-badge"><span class="live-dot" aria-hidden="true"></span>Live on the web</span>` : '';
   return `<li class="home-project featured-project" data-platform="${p.platform.toLowerCase()}" data-slug="${p.slug}">
-    <div class="featured-project-media"><a href="/works/${p.slug}/" aria-label="Read the ${p.name} case study"><div class="home-project-image" style="view-transition-name: project-${p.slug}"><img src="${p.cover}" width="${p.coverWidth}" height="${p.coverHeight}" loading="lazy" decoding="async" alt="${p.name} project screenshot"></div></a></div>
-    <div class="home-project-body"><span class="project-type">${p.type} &middot; ${p.platform}</span><h3><a href="/works/${p.slug}/">${p.name}</a></h3><span class="project-status${p.status === 'complete' ? ' is-complete' : ''}">${p.status === 'in-development' ? 'In Development' : 'Completed'}</span>
+    <div class="featured-project-media">${badge}<a href="/works/${p.slug}/" aria-label="Read the ${p.name} case study"><div class="home-project-image" style="view-transition-name: project-${p.slug}">${featuredMedia(p)}</div></a></div>
+    <div class="home-project-body"><span class="featured-meta">${index === 0 ? '<span class="featured-latest">Latest project</span>' : ''}<time datetime="${p.date}">${monthYear(project.date)}</time></span><span class="project-type">${p.type} &middot; ${p.platform}</span><h3><a href="/works/${p.slug}/">${p.name}</a></h3><span class="project-status${p.status === 'complete' ? ' is-complete' : ''}">${p.status === 'in-development' ? 'In Development' : 'Completed'}</span>
     <p class="project-result">${p.result || p.summary}</p><dl class="featured-facts"><div><dt>Role</dt><dd>${p.role}</dd></div><div><dt>Team</dt><dd>${p.team}</dd></div><div><dt>Timeline</dt><dd>${p.timeline}</dd></div><div><dt>Type</dt><dd>${p.projectType}</dd></div></dl><ul class="work-tags" aria-label="Technologies used">${p.tags.slice(0, 5).map(tag => `<li class="tag">${escape(tag)}</li>`).join('')}</ul>
     <div class="project-actions"><a class="btn-cta case-study-link" href="/works/${p.slug}/">Read case study</a>${p.liveUrl ? `<a class="btn-outline" href="${p.liveUrl}" target="_blank" rel="noopener noreferrer">Live demo</a>` : ''}<a class="text-link" href="${p.repo}" target="_blank" rel="noopener noreferrer">View code &nearr;</a></div></div>
   </li>`;
@@ -63,7 +78,7 @@ export async function buildWorks() {
   await validate(registry);
   const homePath = path.join(root, 'index.html');
   const featured = projects.filter((p) => p.featured === true).slice(0, 3);
-  await writeFile(homePath, replaceRegion(await readFile(homePath, 'utf8'), 'featured', `<ul class="home-work-grid">\n${featured.map(featuredCard).join('\n')}\n</ul>`));
+  await writeFile(homePath, replaceRegion(await readFile(homePath, 'utf8'), 'featured', `<ul class="home-work-grid">\n${featured.map((project, index) => featuredCard(project, index)).join('\n')}\n</ul>`));
   const indexPath = path.join(root, 'works/index.html');
   const base = await readFile(indexPath, 'utf8');
   const pages = Math.max(1, Math.ceil(projects.length / 9));

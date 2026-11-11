@@ -33,7 +33,7 @@
     "coverWidth": 918,
     "coverHeight": 1953,
     "repo": "https://github.com/jbl2023-2879-91296-cpu/KaraOK",
-    "featured": true,
+    "featured": false,
     "published": true,
     "result": "Evaluates core audio characteristics and generates visual reports."
   },
@@ -177,9 +177,12 @@
     "cover": "/works/reynolds-apparatus/images/overview-optimized.jpg",
     "coverWidth": 1600,
     "coverHeight": 1000,
+    "coverMobile": "/works/reynolds-apparatus/images/mobile-procedure-optimized.jpg",
+    "coverMobileWidth": 780,
+    "coverMobileHeight": 1688,
     "repo": "https://github.com/jrpbone-bu/O-Reynolds-Apparatus",
     "liveUrl": "https://o-reynolds-apparatus.vercel.app/",
-    "featured": false,
+    "featured": true,
     "published": true,
     "result": "Students can explore each part of the apparatus and follow the 11-step operating procedure in the browser."
   }
